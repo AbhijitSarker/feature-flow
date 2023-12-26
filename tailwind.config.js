@@ -9,7 +9,7 @@ export default {
       colors: {
         primary: '#07332F',
         secondary: '#F7A582',
-        backgroud: '#F4F4F4',
+        background: '#F4F4F4',
         headingText: '#0A0808',
         paragraphText: '#3B3A3A',
         cardText: '#6C6B6B',

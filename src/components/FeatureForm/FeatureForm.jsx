@@ -1,0 +1,56 @@
+import React, { useState } from 'react';
+import { FaPhoneVolume } from 'react-icons/fa6';
+
+const FeatureForm = () => {
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Add logic to handle form submission
+        console.log('Title:', title);
+        console.log('Description:', description);
+    };
+    return (
+        <div className=' sticky top-5 bg-white md:rounded-[10px] shadow-md border px-5 py-5  flex flex-col'>
+            <div className='text-center text-2xl text-headingText font-bold font-serif my-5'>
+                <h1>Request A Feature</h1>
+            </div>
+            <div className=' mt-10 md:mt-0'>
+                <form onSubmit={handleSubmit}>
+                    <div className=' font-medium space-y-5'>
+                        <div>
+                            <label htmlFor="">Feature Title</label>
+                            <input
+                                className="input-field-contact w-full focus:outline-none border focus:border focus:border-[#F7A582]  h-16 px-4 bg-white text-black bg-opacity-5 rounded-[10px]"
+                                id="title"
+                                type="text"
+                                placeholder="Short, descriptive title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="">Feature Description</label>
+                            <textarea
+                                className="w-full h-16 px-4 border bg-white text-black bg-opacity-5 rounded-[10px] focus:outline-none focus:border focus:border-[#F7A582]" id="description"
+                                placeholder="Any additional details..."
+                                rows="10"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            ></textarea>
+                        </div>
+
+
+                    </div>
+                    <input className="w-full h-16 mt-5 bg-secondary rounded-[10px]" type="submit" />
+
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default FeatureForm;
