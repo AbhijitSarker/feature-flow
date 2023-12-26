@@ -7,13 +7,15 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav className="bg-primary z-10 w-full ">
-            <div className='flex justify-between items-center h-20 mx-10 '>
+        <nav className="bg-primary w-full ">
+            <div className='flex justify-between pt-10 h-48 mx-10 '>
 
                 <h1 className='text-secondary text-4xl font-bold font-serif'>Feature Flow</h1>
 
                 {/*for small device */}
                 <ul className={`absolute w-full h-screen flex flex-col gap-10 justify-center items-center bg-secondary transform duration-500 ease-in-out ${open ? 'left-0 top-0' : '-top-[2000px]  left-0'} `}>
+                    <li>hekki</li>
+                    <li>hekki</li>
                 </ul>
 
                 {/* for medium and large device */}

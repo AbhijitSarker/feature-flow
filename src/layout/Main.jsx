@@ -5,6 +5,7 @@ import SideBar from "../pages/Home/SideBar/SideBar";
 import { Link, Outlet } from 'react-router-dom';
 import { GiCrossedBones } from "react-icons/gi";
 import { FaBarsStaggered } from "react-icons/fa6";
+import Search from "../components/Search/Search";
 
 const Main = () => {
 
@@ -18,7 +19,7 @@ const Main = () => {
     return (
         <div >
             <NavBar></NavBar>
-            <div className="flex flex-col lg:flex-row h-screen mx-10 ">
+            <div className="rounded flex flex-col  lg:flex-row h-full mx-10 p-3 bg-white shadow-md -mt-10">
 
                 {/* Mobile Menu Icon */}
                 <div className="lg:hidden flex justify-between items-center">
@@ -38,24 +39,19 @@ const Main = () => {
                 {/* Sidebar */}
                 <aside className={`bg-gray-300 text-black w-full lg:w-80 h-screen ${isSidebarOpen ? 'block' : 'hidden'} lg:block lg:min-h-screen p-3 md:p-6`} >
                     {/* Sidebar content */}
-                    sd
+                    <Search></Search>
+
+
                 </aside>
 
                 {/* Main content area */}
                 <main className="flex-1 p-6 lg:p-10">
-                    df
                     {/* Main content */}
                     <Outlet></Outlet>
                 </main>
             </div>
 
-        </div>
-
-        // <div className="container mx-auto ">
-        //     <div className=" h-screen w-40 float-left bg-primary">
-        //         hello
-        //     </div>
-        // </div>
+        </div >
     );
 };
 
