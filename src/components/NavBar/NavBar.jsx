@@ -7,7 +7,7 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav className="bg-primary w-full ">
+        <nav className="bg-gray-900 w-full ">
             <div className='flex justify-between pt-10 h-48 mx-10 '>
 
                 <h1 className='text-secondary text-4xl font-bold font-serif'>Feature Flow</h1>

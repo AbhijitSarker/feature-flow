@@ -17,13 +17,13 @@ const FeatureForm = () => {
             <div className='text-center text-2xl text-headingText font-medium  mb-5'>
                 <h1>Request A Feature</h1>
             </div>
-            <div className=' mt-10 md:mt-0'>
+            <div className=' uppercase mt-10 md:mt-0'>
                 <form onSubmit={handleSubmit}>
                     <div className=' font-medium space-y-5'>
                         <div>
-                            <label htmlFor="">Feature Title</label>
+                            <label htmlFor=""> Title</label>
                             <input
-                                className="input-field-contact w-full focus:outline-none border focus:shadow-xl focus:border focus:border-gray-400 h-10 px-4 bg-white text-black bg-opacity-5 "
+                                className="input-field-contact w-full focus:outline-none border focus:shadow-xl focus:border focus:border-gray-400 h-10 px-4 bg-white text-primary bg-opacity-5 "
                                 id="title"
                                 type="text"
                                 placeholder="Short, descriptive title"
@@ -33,9 +33,9 @@ const FeatureForm = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="">Feature Description</label>
+                            <label htmlFor=""> Description</label>
                             <textarea
-                                className="w-full h-20 px-4 border bg-white text-black bg-opacity-5 focus:shadow-xl focus:outline-none focus:border focus:border-gray-400" id="description"
+                                className="w-full h-20 px-4 border bg-white text-primary bg-opacity-5 focus:shadow-xl focus:outline-none focus:border focus:border-gray-400" id="description"
                                 placeholder="Any additional details..."
                                 rows="10"
                                 value={description}
@@ -45,7 +45,7 @@ const FeatureForm = () => {
 
 
                     </div>
-                    <input className="w-full h-16 mt-5 bg-secondary rounded-[10px]" type="submit" />
+                    <input className="w-full h-16 mt-5 bg-primary text-white text-2xl font-semibold  tracking-widest rounded-[10px]" type="submit" />
 
                 </form>
             </div>
