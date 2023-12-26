@@ -7,6 +7,7 @@ import { GiCrossedBones } from "react-icons/gi";
 import { FaBarsStaggered } from "react-icons/fa6";
 import Search from "../components/Search/Search";
 import FeatureForm from "../components/FeatureForm/FeatureForm";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
 
 const Main = () => {
 
@@ -20,9 +21,7 @@ const Main = () => {
     return (
         <div >
             <NavBar></NavBar>
-            <div className="rounded flex flex-col lg:flex-row  mx-10 p-3 bg-white shadow-md -mt-10">
-
-
+            <div className="rounded flex flex-col sticky top-20 lg:flex-row  mx-10 p-3 bg-white shadow-md -mt-10">
 
                 {/* Mobile Menu Icon */}
                 <div className="lg:hidden flex justify-between items-center">
@@ -31,10 +30,10 @@ const Main = () => {
                 </div>
 
                 {/* Sidebar */}
-                <aside className={`bg-background rounded-md  sticky top-5 md:h-full text-black w-full lg:w-80 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-6`} >
+                <aside className={`bg-background rounded-md space-y-8 md:sticky md:top-5 md:h-full text-black w-full lg:w-80 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-6`} >
                     {/* Sidebar content */}
-                    <h1 className='text-primary text-4xl text-center mb-5 font-bold font-serif'>Feature Flow</h1>
-
+                    <ProfileCard></ProfileCard>
+                    {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold font-serif'>Feature Flow</h1> */}
                     <FeatureForm></FeatureForm>
 
                 </aside>

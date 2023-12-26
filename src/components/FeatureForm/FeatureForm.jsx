@@ -13,8 +13,8 @@ const FeatureForm = () => {
         console.log('Description:', description);
     };
     return (
-        <div className=' sticky top-5 bg-white md:rounded-[10px] shadow-md border px-5 py-5  flex flex-col'>
-            <div className='text-center text-2xl text-headingText font-bold font-serif my-5'>
+        <div className=' bg-white hover:shadow-xl shadow px-5 py-5  flex flex-col'>
+            <div className='text-center text-2xl text-headingText font-medium  mb-5'>
                 <h1>Request A Feature</h1>
             </div>
             <div className=' mt-10 md:mt-0'>
@@ -23,7 +23,7 @@ const FeatureForm = () => {
                         <div>
                             <label htmlFor="">Feature Title</label>
                             <input
-                                className="input-field-contact w-full focus:outline-none border focus:border focus:border-[#F7A582]  h-16 px-4 bg-white text-black bg-opacity-5 rounded-[10px]"
+                                className="input-field-contact w-full focus:outline-none border focus:shadow-xl focus:border focus:border-gray-400 h-10 px-4 bg-white text-black bg-opacity-5 "
                                 id="title"
                                 type="text"
                                 placeholder="Short, descriptive title"
@@ -35,7 +35,7 @@ const FeatureForm = () => {
                         <div>
                             <label htmlFor="">Feature Description</label>
                             <textarea
-                                className="w-full h-16 px-4 border bg-white text-black bg-opacity-5 rounded-[10px] focus:outline-none focus:border focus:border-[#F7A582]" id="description"
+                                className="w-full h-20 px-4 border bg-white text-black bg-opacity-5 focus:shadow-xl focus:outline-none focus:border focus:border-gray-400" id="description"
                                 placeholder="Any additional details..."
                                 rows="10"
                                 value={description}

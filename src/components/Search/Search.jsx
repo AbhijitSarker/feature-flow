@@ -4,7 +4,7 @@ const Search = () => {
     const [search, setSearch] = useState('');
 
     return (
-        <div className="flex w-full shadow-lg rounded border  sticky top-5  bg-white" x-data="{ search: '' }">
+        <div className="flex w-full shadow-lg rounded border  lg:sticky lg:top-5  bg-white" x-data="{ search: '' }">
             <input
                 type="search"
                 className="w-full border-none bg-transparent px-4 py-1 text-gray-900 focus:outline-none"
