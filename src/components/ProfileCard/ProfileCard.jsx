@@ -1,15 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const ProfileCard = () => {
     const { logout, user } = useAuth();
     const handleLogout = () => {
-        logout();
-    }; return (
+        confirmAlert({
+            title: 'Confirm Logout',
+            message: 'Are you sure you want to log out?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+
+                        logout()
+                    },
+                },
+                {
+                    label: 'No',
+                    onClick: () => { },
+                },
+            ],
+        });
+    };
+
+
+    return (
         <div className="font-baskerville  border shadow-xl w-full flex flex-row justify-center items-center">
             <div className="card w-full mx-auto bg-white  hover:shadow-xl shadow">
-                <img className="w-32 mx-auto  rounded-full -mt-20 border-8 border-white" src="https://avatars.githubusercontent.com/u/67946056?v=4" alt="" />
+                <img className="w-32 mx-auto  rounded-full -mt-20 border-8 border-white" src={user ? user.photoURL : `https://avatars.githubusercontent.com/u/67946056?v=4`} alt="" />
                 {
                     user ? <div className="text-center mt-2 text-3xl font-medium">{user.displayName}</div>
 
