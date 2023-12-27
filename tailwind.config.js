@@ -14,6 +14,9 @@ export default {
         paragraphText: '#3B3A3A',
         cardText: '#6C6B6B',
         input: '#FFFFFF0D'
+      },
+      fontFamily: {
+        baskerville: ['Libre Baskerville', 'serif']
       }
     },
   },

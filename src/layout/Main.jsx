@@ -24,7 +24,28 @@ const Main = () => {
     const noFeatureNav = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div >
-            <NavBar></NavBar>
+            {/* <NavBar></NavBar> */}
+            <div>
+
+
+                <nav className="bg-gray-900 w-full ">
+                    <div className='flex justify-between pt-10 h-48 mx-10 '>
+
+                        <h1 className='text-secondary text-4xl font-bold font-baskerville'>Feature Flow</h1>
+                        {/* for medium and large device */}
+                        <ul className='md:flex hidden  space-x-5'>
+                            <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Homes</Link>
+                            <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>abouts</Link>
+                        </ul>
+
+
+
+                        <Link to={'/signup'}><button className='hidden md:flex hover:text-secondary font-baskerville w-36 h-12 items-center justify-center rounded-lg font-bold text-xl text-white transition ease-in-out duration-200'>Login / Register</button></Link>
+                    </div>
+                </nav>
+
+
+            </div>
             <div className="rounded  flex flex-col sticky top-20 lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-10">
 
                 {/* Mobile Menu Icon */}
@@ -37,7 +58,7 @@ const Main = () => {
                 <aside className={`bg-background rounded-md space-y-8 md:sticky md:top-5 md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
                     {/* Sidebar content */}
                     <ProfileCard></ProfileCard>
-                    {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold font-serif'>Feature Flow</h1> */}
+                    {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold font-baskerville'>Feature Flow</h1> */}
                     <FeatureForm></FeatureForm>
 
                 </aside>
