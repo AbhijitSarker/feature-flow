@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProfileCard = () => {
     return (
@@ -20,6 +21,8 @@ const ProfileCard = () => {
                         <span className="font-bold">2.0 k</span> Following
                     </div>
                 </div>
+                <hr className="mb-8" />
+                <Link to={'/signup'}><div className="text-center mt-2 text-3xl font-medium">Ajo Alex</div></Link>
             </div>
         </div>
     );

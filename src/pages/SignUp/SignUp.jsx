@@ -30,7 +30,7 @@ const SignUp = () => {
 
 
                                 <div className=' p-5 my-5 text-primary justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200  hover:shadow-2xl ease'><span className='text-sm'>Sign In With</span><FcGoogle /><span className='font-bold font-baskerville'>OOGLE</span></div>
-                                <div className="h-[1px] w-full bg-purple-600 my-5"></div>
+                                <div className="h-[1px] w-full bg-gray-300 my-5"></div>
 
                                 <div className="w-full mt-6 relative space-y-8">
 
