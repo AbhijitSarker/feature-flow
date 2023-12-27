@@ -1,8 +1,13 @@
+import FeatureCard from "../../../components/FeatureCard/FeatureCard";
 
 const Home = () => {
     return (
         <div>
-            Home
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
         </div>
     );
 };

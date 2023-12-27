@@ -2,7 +2,7 @@ import { useState } from "react";
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
 import SideBar from "../pages/Home/SideBar/SideBar";
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { GiCrossedBones } from "react-icons/gi";
 import { FaBarsStaggered } from "react-icons/fa6";
 import Search from "../components/Search/Search";
@@ -19,7 +19,9 @@ const Main = () => {
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+    const location = useLocation();
 
+    const noFeatureNav = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div >
             <NavBar></NavBar>
@@ -43,13 +45,12 @@ const Main = () => {
                 {/* Main content area */}
                 <main className="flex-1 px-2 md:pl-5 md:pr-2">
                     {/* Main content */}
-                    <FeatureNav></FeatureNav>
+                    {
+                        noFeatureNav || <FeatureNav></FeatureNav>
+                    }
 
-                    <FeatureCard></FeatureCard>
-                    <FeatureCard></FeatureCard>
-                    <FeatureCard></FeatureCard>
-                    <FeatureCard></FeatureCard>
-                    <FeatureCard></FeatureCard>
+                    <Outlet></Outlet>
+
                 </main>
             </div>
         </div >
