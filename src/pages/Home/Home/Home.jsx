@@ -8,6 +8,15 @@ const Home = () => {
             <FeatureCard></FeatureCard>
             <FeatureCard></FeatureCard>
             <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
+            <FeatureCard></FeatureCard>
         </div>
     );
 };

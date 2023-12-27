@@ -15,7 +15,7 @@ const FeatureNav = () => {
     };
     return (
 
-        <nav className="bg-gray-900 sticky top-5 text-secondary rounded-md">
+        <nav className="bg-gray-900 text-secondary rounded-md">
             <div className="space-y-2 px-4">
 
                 <div className="relative pt-4 ">
