@@ -21,7 +21,7 @@ const FeatureForm = () => {
                 <form onSubmit={handleSubmit}>
                     <div className=' font-medium space-y-5'>
                         <div>
-                            <label htmlFor=""> Title</label>
+                            <label className=' font-medium text-gray-600' htmlFor=""> Title</label>
                             <input
                                 className="input-field-contact w-full focus:outline-none border focus:shadow-xl focus:border focus:border-gray-400 h-10 px-4 bg-white text-primary bg-opacity-5 "
                                 id="title"
@@ -33,7 +33,7 @@ const FeatureForm = () => {
                         </div>
 
                         <div>
-                            <label htmlFor=""> Description</label>
+                            <label className=' font-medium text-gray-600' htmlFor=""> Description</label>
                             <textarea
                                 className="w-full h-20 px-4 border bg-white text-primary bg-opacity-5 focus:shadow-xl focus:outline-none focus:border focus:border-gray-400" id="description"
                                 placeholder="Any additional details..."
@@ -45,7 +45,7 @@ const FeatureForm = () => {
 
 
                     </div>
-                    <input className="w-full h-16 mt-5 bg-primary text-white text-2xl font-semibold  tracking-widest rounded-[10px]" type="submit" />
+                    <input className="w-full h-16 mt-5 bg-primary text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-gray-950 ease" type="submit" value={'Request A Feature'} />
 
                 </form>
             </div>
