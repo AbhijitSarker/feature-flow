@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ProfileCard = () => {
     return (
-        <div className="  w-full flex flex-row justify-center items-center">
+        <div className="font-baskerville  border shadow-xl w-full flex flex-row justify-center items-center">
             <div className="card w-full mx-auto bg-white  hover:shadow-xl shadow">
                 <img className="w-32 mx-auto  rounded-full -mt-20 border-8 border-white" src="https://avatars.githubusercontent.com/u/67946056?v=4" alt="" />
                 <div className="text-center mt-2 text-3xl font-medium">Ajo Alex</div>
@@ -22,7 +22,7 @@ const ProfileCard = () => {
                     </div>
                 </div>
                 <hr className="mb-8" />
-                <Link to={'/signup'}><div className="text-center mt-2 text-3xl font-medium">Ajo Alex</div></Link>
+                <Link to={'/signup'}><div className=" mt-5 py-3 m-5  border text-center text-primary hover:text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-primary ease">Sign Up | Sign IN</div></Link>
             </div>
         </div>
     );

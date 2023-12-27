@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Search from '../Search/Search';
-import { FaMagnifyingGlass, FaMagnifyingGlassArrowRight, FaSearchengin } from 'react-icons/fa6';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 const FeatureNav = () => {
     const [openSort, setOpenSort] = useState(false);
@@ -15,16 +14,16 @@ const FeatureNav = () => {
     };
     return (
 
-        <nav className="bg-gray-900 text-secondary rounded-md">
+        <nav className="border border-gray-500 text-primary bg-gray-200 z-20 sticky top-5  mt-4 rounded-md">
             <div className="space-y-2 px-4">
 
                 <div className="relative pt-4 ">
                     <input
                         type="text"
                         placeholder="Search..."
-                        className="bg-gray-800 w-full text-secondary rounded-md px-3 py-1 focus:outline-none focus:ring-1 focus:ring-secondary"
+                        className=" w-full rounded-md px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary"
                     />
-                    <button className="absolute  top-4 right-2 mt-2  focus:outline-none">
+                    <button className="absolute  top-4 right-2 mt-2 focus:outline-none">
                         <FaMagnifyingGlass></FaMagnifyingGlass>
                     </button>
                 </div>

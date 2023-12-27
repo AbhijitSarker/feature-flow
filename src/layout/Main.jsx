@@ -24,7 +24,7 @@ const Main = () => {
     const noFeatureNav = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div >
-            <nav className="bg-gray-900 w-full ">
+            <nav className="bg-primary w-full ">
                 <div className='flex justify-between pt-10 h-48 mx-10 '>
 
                     <h1 className='text-secondary text-4xl font-bold font-baskerville'></h1>
@@ -46,7 +46,7 @@ const Main = () => {
                 </div>
 
                 {/* Sidebar */}
-                <aside className={`bg-background rounded-md space-y-8  md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
+                <aside className={` rounded-md space-y-16  sticky top-28 md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
                     {/* Sidebar content */}
                     <ProfileCard></ProfileCard>
                     {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold font-baskerville'>Feature Flow</h1> */}
@@ -57,10 +57,6 @@ const Main = () => {
                 {/* Main content area */}
                 <main className="flex-1 px-2 md:pl-5 md:pr-2">
                     {/* Main content */}
-                    {
-                        noFeatureNav || <FeatureNav></FeatureNav>
-                    }
-
                     <Outlet></Outlet>
 
                 </main>
