@@ -18,7 +18,7 @@ const FeatureCard = () => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md my-4 border p-4">
+        <div className="bg-white font-baskerville text-primary rounded-lg shadow-md my-4 border p-4">
 
             <div className='flex flex-col md:flex-row justify-between'>
 
@@ -51,7 +51,7 @@ const FeatureCard = () => {
 
                                 <div className="flex flex-col ">
                                     <span className="text-gray-700 font-semibold">John Doe</span>
-                                    <span className="text-gray-500">• 2 hours ago</span>
+                                    <span className="text-gray-500"> 2 hours ago</span>
 
                                 </div>
                             </div>
