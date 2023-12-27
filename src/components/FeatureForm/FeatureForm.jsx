@@ -13,36 +13,34 @@ const FeatureForm = () => {
         console.log('Description:', description);
     };
     return (
-        <div className=' bg-white hover:shadow-xl shadow px-5 py-5  flex flex-col'>
-            <div className='text-center text-2xl text-headingText font-medium  mb-5'>
+        <div className=' bg-white hover:shadow-xl font-baskerville shadow px-5 py-5  flex flex-col'>
+            <div className='text-center text-4xl text-headingText font-medium mt-4 mb-8'>
                 <h1>Request A Feature</h1>
             </div>
             <div className=' uppercase mt-10 md:mt-0'>
                 <form onSubmit={handleSubmit}>
-                    <div className=' font-medium space-y-5'>
-                        <div>
-                            <label className=' font-medium text-gray-600' htmlFor=""> Title</label>
+                    <div className=' font-medium space-y-10'>
+
+                        <div className="relative">
+                            <p className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">Name</p>
                             <input
-                                className="input-field-contact w-full focus:outline-none border focus:shadow-xl focus:border focus:border-gray-400 h-10 px-4 bg-white text-primary bg-opacity-5 "
                                 id="title"
                                 type="text"
                                 placeholder="Short, descriptive title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                            />
+                                className=" focus:shadow-xl border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md" />
                         </div>
-
-                        <div>
-                            <label className=' font-medium text-gray-600' htmlFor=""> Description</label>
+                        <div className="relative">
+                            <p className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">Name</p>
                             <textarea
-                                className="w-full h-20 px-4 border bg-white text-primary bg-opacity-5 focus:shadow-xl focus:outline-none focus:border focus:border-gray-400" id="description"
+                                className=" focus:shadow-xl border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md"
                                 placeholder="Any additional details..."
-                                rows="10"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                            ></textarea>
+                                cols="30"
+                                rows="5"></textarea>
                         </div>
-
 
                     </div>
                     <input className="w-full h-16 mt-5 bg-primary text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-gray-950 ease" type="submit" value={'Request A Feature'} />
