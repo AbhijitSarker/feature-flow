@@ -43,7 +43,7 @@ const FeatureForm = () => {
                         </div>
 
                     </div>
-                    <input className="w-full h-16 mt-5 border border-primary text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-primary ease" type="submit" value={'Request A Feature'} />
+                    <input className="w-full h-16 mt-10 border border-primary text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-primary ease" type="submit" value={'Request A Feature'} />
 
                 </form>
             </div>

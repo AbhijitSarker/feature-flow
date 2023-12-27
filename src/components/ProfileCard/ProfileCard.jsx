@@ -22,7 +22,7 @@ const ProfileCard = () => {
                     </div>
                 </div>
                 <hr className="mb-8" />
-                <Link to={'/signup'}><div className=" mt-5 py-3 m-5  border text-center text-primary hover:text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-primary ease">Sign Up | Sign IN</div></Link>
+                <Link to={'/signin'}><div className=" mt-5 py-3 m-5  border text-center text-primary hover:text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-primary ease">Sign Up | Sign IN</div></Link>
             </div>
         </div>
     );
