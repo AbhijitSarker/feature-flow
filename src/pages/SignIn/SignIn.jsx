@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const SignIn = () => {
     const {
@@ -25,8 +26,8 @@ const SignIn = () => {
 
                         <form onSubmit={handleSubmit(onSubmit)} className="flex border my-10 flex-col items-start justify-start pt-10 pr-5 pb-10 pl-5 md:px-10 bg-white shadow-2xl rounded-xl relative z-10">
 
-
-                            <div className=' p-5 my-5 text-primary justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200  hover:shadow-2xl ease'><span className='text-sm'>Sign In With</span><FcGoogle /><span className='font-bold font-baskerville'>OOGLE</span></div>
+                            <SocialLogin></SocialLogin>
+                            {/* <div className=' p-5 my-5 text-primary justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200  hover:shadow-2xl ease'><span className='text-sm'>Sign In With</span><FcGoogle /><span className='font-bold font-baskerville'>OOGLE</span></div> */}
                             <div className="h-[1px] w-full bg-gray-300 my-5"></div>
 
                             <div className="w-full mt-6 relative space-y-10">
