@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FaComment, FaHeart } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
-const FeatureCard = () => {
+const FeatureCard = ({ feature }) => {
+    const { title, description, _id } = feature;
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
     const [comments, setComments] = useState(0);
@@ -19,15 +20,15 @@ const FeatureCard = () => {
     };
 
     return (
-        <Link to={'/feature/1'}>
+        <Link to={`/feature/${_id}`}>
             <div className="bg-white font-baskerville text-primary rounded-lg shadow-md my-4 border p-4">
 
                 <div className='flex flex-col md:flex-row justify-between'>
 
                     {/* title & description */}
                     <div>
-                        <h2 className="text-xl font-semibold mb-2">Feature Title</h2>
-                        <p className="text-gray-600 mb-2"> Description of the feature goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+                        <p className="text-gray-600 mb-2"> {description}</p>
                     </div>
 
                     <div className='flex flex-col  gap-4'>
