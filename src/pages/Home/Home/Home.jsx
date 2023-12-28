@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FeatureCard from "../../../components/FeatureCard/FeatureCard";
 import FeatureNav from "../../../components/FeatureNav/FeatureNav";
 import api from "../../../utils/handleApi";
+import { FeatureContext } from "../../../context/FeatureProvider";
 
 const Home = () => {
-    const [features, setFeatures] = useState([]);
-    const [loading, setLoading] = useState(false);
+    // const [features, setFeatures] = useState([]);
+    const { updateFeatures, features } = useContext(FeatureContext);
+    // useEffect(() => {
+    //     // Fetch todos when the component mounts
+    //     setLoading(true); // Set loading to true before fetching todos
 
-    useEffect(() => {
-        // Fetch todos when the component mounts
-        setLoading(true); // Set loading to true before fetching todos
-
-        //get request to load todos
-        api.get('/feature')
-            .then((data) => {
-                console.log(data.data.features);
-                setFeatures(data.data.features); // Update todo state with fetched todos
-                setLoading(false); // Set loading to false after fetching todos
-            })
-            .catch((error) => {
-                console.error('Error fetching todo:', error);
-                setLoading(false); // Set loading to false in case of error
-            });
-    }, [features]);
-    console.log(features);
+    //     //get request to load todos
+    //     api.get('/feature')
+    //         .then((data) => {
+    //             console.log(data.data.features);
+    //             // setFeatures(data.data.features); // Update todo state with fetched todos
+    //             setLoading(false); // Set loading to false after fetching todos
+    //             updateFeatures();
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error fetching todo:', error);
+    //             setLoading(false); // Set loading to false in case of error
+    //         });
+    // }, []);
     return (
         <div className="">
 

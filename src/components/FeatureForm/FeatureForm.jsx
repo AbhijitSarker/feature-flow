@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import api from '../../utils/handleApi';
+import { FeatureContext } from '../../context/FeatureProvider';
 
 const FeatureForm = () => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-
+    const { updateFeatures } = useContext(FeatureContext)
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            // Make a POST request to your feature creation endpoint
-            const response = await api.post('feature', {
-                title,
-                description,
-            });
+        await api.post('/feature', {
+            title,
+            description,
+        });
+        updateFeatures()
 
-            // Handle success or additional logic here
-            console.log('Feature created:', response.data);
-            // Clear the form after successful submission
-            setTitle('');
-            setDescription('');
-        } catch (error) {
-            // Handle errors
-            console.error('Error creating feature:', error);
-        }
+        // Handle success or additional logic here
+        // Clear the form after successful submission
+        setTitle('');
+        setDescription('');
+
     };
     return (
         <div className=' bg-white border shadow-xl font-baskerville  px-5 py-5  flex flex-col'>
