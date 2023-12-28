@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
-import { FaPhoneVolume } from 'react-icons/fa6';
+import api from '../../utils/handleApi';
 
 const FeatureForm = () => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add logic to handle form submission
-        console.log('Title:', title);
-        console.log('Description:', description);
+        try {
+            // Make a POST request to your feature creation endpoint
+            const response = await api.post('feature', {
+                title,
+                description,
+            });
+
+            // Handle success or additional logic here
+            console.log('Feature created:', response.data);
+            // Clear the form after successful submission
+            setTitle('');
+            setDescription('');
+        } catch (error) {
+            // Handle errors
+            console.error('Error creating feature:', error);
+        }
     };
     return (
         <div className=' bg-white border shadow-xl font-baskerville  px-5 py-5  flex flex-col'>
@@ -26,6 +39,7 @@ const FeatureForm = () => {
                             <input
                                 id="title"
                                 type="text"
+                                required
                                 placeholder="Short, descriptive title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
@@ -36,6 +50,7 @@ const FeatureForm = () => {
                             <textarea
                                 className=" focus:shadow-xl border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md"
                                 placeholder="Any additional details..."
+                                required
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 cols="30"

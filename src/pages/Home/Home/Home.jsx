@@ -22,7 +22,7 @@ const Home = () => {
                 console.error('Error fetching todo:', error);
                 setLoading(false); // Set loading to false in case of error
             });
-    }, []);
+    }, [features]);
     console.log(features);
     return (
         <div className="">

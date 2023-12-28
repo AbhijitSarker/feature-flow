@@ -11,7 +11,6 @@ const Feature = () => {
 
         api.get(`/feature/${id}`)
             .then((data) => {
-                console.log(data.data.feature.title);
                 setTitle(data.data.feature.title); // Update todo state with fetched todos
                 setDescription(data.data.feature.description); // Set loading to false after fetching todos
             })
