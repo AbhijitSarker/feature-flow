@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Comments from '../../components/Comments/Comments';
+import { Link } from 'react-router-dom';
 
 const Feature = () => {
     const [votes, setVotes] = useState(10);
@@ -33,13 +35,20 @@ const Feature = () => {
 
     return (
         <div className="bg-white p-4 rounded shadow">
-            <div className="flex items-center mb-4">
-                <img
-                    src="https://via.placeholder.com/40"
-                    alt="Author Avatar"
-                    className="w-10 h-10 rounded-full mr-2"
-                />
-                <span className="font-semibold">Author Name</span>
+            <div className='flex justify-between'>
+                <div className="flex items-center mb-4">
+                    <img
+                        src="https://via.placeholder.com/40"
+                        alt="Author Avatar"
+                        className="w-10 h-10 rounded-full mr-2"
+                    />
+                    <span className="font-semibold">Author Name</span>
+                </div>
+                <div>
+                    <Link to={'/'}>
+                        <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> Go Back </button>
+                    </Link>
+                </div>
             </div>
             <h2 className="text-lg font-semibold mb-2">{title}</h2>
             <p className="text-gray-600 mb-4">{description}</p>
@@ -87,7 +96,7 @@ const Feature = () => {
                     Comment
                 </button>
             </div>
-
+            <Comments></Comments>
         </div>
     );
 };
