@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Comments from '../../components/Comments/Comments';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import api from '../../utils/handleApi';
 
 const Feature = () => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const { id } = useParams(); // Getting the 'id' parameter from the URL
+    useEffect(() => {
+
+        api.get(`/feature/${id}`)
+            .then((data) => {
+                console.log(data.data.feature.title);
+                setTitle(data.data.feature.title); // Update todo state with fetched todos
+                setDescription(data.data.feature.description); // Set loading to false after fetching todos
+            })
+            .catch((error) => {
+                console.error('Error fetching todo:', error);
+            });
+    }, []);
     const [votes, setVotes] = useState(10);
     const [comments, setComments] = useState([
         { text: 'Great feature!', author: 'User1' },
@@ -10,10 +26,7 @@ const Feature = () => {
         { text: 'Looking forward to using this!', author: 'User3' },
     ]);
     const [newComment, setNewComment] = useState('');
-    const [title, setTitle] = useState('New Feature');
-    const [description, setDescription] = useState(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum cursus turpis ut felis elementum, vitae euismod tortor ultrices.'
-    );
+
 
     const handleVote = (type) => {
         if (type === 'upvote') {
