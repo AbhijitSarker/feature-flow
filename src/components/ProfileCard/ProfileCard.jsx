@@ -1,28 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+import Swal from 'sweetalert2'
 
 const ProfileCard = () => {
     const { logout, user } = useAuth();
-    const handleLogout = () => {
-        confirmAlert({
-            title: 'Confirm Logout',
-            message: 'Are you sure you want to log out?',
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => {
 
-                        logout()
-                    },
-                },
-                {
-                    label: 'No',
-                    onClick: () => { },
-                },
-            ],
+    const handleLogout = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            // icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Logout!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logout();
+                Swal.fire({
+                    title: "Logout Successful!",
+                    icon: "success"
+                });
+            }
         });
     };
 
@@ -39,7 +39,7 @@ const ProfileCard = () => {
 
                 <div className="text-center mt-2 font-light text-sm">Email: {user?.email}</div>
 
-                <hr className="mt-8" />
+                {/* <hr className="mt-8" />
                 <div className="flex p-4">
                     <div className="w-1/2 text-center">
                         <span className="font-bold">1.8 k</span> Followers
@@ -51,7 +51,7 @@ const ProfileCard = () => {
                         <span className="font-bold">2.0 k</span> Following
                     </div>
                 </div>
-                <hr className="mb-8" />
+                <hr className="mb-8" /> */}
 
                 {
                     user ?
