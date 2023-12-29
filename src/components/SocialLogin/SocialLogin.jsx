@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../hooks/useAuth';
+import api from '../../utils/handleApi';
 
 const SocialLogin = () => {
     const { googleSignIn } = useAuth();
@@ -12,7 +13,11 @@ const SocialLogin = () => {
 
     const handleGoogleSignIn = () => {
         googleSignIn()
-            .then(() => {
+            .then((res) => {
+                const loggedInUser = res.user;
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, photoURL: loggedInUser.photoURL };
+
+                api.post('/user', saveUser);
                 navigate(from, { replace: true });
             })
     };
