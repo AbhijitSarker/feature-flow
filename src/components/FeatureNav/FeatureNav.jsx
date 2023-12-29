@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
-const FeatureNav = () => {
+const FeatureNav = ({ handleSearch }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleChange = (event) => {
+        setSearchTerm(event.target.value);
+        handleSearch(event.target.value); // Pass search term to parent component
+    };
+
     const [openSort, setOpenSort] = useState(false);
 
     const toggleSort = () => {
@@ -12,6 +19,7 @@ const FeatureNav = () => {
     const toggleFilter = () => {
         setOpenFilter(!openFilter);
     };
+
     return (
 
         <nav className="border border-gray-500 text-primary bg-gray-200 z-20 sticky top-5  mt-4 rounded-md">
@@ -22,6 +30,8 @@ const FeatureNav = () => {
                         type="text"
                         placeholder="Search..."
                         className=" w-full rounded-md px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary"
+                        value={searchTerm}
+                        onChange={handleChange}
                     />
                     <button className="absolute  top-4 right-2 mt-2 focus:outline-none">
                         <FaMagnifyingGlass></FaMagnifyingGlass>
