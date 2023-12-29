@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Comments from '../../components/Comments/Comments';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import api from '../../utils/handleApi';
+import Swal from 'sweetalert2'
 
 const Feature = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const { id } = useParams(); // Getting the 'id' parameter from the URL
+    const navigate = useNavigate();
+
     useEffect(() => {
 
         api.get(`/feature/${id}`)
@@ -34,6 +37,32 @@ const Feature = () => {
             setVotes(votes - 1);
         }
     };
+    const handleDeleteFeature = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            // icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Logout!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                api.delete(`/feature/${id}`)
+                    .then(() => {
+                        navigate('/');
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting feature:', error);
+                    });
+                Swal.fire({
+                    title: "Logout Successful!",
+                    icon: "success"
+                });
+            }
+        });
+
+    };
+
     const handleAddComment = () => {
         if (newComment.trim() !== '') {
             const updatedComments = [
@@ -60,6 +89,12 @@ const Feature = () => {
                     <Link to={'/'}>
                         <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> Go Back </button>
                     </Link>
+                    <button
+                        onClick={handleDeleteFeature}
+                        className="block mt-2 py-2 px-4 bg-red-500 text-white rounded-md focus:outline-none hover:bg-red-600"
+                    >
+                        Delete Feature
+                    </button>
                 </div>
             </div>
             <h2 className="text-lg font-semibold mb-2">{title}</h2>
