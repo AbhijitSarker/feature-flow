@@ -1,26 +1,44 @@
 import React, { useContext, useState } from 'react';
 import api from '../../utils/handleApi';
 import { FeatureContext } from '../../context/FeatureProvider';
+import useFeatures from '../../hooks/useFeatures';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FeatureForm = () => {
-
+    const [, refetch] = useFeatures();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const { updateFeatures } = useContext(FeatureContext)
+    const [loading, setLoading] = useState(false); // State to track loading
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await api.post('/feature', {
-            title,
-            description,
-        });
-        updateFeatures()
-
-        // Handle success or additional logic here
-        // Clear the form after successful submission
-        setTitle('');
-        setDescription('');
-
+        setLoading(true); // Set loading state to true when submitting
+        try {
+            await api.post('/feature', {
+                title,
+                description,
+            });
+            toast.success('🦄 Feature Request Successful!', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            }); refetch();
+            setTitle('');
+            setDescription('');
+        } catch (error) {
+            toast.error('Failed to request the feature!');
+        } finally {
+            setLoading(false); // Reset loading state after submission completes
+        }
     };
+
     return (
         <div className=' bg-white border shadow-xl font-baskerville  px-5 py-5  flex flex-col'>
             <div className='text-center text-4xl text-primary font-medium mt-4 mb-8'>
@@ -54,10 +72,16 @@ const FeatureForm = () => {
                         </div>
 
                     </div>
-                    <input className="w-full h-16 mt-10 border border-primary text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-primary ease" type="submit" value={'Request A Feature'} />
-
+                    <input
+                        disabled={loading} // Disable button based on loading state
+                        className={`w-full h-16 mt-10 border border-primary text-secondary text-2xl font-semibold rounded-lg transition duration-200 hover:bg-primary ease ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        type="submit"
+                        value={'Request A Feature'}
+                    />
                 </form>
+                <ToastContainer />
             </div>
+
         </div>
     );
 };
