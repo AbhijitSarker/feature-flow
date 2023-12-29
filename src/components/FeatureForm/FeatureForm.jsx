@@ -3,14 +3,17 @@ import api from '../../utils/handleApi';
 import useFeatures from '../../hooks/useFeatures';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from '../../hooks/useAuth';
 
 const FeatureForm = () => {
     const [, refetch] = useFeatures();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false); // State to track loading
-
-
+    const { user } = useAuth();
+    const userName = user?.displayName;
+    const userEmail = user?.email;
+    const userAvatar = user?.photoURL;
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true); // Set loading state to true when submitting
@@ -18,6 +21,9 @@ const FeatureForm = () => {
             await api.post('/feature', {
                 title,
                 description,
+                userName,
+                userEmail,
+                userAvatar
             });
             toast.success('Feature Request Successful!', {
                 position: "bottom-center",

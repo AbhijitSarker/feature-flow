@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 const ProfileCard = () => {
     const { logout, user } = useAuth();
     const navigate = useNavigate();
-
+    console.log(user)
     const handleLogout = () => {
         Swal.fire({
             title: "Are you sure?",

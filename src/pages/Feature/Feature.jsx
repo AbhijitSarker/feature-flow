@@ -7,6 +7,17 @@ import Swal from 'sweetalert2'
 const Feature = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [author, setAuthor] = useState('');
+    const [authorAvatar, setAuthorAvatar] = useState('');
+    const [votes, setVotes] = useState(0);
+    const [comments, setComments] = useState([
+        { text: 'Great feature!', author: 'User1' },
+        { text: 'Nice work!', author: 'User2' },
+        { text: 'Looking forward to using this!', author: 'User3' },
+    ]);
+    const [newComment, setNewComment] = useState('');
+
+
     const { id } = useParams(); // Getting the 'id' parameter from the URL
     const navigate = useNavigate();
 
@@ -16,18 +27,14 @@ const Feature = () => {
             .then((data) => {
                 setTitle(data.data.feature.title); // Update todo state with fetched todos
                 setDescription(data.data.feature.description); // Set loading to false after fetching todos
+                setAuthor(data.data.feature.userName); // Set loading to false after fetching todos
+                setAuthorAvatar(data.data.feature.userAvatar); // Set loading to false after fetching todos
+                setVotes(data.data.feature.votes); // Set loading to false after fetching todos
             })
             .catch((error) => {
                 console.error('Error fetching todo:', error);
             });
     }, []);
-    const [votes, setVotes] = useState(10);
-    const [comments, setComments] = useState([
-        { text: 'Great feature!', author: 'User1' },
-        { text: 'Nice work!', author: 'User2' },
-        { text: 'Looking forward to using this!', author: 'User3' },
-    ]);
-    const [newComment, setNewComment] = useState('');
 
 
     const handleVote = (type) => {
@@ -78,11 +85,11 @@ const Feature = () => {
             <div className='flex justify-between'>
                 <div className="flex items-center mb-4">
                     <img
-                        src="https://via.placeholder.com/40"
+                        src={authorAvatar}
                         alt="Author Avatar"
                         className="w-10 h-10 rounded-full mr-2"
                     />
-                    <span className="font-semibold">Author Name</span>
+                    <span className="font-semibold">{author}</span>
                 </div>
                 <div>
                     <Link to={'/'}>
