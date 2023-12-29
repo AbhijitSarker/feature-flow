@@ -7,9 +7,11 @@ const Home = () => {
     const [features] = useFeatures();
     const allFeatures = features.features;
 
+    const [searchTerm, setSearchTerm] = useState('');
     const [filteredFeatures, setFilteredFeatures] = useState([]);
 
     const handleSearch = (searchTerm) => {
+        setSearchTerm(searchTerm);
         if (!searchTerm.trim()) {
             setFilteredFeatures([]); // Clear filtered results if the search term is empty
         } else {
@@ -22,7 +24,7 @@ const Home = () => {
         }
     };
 
-    const displayFeatures = filteredFeatures.length > 0 ? filteredFeatures : allFeatures;
+    const displayFeatures = searchTerm.trim() ? filteredFeatures : allFeatures;
 
     return (
         <div>
@@ -34,10 +36,11 @@ const Home = () => {
                     ))}
                 </div>
             ) : (
-                <p>No features available.</p>
+                <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
             )}
         </div>
     );
 };
 
 export default Home;
+
