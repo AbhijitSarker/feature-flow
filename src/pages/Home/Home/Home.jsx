@@ -1,39 +1,24 @@
-import { useContext, useEffect, useState } from "react";
 import FeatureCard from "../../../components/FeatureCard/FeatureCard";
 import FeatureNav from "../../../components/FeatureNav/FeatureNav";
-import api from "../../../utils/handleApi";
-import { FeatureContext } from "../../../context/FeatureProvider";
+import useFeatures from "../../../hooks/useFeatures";
 
 const Home = () => {
-    // const [features, setFeatures] = useState([]);
-    const { updateFeatures, features } = useContext(FeatureContext);
-    // useEffect(() => {
-    //     // Fetch todos when the component mounts
-    //     setLoading(true); // Set loading to true before fetching todos
+    const [features] = useFeatures();
+    const allFeatures = features.features;
 
-    //     //get request to load todos
-    //     api.get('/feature')
-    //         .then((data) => {
-    //             console.log(data.data.features);
-    //             // setFeatures(data.data.features); // Update todo state with fetched todos
-    //             setLoading(false); // Set loading to false after fetching todos
-    //             updateFeatures();
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error fetching todo:', error);
-    //             setLoading(false); // Set loading to false in case of error
-    //         });
-    // }, []);
     return (
         <div className="">
 
             <FeatureNav></FeatureNav>
-
-            <div>
-                {
-                    features.map((feature) => <FeatureCard key={feature._id} feature={feature}></FeatureCard>)
-                }
-            </div>
+            {allFeatures && allFeatures.length > 0 ? (
+                <div>
+                    {allFeatures.map((feature) => (
+                        <FeatureCard key={feature._id} feature={feature} />
+                    ))}
+                </div>
+            ) : (
+                <p>No features available.</p>
+            )}
         </div>
     );
 };
