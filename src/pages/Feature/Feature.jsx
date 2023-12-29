@@ -95,6 +95,9 @@ const Feature = () => {
                     >
                         Delete Feature
                     </button>
+                    <Link to={`/editfeature/${id}`}><button className="block mt-2 py-2 px-4 bg-red-500 text-white rounded-md focus:outline-none hover:bg-red-600">
+                        Edit Feature
+                    </button></Link>
                 </div>
             </div>
             <h2 className="text-lg font-semibold mb-2">{title}</h2>

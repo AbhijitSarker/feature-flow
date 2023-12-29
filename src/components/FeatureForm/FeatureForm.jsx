@@ -29,7 +29,8 @@ const FeatureForm = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
-            }); refetch();
+            });
+            refetch();
             setTitle('');
             setDescription('');
         } catch (error) {
