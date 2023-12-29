@@ -3,7 +3,7 @@ import { FaComment, FaHeart } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 const FeatureCard = ({ feature }) => {
-    const { title, description, _id } = feature;
+    const { title, description, _id, userAvatar, userName } = feature;
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
     const [comments, setComments] = useState(0);
@@ -49,11 +49,11 @@ const FeatureCard = ({ feature }) => {
                             <div className='flex flex-col items-center'>
                                 {/* user */}
                                 <div className="flex items-center ">
-                                    <img src="https://via.placeholder.com/40" alt="Author" className="w-8 h-8 rounded-full mr-2" />
+                                    <img src={userAvatar || 'https://avatar.iran.liara.run/public/46'} alt="Author" className="w-8 h-8 rounded-full mr-2" />
 
 
                                     <div className="flex flex-col ">
-                                        <span className="text-gray-700 font-semibold">John Doe</span>
+                                        <span className="text-gray-700 font-semibold">{userName || "John Doe"}</span>
                                         <span className="text-gray-500"> 2 hours ago</span>
 
                                     </div>

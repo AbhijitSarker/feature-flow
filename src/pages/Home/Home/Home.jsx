@@ -5,7 +5,6 @@ import useFeatures from "../../../hooks/useFeatures";
 const Home = () => {
     const [features] = useFeatures();
     const allFeatures = features.features;
-
     return (
         <div className="">
 
