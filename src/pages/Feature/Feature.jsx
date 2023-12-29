@@ -40,11 +40,10 @@ const Feature = () => {
     const handleDeleteFeature = () => {
         Swal.fire({
             title: "Are you sure?",
-            // icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Logout!"
+            confirmButtonText: "Yes, Delete!"
         }).then((result) => {
             if (result.isConfirmed) {
                 api.delete(`/feature/${id}`)
@@ -55,7 +54,7 @@ const Feature = () => {
                         console.error('Error deleting feature:', error);
                     });
                 Swal.fire({
-                    title: "Logout Successful!",
+                    title: "Deleted Successfully!",
                     icon: "success"
                 });
             }

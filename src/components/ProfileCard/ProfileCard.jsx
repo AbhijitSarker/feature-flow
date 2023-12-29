@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 import Swal from 'sweetalert2'
 
 const ProfileCard = () => {
     const { logout, user } = useAuth();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         Swal.fire({
             title: "Are you sure?",
-            // icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
@@ -18,6 +18,8 @@ const ProfileCard = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 logout();
+                navigate(`/`); // Redirect to the feature page after update
+
                 Swal.fire({
                     title: "Logout Successful!",
                     icon: "success"

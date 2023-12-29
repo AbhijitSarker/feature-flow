@@ -46,7 +46,7 @@ const Main = () => {
                 </div>
 
                 {/* Sidebar */}
-                <aside className={` rounded-md space-y-16  sticky top-28 md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
+                <aside className={` rounded-md space-y-16  md:sticky md:top-28 md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
                     {/* Sidebar content */}
                     <ProfileCard></ProfileCard>
                     {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold font-baskerville'>Feature Flow</h1> */}

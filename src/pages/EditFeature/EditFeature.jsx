@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../utils/handleApi';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const EditFeature = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -24,25 +25,22 @@ const EditFeature = () => {
 
         api.put(`/feature/${id}`, { title, description })
             .then((res) => {
-                console.log('Feature updated successfully');
-
+                toast.success(' Feature Updated Successfully!', {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             })
             .catch((error) => {
                 console.error('Error updating feature:', error);
             });
         navigate(`/feature/${id}`); // Redirect to the feature page after update
 
-
-        toast.success(' Feature Updated Successfully!', {
-            position: "bottom-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        });
     };
 
     return (

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import api from '../../utils/handleApi';
-import { FeatureContext } from '../../context/FeatureProvider';
 import useFeatures from '../../hooks/useFeatures';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,7 +19,7 @@ const FeatureForm = () => {
                 title,
                 description,
             });
-            toast.success('🦄 Feature Request Successful!', {
+            toast.success('Feature Request Successful!', {
                 position: "bottom-center",
                 autoClose: 3000,
                 hideProgressBar: false,
