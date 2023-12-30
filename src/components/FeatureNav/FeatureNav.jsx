@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
-const FeatureNav = ({ handleSearch }) => {
+const FeatureNav = ({ handleSearch, handleSortByDate, handleSortAlphabetically, handleSortByVoteCount }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleChange = (event) => {
@@ -79,14 +79,14 @@ const FeatureNav = ({ handleSearch }) => {
                                 </svg>
                             </button>
                             <div className={`absolute top-full left-0 bg-white rounded-md shadow-md p-2 mt-1 transition-all duration-300 ${openSort ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                                <li href="#" className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Option1
+                                <li onClick={handleSortByDate} className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
+                                    Sort by Date
                                 </li>
-                                <li href="#" className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Option2
+                                <li onClick={handleSortAlphabetically} className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
+                                    Sort Alphabetically
                                 </li>
-                                <li href="#" className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Option3
+                                <li onClick={handleSortByVoteCount} className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
+                                    Sort by Vote Count
                                 </li>
                             </div>
                         </div>
