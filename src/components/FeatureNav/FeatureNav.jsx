@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
-const FeatureNav = ({ handleSearch, handleSortByDate, handleSortAlphabetically, handleSortByVoteCount }) => {
+const FeatureNav = ({ handleSearch, handleSortByDateAsc, handleSortByDateDesc, handleSortByTitleAsc, handleSortByTitleDesc, handleSortByVoteAsc, handleSortByVoteDesc }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleChange = (event) => {
@@ -39,62 +39,101 @@ const FeatureNav = ({ handleSearch, handleSortByDate, handleSortAlphabetically, 
                 </div>
                 <div className="flex flex-col pb-2">
                     <div className="flex justify-around space-x-4">
-                        <div className="relative" x-data="{ open: false }">
-                            <button onClick={toggleFilter} className="focus:outline-none hover:text-gray-300">
-                                Filter By
-                                <svg
-                                    className={`inline ml-1 h-4 w-4 transition-transform duration-200 transform ${openFilter ? 'rotate-180' : ''}`}
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M10 12a1 1 0 01-.7-.3l-4-4a1 1 0 111.4-1.4L10 10.6l3.3-3.3a1 1 0 111.4 1.4l-4 4a1 1 0 01-.7.3z"
-                                    />
-                                </svg>
+
+                        {/* filter */}
+                        <div className="dropdown inline-block relative">
+                            <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                                <span>Sort By</span>
                             </button>
-                            <div className={`absolute top-full left-0 bg-white rounded-md shadow-md p-2 mt-1 transition-all duration-300 ${openFilter ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                                <li className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Option1
+
+                            <ul className="dropdown-content absolute hidden text-gray-700 pt-1">
+
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Date</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Newest</a></li>
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Oldest</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Option2
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Title</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Ascending</a></li>
+
+                                        <li><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Descending</a></li>
+                                    </ul>
                                 </li>
-                                <li className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Option3
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Vote</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</a></li>
+
+                                        <li><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</a></li>
+                                    </ul>
                                 </li>
-                            </div>
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Comments</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</a></li>
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
 
-                        <div className="relative" x-data="{ open: false }">
-                            <button onClick={toggleSort} className="focus:outline-none hover:text-gray-300">
-                                Sort By
-                                <svg
-                                    className={`inline ml-1 h-4 w-4 transition-transform duration-200 transform ${openSort ? 'rotate-180' : ''}`}
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M10 12a1 1 0 01-.7-.3l-4-4a1 1 0 111.4-1.4L10 10.6l3.3-3.3a1 1 0 111.4 1.4l-4 4a1 1 0 01-.7.3z"
-                                    />
-                                </svg>
+
+
+
+                        <div className="dropdown inline-block relative">
+                            <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                                <span>Sort By</span>
                             </button>
-                            <div className={`absolute top-full left-0 bg-white rounded-md shadow-md p-2 mt-1 transition-all duration-300 ${openSort ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                                <li onClick={handleSortByDate} className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Sort by Date
+
+                            <ul className="dropdown-content absolute hidden text-gray-700 pt-1">
+
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Date</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li onClick={handleSortByDateAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Newest</li>
+                                        <li onClick={handleSortByDateDesc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Oldest
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li onClick={handleSortAlphabetically} className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Sort Alphabetically
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Title</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li onClick={handleSortByTitleAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Ascending</li>
+
+                                        <li onClick={handleSortByTitleDesc} className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Descending</li>
+                                    </ul>
                                 </li>
-                                <li onClick={handleSortByVoteCount} className=" block px-4 py-2 hover:bg-gray-200 transition-colors duration-300">
-                                    Sort by Vote Count
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Vote</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li onClick={handleSortByVoteDesc} className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</li>
+                                        <li onClick={handleSortByVoteAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</li>
+
+                                    </ul>
                                 </li>
-                            </div>
+                                <li className="dropdown">
+                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Comments</a>
+                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</a></li>
+                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
+
+
                     </div>
 
-                </div>
-            </div>
-        </nav>
+                </div >
+            </div >
+        </nav >
     );
 };
 

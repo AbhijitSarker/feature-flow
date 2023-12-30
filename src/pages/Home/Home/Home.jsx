@@ -10,7 +10,7 @@ const Home = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredFeatures, setFilteredFeatures] = useState([]);
-    const [sortBy, setSortBy] = useState('date'); // Default sorting by date
+    const [sortBy, setSortBy] = useState('createdAt'); // Default sorting by date
     const [order, setOrder] = useState('asc'); // Default order ascending
 
     useEffect(() => {
@@ -35,14 +35,12 @@ const Home = () => {
     const handleSort = async (sortByField, sortOrder) => {
         try {
             const sortedFeatures = await fetchAndSortFeatures(sortByField, sortOrder);
-            console.log(sortedFeatures)
             if (sortedFeatures && sortedFeatures.length > 0) {
 
                 setSortBy(sortByField);
                 setOrder(sortOrder);
                 console.log(sortedFeatures);
                 setFilteredFeatures(sortedFeatures);
-                console.log(filteredFeatures)
             }
 
         } catch (error) {
@@ -74,9 +72,12 @@ const Home = () => {
         <div>
             <FeatureNav
                 handleSearch={handleSearch}
-                handleSortByDate={() => handleSort('date', 'desc')}
-                handleSortAlphabetically={() => handleSort('title', 'asc')}
-                handleSortByVoteCount={() => handleSort('votes', 'desc')}
+                handleSortByDateAsc={() => handleSort('date', 'asc')}
+                handleSortByDateDesc={() => handleSort('date', 'desc')}
+                handleSortByTitleAsc={() => handleSort('title', 'asc')}
+                handleSortByTitleDesc={() => handleSort('title', 'desc')}
+                handleSortByVoteAsc={() => handleSort('votes', 'asc')}
+                handleSortByVoteDesc={() => handleSort('votes', 'desc')}
             />
             {/* <button onClick={() => handleSort('title', 'asc')}>order</button> */}
             {displayFeatures && displayFeatures.length > 0 ? (

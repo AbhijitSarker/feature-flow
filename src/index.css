@@ -7,3 +7,6 @@
 :root{
     background-color: #F4F4F4;
 }
+.dropdown:hover > .dropdown-content {
+	display: block;
+}
