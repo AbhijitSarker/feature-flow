@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
-const FeatureNav = ({ handleSearch, handleSortByDateAsc, handleSortByDateDesc, handleSortByTitleAsc, handleSortByTitleDesc, handleSortByVoteAsc, handleSortByVoteDesc, handleSortBCommentsAsc, handleSortByCommentsDesc }) => {
+const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, handleSortByDateDesc, handleSortByTitleAsc, handleSortByTitleDesc, handleSortByVoteAsc, handleSortByVoteDesc, handleSortBCommentsAsc, handleSortByCommentsDesc }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
         handleSearch(event.target.value); // Pass search term to parent component
+    };
+
+    const [selectedStatus, setSelectedStatus] = useState('all');
+
+    const handleStatusChange = (event) => {
+        const status = event.target.value;
+        setSelectedStatus(status);
+        handleStatusFilter(status);
     };
 
     return (
@@ -73,7 +81,19 @@ const FeatureNav = ({ handleSearch, handleSortByDateAsc, handleSortByDateDesc, h
                         </div>
 
 
-
+                        <div className="flex justify-around space-x-4">
+                            <select
+                                value={selectedStatus}
+                                onChange={handleStatusChange}
+                                className="px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary rounded-md"
+                            >
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="in-progress">In Progress</option>
+                                {/* Add more status options as needed */}
+                            </select>
+                        </div>
 
                         <div className="dropdown inline-block relative">
                             <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">

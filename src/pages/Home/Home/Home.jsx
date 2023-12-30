@@ -18,6 +18,18 @@ const Home = () => {
         setFilteredFeatures(allFeatures);
     }, [allFeatures]);
 
+    const [statusFilter, setStatusFilter] = useState('all');
+
+    const handleStatusFilter = (selectedStatus) => {
+        setStatusFilter(selectedStatus);
+        if (selectedStatus === 'all') {
+            setFilteredFeatures(allFeatures); // Show all features if 'All' status is selected
+        } else {
+            const filteredByStatus = allFeatures.filter((feature) => feature.status === selectedStatus);
+            setFilteredFeatures(filteredByStatus);
+        }
+    };
+
     const handleSearch = (searchTerm) => {
         setSearchTerm(searchTerm);
         if (!searchTerm.trim()) {
@@ -72,6 +84,8 @@ const Home = () => {
         <div>
             <FeatureNav
                 handleSearch={handleSearch}
+                handleStatusFilter={handleStatusFilter}
+
                 handleSortByDateAsc={() => handleSort('createdAt', 'asc')}
                 handleSortByDateDesc={() => handleSort('createdAt', 'desc')}
                 handleSortByTitleAsc={() => handleSort('title', 'asc')}
