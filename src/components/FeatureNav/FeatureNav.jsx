@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
-const FeatureNav = ({ handleSearch, handleSortByDateAsc, handleSortByDateDesc, handleSortByTitleAsc, handleSortByTitleDesc, handleSortByVoteAsc, handleSortByVoteDesc }) => {
+const FeatureNav = ({ handleSearch, handleSortByDateAsc, handleSortByDateDesc, handleSortByTitleAsc, handleSortByTitleDesc, handleSortByVoteAsc, handleSortByVoteDesc, handleSortBCommentsAsc, handleSortByCommentsDesc }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
         handleSearch(event.target.value); // Pass search term to parent component
-    };
-
-    const [openSort, setOpenSort] = useState(false);
-
-    const toggleSort = () => {
-        setOpenSort(!openSort);
-    };
-    const [openFilter, setOpenFilter] = useState(false);
-
-    const toggleFilter = () => {
-        setOpenFilter(!openFilter);
     };
 
     return (
@@ -96,9 +85,9 @@ const FeatureNav = ({ handleSearch, handleSortByDateAsc, handleSortByDateDesc, h
                                 <li className="dropdown">
                                     <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Date</a>
                                     <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
-                                        <li onClick={handleSortByDateAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Newest</li>
-                                        <li onClick={handleSortByDateDesc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Oldest
-                                        </li>
+                                        <li onClick={handleSortByDateDesc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Newest</li>
+                                        <li onClick={handleSortByDateAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Oldest</li>
+
                                     </ul>
                                 </li>
                                 <li className="dropdown">
@@ -120,9 +109,9 @@ const FeatureNav = ({ handleSearch, handleSortByDateAsc, handleSortByDateDesc, h
                                 <li className="dropdown">
                                     <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Comments</a>
                                     <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</a></li>
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</a>
-                                        </li>
+                                        <li onClick={handleSortBCommentsAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</li>
+                                        <li onClick={handleSortByCommentsDesc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</li>
+
                                     </ul>
                                 </li>
                             </ul>

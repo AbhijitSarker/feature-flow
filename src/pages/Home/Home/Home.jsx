@@ -72,12 +72,14 @@ const Home = () => {
         <div>
             <FeatureNav
                 handleSearch={handleSearch}
-                handleSortByDateAsc={() => handleSort('date', 'asc')}
-                handleSortByDateDesc={() => handleSort('date', 'desc')}
+                handleSortByDateAsc={() => handleSort('createdAt', 'asc')}
+                handleSortByDateDesc={() => handleSort('createdAt', 'desc')}
                 handleSortByTitleAsc={() => handleSort('title', 'asc')}
                 handleSortByTitleDesc={() => handleSort('title', 'desc')}
                 handleSortByVoteAsc={() => handleSort('votes', 'asc')}
                 handleSortByVoteDesc={() => handleSort('votes', 'desc')}
+                handleSortBCommentsAsc={() => handleSort('comments', 'asc')}
+                handleSortByCommentsDesc={() => handleSort('comments', 'desc')}
             />
             {/* <button onClick={() => handleSort('title', 'asc')}>order</button> */}
             {displayFeatures && displayFeatures.length > 0 ? (

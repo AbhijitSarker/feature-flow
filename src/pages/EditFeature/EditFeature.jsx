@@ -23,7 +23,7 @@ const EditFeature = () => {
 
     const handleUpdateFeature = () => {
 
-        api.put(`/feature/${id}`, { title, description })
+        api.patch(`/feature/${id}`, { title, description })
             .then((res) => {
                 toast.success(' Feature Updated Successfully!', {
                     position: "bottom-center",
