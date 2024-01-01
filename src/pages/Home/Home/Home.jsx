@@ -46,17 +46,46 @@ const Home = () => {
 
     const handleSort = async (sortByField, sortOrder) => {
         try {
-            const sortedFeatures = await fetchAndSortFeatures(sortByField, sortOrder);
-            if (sortedFeatures && sortedFeatures.length > 0) {
-
-                setSortBy(sortByField);
-                setOrder(sortOrder);
-                console.log(sortedFeatures);
-                setFilteredFeatures(sortedFeatures);
+            let sortedFeatures;
+            if (searchTerm.trim()) {
+                sortedFeatures = await fetchAndSortFeatures(sortByField, sortOrder, filteredFeatures);
+            } else {
+                sortedFeatures = sortFeatures(filteredFeatures, sortByField, sortOrder);
             }
 
+            if (sortedFeatures && sortedFeatures.length > 0) {
+                setSortBy(sortByField);
+                setOrder(sortOrder);
+                setFilteredFeatures(sortedFeatures);
+            }
         } catch (error) {
             console.error('Error sorting features:', error);
+        }
+    };
+
+    // Function to sort filtered features
+    const sortFeatures = (featuresToSort, sortByField, sortOrder) => {
+        try {
+            // Apply sorting to the given features
+            const sortedFeatures = featuresToSort.sort((a, b) => {
+                switch (sortByField) {
+                    case 'title':
+                        return sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+                    case 'createdAt':
+                        return sortOrder === 'asc' ? new Date(a.createdAt) - new Date(b.createdAt) : new Date(b.createdAt) - new Date(a.createdAt);
+                    case 'votes':
+                        return sortOrder === 'asc' ? a.votes - b.votes : b.votes - a.votes;
+                    case 'comments':
+                        return sortOrder === 'asc' ? a.comments - b.comments : b.comments - a.comments;
+                    default:
+                        return 0; // No sorting
+                }
+            });
+
+            return sortedFeatures;
+        } catch (error) {
+            console.error('Error sorting features:', error);
+            return []; // Return an empty array or handle the error as needed
         }
     };
 
@@ -95,7 +124,6 @@ const Home = () => {
                 handleSortBCommentsAsc={() => handleSort('comments', 'asc')}
                 handleSortByCommentsDesc={() => handleSort('comments', 'desc')}
             />
-            {/* <button onClick={() => handleSort('title', 'asc')}>order</button> */}
             {displayFeatures && displayFeatures.length > 0 ? (
                 <div>
                     {filteredFeatures?.map((feature) => (
