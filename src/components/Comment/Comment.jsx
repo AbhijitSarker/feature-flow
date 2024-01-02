@@ -8,7 +8,7 @@ const Comment = ({ comment }) => {
     return (
         <div className="flex items-start mb-4">
             <img
-                src={comment.avatar}
+                src={comment.photoURL}
                 alt={`${comment.author}'s avatar`}
                 className="w-10 h-10 rounded-full object-cover mr-4"
             />
@@ -22,7 +22,7 @@ const Comment = ({ comment }) => {
                         Delete
                     </button>
                 </div>
-                <p className="text-gray-600 text-sm">{comment.content}</p>
+                <p className="text-gray-600 text-sm">{comment.comment}</p>
             </div>
         </div>
     );

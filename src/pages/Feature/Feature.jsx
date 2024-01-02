@@ -3,18 +3,19 @@ import Comments from '../../components/Comments/Comments';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import api from '../../utils/handleApi';
 import Swal from 'sweetalert2'
+import useAuth from '../../hooks/useAuth';
 
 const Feature = () => {
+
+    const { user } = useAuth();
+    const userName = user?.displayname;
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [author, setAuthor] = useState('');
     const [authorAvatar, setAuthorAvatar] = useState('');
     const [votes, setVotes] = useState(0);
-    const [comments, setComments] = useState([
-        { text: 'Great feature!', author: 'User1' },
-        { text: 'Nice work!', author: 'User2' },
-        { text: 'Looking forward to using this!', author: 'User3' },
-    ]);
+    const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
 
 
@@ -22,14 +23,13 @@ const Feature = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-
         api.get(`/feature/${id}`)
             .then((data) => {
-                setTitle(data.data.feature.title); // Update todo state with fetched todos
-                setDescription(data.data.feature.description); // Set loading to false after fetching todos
-                setAuthor(data.data.feature.userName); // Set loading to false after fetching todos
-                setAuthorAvatar(data.data.feature.userAvatar); // Set loading to false after fetching todos
-                setVotes(data.data.feature.votes); // Set loading to false after fetching todos
+                setTitle(data.data.feature.title);
+                setDescription(data.data.feature.description);
+                setAuthor(data.data.feature.userName);
+                setAuthorAvatar(data.data.feature.userAvatar);
+                setVotes(data.data.feature.votes);
             })
             .catch((error) => {
                 console.error('Error fetching todo:', error);
@@ -69,14 +69,23 @@ const Feature = () => {
 
     };
 
-    const handleAddComment = () => {
+    const handleAddComment = async () => {
         if (newComment.trim() !== '') {
-            const updatedComments = [
-                ...comments,
-                { text: newComment, author: 'User' },
-            ];
-            setComments(updatedComments);
-            setNewComment('');
+            await api.post(`/comment`, {
+                comment: newComment, name: userName, featureId: id
+            }) // Assuming the endpoint to add a comment is '/comments/: id'
+                .then((response) => {
+                    //  the response returns the newly created comment
+                    console.log(response.data);
+                    const updatedComments = [...comments, response.data];
+                    console.log(updatedComments)
+                    setComments(updatedComments);
+                    setNewComment('');
+                })
+                .catch((error) => {
+                    console.error('Error adding comment:', error);
+                    // Handle error (e.g., show an error message to the user)
+                });
         }
     };
 
@@ -152,7 +161,7 @@ const Feature = () => {
                     Comment
                 </button>
             </div>
-            <Comments></Comments>
+            <Comments featureId={id}></Comments>
         </div>
     );
 };
