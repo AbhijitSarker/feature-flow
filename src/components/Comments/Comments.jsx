@@ -24,7 +24,7 @@ const Comments = ({ featureId }) => {
         <div className="w-full my-10">
             <h2 className="text-lg font-semibold mb-4">Comments</h2>
             {foundComments && foundComments.length > 0 ? (
-                foundComments.map((comment) => <Comment key={comment.id} comment={comment}></Comment>)
+                foundComments.map((comment) => <Comment key={comment.id} comment={comment} featureId={featureId}></Comment>)
             ) : (
                 <p>No comments available</p>
             )}

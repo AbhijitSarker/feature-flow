@@ -9,8 +9,10 @@ import useComments from '../../hooks/useComments';
 const Feature = () => {
     const { user } = useAuth(); // Using the useAuth hook to get user information
     const userName = user?.displayName;  // Extracting the user's display name
+    const photoURL = user?.photoURL
 
     // State variables to manage feature details, comments, and new comment input
+    const [loading, setLoading] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [author, setAuthor] = useState('');
@@ -27,6 +29,7 @@ const Feature = () => {
     // Fetching feature details on component mount
 
     useEffect(() => {
+        setLoading(true)
         api.get(`/feature/${id}`)
             .then((data) => {
                 // Setting the fetched feature details to state variables
@@ -35,9 +38,11 @@ const Feature = () => {
                 setAuthor(data.data.feature.userName);
                 setAuthorAvatar(data.data.feature.userAvatar);
                 setVotes(data.data.feature.votes);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error('Error fetching todo:', error);
+                setLoading(false);
             });
     }, []);
 
@@ -87,7 +92,8 @@ const Feature = () => {
                 const response = await api.post(`/comment`, {
                     comment: newComment,
                     name: userName,
-                    featureId: id
+                    featureId: id,
+                    photoURL: photoURL
                 });
                 // Updating the comments state and refetching comments after adding a new comment
                 const updatedComments = [...comments, response.data];
@@ -100,6 +106,12 @@ const Feature = () => {
             }
         }
     };
+
+    if (loading) {
+        return <div class=" flex justify-center items-center">
+            <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+        </div>
+    }
 
     return (
         <div className="bg-white p-4 rounded shadow">
