@@ -4,12 +4,13 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import api from '../../utils/handleApi';
 import Swal from 'sweetalert2'
 import useAuth from '../../hooks/useAuth';
+import useComments from '../../hooks/useComments';
 
 const Feature = () => {
+    const { user } = useAuth(); // Using the useAuth hook to get user information
+    const userName = user?.displayName;  // Extracting the user's display name
 
-    const { user } = useAuth();
-    const userName = user?.displayname;
-
+    // State variables to manage feature details, comments, and new comment input
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [author, setAuthor] = useState('');
@@ -19,12 +20,16 @@ const Feature = () => {
     const [newComment, setNewComment] = useState('');
 
 
-    const { id } = useParams(); // Getting the 'id' parameter from the URL
-    const navigate = useNavigate();
+    const { id } = useParams(); // Getting the 'id' parameter from the URL using useParams
+    const navigate = useNavigate(); // Getting the navigate function from useNavigate
+    const { refetch } = useComments(id); // Using the useComments custom hook to fetch comments
+
+    // Fetching feature details on component mount
 
     useEffect(() => {
         api.get(`/feature/${id}`)
             .then((data) => {
+                // Setting the fetched feature details to state variables
                 setTitle(data.data.feature.title);
                 setDescription(data.data.feature.description);
                 setAuthor(data.data.feature.userName);
@@ -36,7 +41,7 @@ const Feature = () => {
             });
     }, []);
 
-
+    // Function to handle upvotes and downvotes for a feature
     const handleVote = (type) => {
         if (type === 'upvote') {
             setVotes(votes + 1);
@@ -44,7 +49,10 @@ const Feature = () => {
             setVotes(votes - 1);
         }
     };
+
+    // Function to handle the deletion of a feature
     const handleDeleteFeature = () => {
+        // Displaying a confirmation modal before deleting the feature
         Swal.fire({
             title: "Are you sure?",
             showCancelButton: true,
@@ -53,6 +61,7 @@ const Feature = () => {
             confirmButtonText: "Yes, Delete!"
         }).then((result) => {
             if (result.isConfirmed) {
+                // Deleting the feature using an API call and navigating back to home on success
                 api.delete(`/feature/${id}`)
                     .then(() => {
                         navigate('/');
@@ -60,6 +69,8 @@ const Feature = () => {
                     .catch((error) => {
                         console.error('Error deleting feature:', error);
                     });
+
+                // Displaying a success message after deleting the feature
                 Swal.fire({
                     title: "Deleted Successfully!",
                     icon: "success"
@@ -71,21 +82,22 @@ const Feature = () => {
 
     const handleAddComment = async () => {
         if (newComment.trim() !== '') {
-            await api.post(`/comment`, {
-                comment: newComment, name: userName, featureId: id
-            }) // Assuming the endpoint to add a comment is '/comments/: id'
-                .then((response) => {
-                    //  the response returns the newly created comment
-                    console.log(response.data);
-                    const updatedComments = [...comments, response.data];
-                    console.log(updatedComments)
-                    setComments(updatedComments);
-                    setNewComment('');
-                })
-                .catch((error) => {
-                    console.error('Error adding comment:', error);
-                    // Handle error (e.g., show an error message to the user)
+            try {
+                // Adding a new comment using an API call and updating the comments state
+                const response = await api.post(`/comment`, {
+                    comment: newComment,
+                    name: userName,
+                    featureId: id
                 });
+                // Updating the comments state and refetching comments after adding a new comment
+                const updatedComments = [...comments, response.data];
+                setComments(updatedComments);
+                refetch();
+                setNewComment('');
+            } catch (error) {
+                console.error('Error adding comment:', error);
+                // Handle error (e.g., show an error message to the user)
+            }
         }
     };
 

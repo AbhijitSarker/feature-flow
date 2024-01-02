@@ -1,24 +1,21 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
 import Comment from '../Comment/Comment';
-import api from '../../utils/handleApi'; // Import your API utility functions
+import useComments from '../../hooks/useComments';
 
 const Comments = ({ featureId }) => {
-    const { refetch, data: comments = [], isLoading, isError } = useQuery({
-        queryKey: ['comment', featureId], // Unique query identifier
-        queryFn: async () => {
-            const response = await api.get(`/comment?featureId=${featureId}`)
-            return response.data;
-        },
-    })
-    const foundComments = comments?.comments;
+    // Using the useComments hook to fetch comments based on the featureId
+    const { comments, isLoading, isError } = useComments(featureId);
 
+    const foundComments = comments?.comments; // Extracting comments from the API response
+
+    // Display loading spinner while comments are being fetched
     if (isLoading) {
         return <div class=" flex justify-center items-center">
             <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
         </div>
     }
 
+    // Display an error message if there's an issue fetching comments
     if (isError) {
         return <p>Error fetching comments</p>;
     }
