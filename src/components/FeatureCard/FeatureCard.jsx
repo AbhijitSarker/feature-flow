@@ -3,17 +3,58 @@ import { FaComment, FaHeart } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import api from '../../utils/handleApi';
 import useAuth from '../../hooks/useAuth';
+import useComments from '../../hooks/useComments';
 
 const FeatureCard = ({ feature }) => {
     const { title, description, _id, userAvatar, userName, likes } = feature;
-
-    const [comments, setComments] = useState(0);
+    const { refetch, } = useComments(_id); // Using the useComments custom hook to fetch comments
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState('');
     const [status, setStatus] = useState('In Progress');
     const [liked, setLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
     const [loading, setLoading] = useState(false);
     const { user } = useAuth()
     const userEmail = user?.email
+    const currentUserName = user?.displayName
+    const photoURL = user?.photoURL
+
+
+    // fetching comments
+    useEffect(() => {
+        setLoading(true)
+        api.get(`/comment/?featureId=${_id}`)
+            .then((data) => {
+                setComments(data.data.comments)
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching todo:', error);
+                setLoading(false);
+            });
+    }, []);
+    // Function to add a new comment to a feature
+    const handleAddComment = async () => {
+        if (newComment.trim() !== '') {
+            try {
+                // Adding a new comment using an API call and updating the comments state
+                const response = await api.post(`/comment`, {
+                    comment: newComment,
+                    name: currentUserName,
+                    featureId: _id,
+                    photoURL: photoURL
+                });
+                // Updating the comments state and refetching comments after adding a new comment
+                const updatedComments = [...comments, response.data];
+                setComments(updatedComments);
+                refetch();
+                setNewComment('');
+            } catch (error) {
+                console.error('Error adding comment:', error);
+
+            }
+        }
+    };
 
     useEffect(() => {
         // Set the initial likes count when the component mounts
@@ -107,7 +148,7 @@ const FeatureCard = ({ feature }) => {
                                     <div>
                                         <FaComment></FaComment>
                                     </div>
-                                    <span className="text-gray-600 ml-1">{comments}</span>
+                                    <span className="text-gray-600 ml-1">{comments.length}</span>
                                 </div>
                             </div>
                         </div>
@@ -117,8 +158,14 @@ const FeatureCard = ({ feature }) => {
 
                 {/* comment input */}
                 <div className="relative w-full">
-                    <input type="text" placeholder="Add a comment..." className="w-full bg-gray-200 rounded-md px-3 py-1 focus:outline-none focus:ring-1 focus:ring-gray-300" />
-                    <button className="absolute right-0 top-0 mt-1 mr-2 focus:outline-none">
+                    <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        className="w-full bg-gray-200 rounded-md px-3 py-1 focus:outline-none focus:ring-1 focus:ring-gray-300"
+                    />
+                    <button onClick={handleAddComment} className="absolute right-0 top-0 mt-1 mr-2 focus:outline-none">
                         Post
                     </button>
                 </div>

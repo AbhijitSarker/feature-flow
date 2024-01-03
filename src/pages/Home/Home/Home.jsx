@@ -103,7 +103,7 @@ const Home = () => {
 
 
     // Function to fetch features and apply sorting
-    async function fetchAndSortFeatures(sortByField, sortOrder) {
+    const fetchAndSortFeatures = async (sortByField, sortOrder) => {
         try {
             const response = await api.get(`/feature?sortBy=${sortByField}&order=${sortOrder}`);
             if (response.status !== 200) {
