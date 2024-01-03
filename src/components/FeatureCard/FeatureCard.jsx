@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 
 const FeatureCard = ({ feature }) => {
     const { title, description, _id, userAvatar, userName, likes } = feature;
-    console.log(feature.likes);
+
     const [comments, setComments] = useState(0);
     const [status, setStatus] = useState('In Progress');
     const [liked, setLiked] = useState(false);
@@ -14,6 +14,7 @@ const FeatureCard = ({ feature }) => {
     const [loading, setLoading] = useState(false);
     const { user } = useAuth()
     const userEmail = user?.email
+
     useEffect(() => {
         // Set the initial likes count when the component mounts
         setLikesCount(likes.length);

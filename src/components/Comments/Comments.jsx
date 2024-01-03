@@ -10,8 +10,8 @@ const Comments = ({ featureId }) => {
 
     // Display loading spinner while comments are being fetched
     if (isLoading) {
-        return <div class=" flex justify-center items-center">
-            <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+        return <div className=" flex justify-center items-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
         </div>
     }
 
@@ -24,7 +24,7 @@ const Comments = ({ featureId }) => {
         <div className="w-full my-10">
             <h2 className="text-lg font-semibold mb-4">Comments</h2>
             {foundComments && foundComments.length > 0 ? (
-                foundComments.map((comment) => <Comment key={comment.id} comment={comment} featureId={featureId}></Comment>)
+                foundComments.map((comment) => <Comment key={comment._id} comment={comment} featureId={featureId}></Comment>)
             ) : (
                 <p>No comments available</p>
             )}

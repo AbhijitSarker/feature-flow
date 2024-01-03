@@ -5,39 +5,38 @@ import api from '../../utils/handleApi';
 import Swal from 'sweetalert2'
 import useAuth from '../../hooks/useAuth';
 import useComments from '../../hooks/useComments';
+import { FaHeart } from 'react-icons/fa6';
 
 const Feature = () => {
     const { user } = useAuth(); // Using the useAuth hook to get user information
-    const userName = user?.displayName;  // Extracting the user's display name
+    // Extracting the user's information 
+    const currenUserName = user?.displayName;
     const photoURL = user?.photoURL
-
-    // State variables to manage feature details, comments, and new comment input
-    const [loading, setLoading] = useState(false);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [author, setAuthor] = useState('');
-    const [authorAvatar, setAuthorAvatar] = useState('');
-    const [votes, setVotes] = useState(0);
-    const [comments, setComments] = useState([]);
-    const [newComment, setNewComment] = useState('');
-
+    const userEmail = user?.email
 
     const { id } = useParams(); // Getting the 'id' parameter from the URL using useParams
     const navigate = useNavigate(); // Getting the navigate function from useNavigate
-    const { refetch } = useComments(id); // Using the useComments custom hook to fetch comments
+    const { refetch, } = useComments(id); // Using the useComments custom hook to fetch comments
+    // State variables to manage feature details, comments, and new comment input
+    const [loading, setLoading] = useState(false);
+
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState('');
+
+    const [liked, setLiked] = useState(false);
+    const [likesCount, setLikesCount] = useState(0);
+
+    const [feature, setFeature] = useState({})
+
+    const { _id, title, description, userName, userAvatar, likes } = feature;
+
 
     // Fetching feature details on component mount
-
     useEffect(() => {
         setLoading(true)
         api.get(`/feature/${id}`)
             .then((data) => {
-                // Setting the fetched feature details to state variables
-                setTitle(data.data.feature.title);
-                setDescription(data.data.feature.description);
-                setAuthor(data.data.feature.userName);
-                setAuthorAvatar(data.data.feature.userAvatar);
-                setVotes(data.data.feature.votes);
+                setFeature(data.data.feature);
                 setLoading(false);
             })
             .catch((error) => {
@@ -46,14 +45,58 @@ const Feature = () => {
             });
     }, []);
 
-    // Function to handle upvotes and downvotes for a feature
-    const handleVote = (type) => {
-        if (type === 'upvote') {
-            setVotes(votes + 1);
-        } else {
-            setVotes(votes - 1);
+    // fetching comments
+    useEffect(() => {
+        setLoading(true)
+        api.get(`/comment/?featureId=${id}`)
+            .then((data) => {
+                setComments(data.data.comments)
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching todo:', error);
+                setLoading(false);
+            });
+    }, []);
+
+
+    //fetching likes
+    useEffect(() => {
+        // Set the initial likes count when the component mounts
+        setLikesCount(likes?.length);
+
+        // Check if the feature is liked by the current user and update state accordingly
+        const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${userEmail}`)) || [];
+
+        if (likedFeatures.includes(_id)) {
+            setLiked(true);
+        }
+    }, [likes, _id, userEmail]);
+
+
+    const handleLike = async () => {
+        try {
+            // Send a request to like/unlike the feature based on the current liked status
+            const response = await api.put(`/feature/${_id}/like`, { email: userEmail });
+
+            if (response.status === 200) {
+                const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${userEmail}`)) || [];
+
+                if (liked && likedFeatures.includes(_id)) {
+                    setLikesCount(likesCount - 1);
+                    const updatedLikedFeatures = likedFeatures.filter((id) => id !== _id);
+                    localStorage.setItem(`likedFeatures_${userEmail}`, JSON.stringify(updatedLikedFeatures));
+                } else {
+                    setLikesCount(likesCount + 1);
+                    localStorage.setItem(`likedFeatures_${userEmail}`, JSON.stringify([...likedFeatures, _id]));
+                }
+                setLiked(!liked);
+            }
+        } catch (error) {
+            console.error('Error toggling like:', error);
         }
     };
+
 
     // Function to handle the deletion of a feature
     const handleDeleteFeature = () => {
@@ -85,13 +128,14 @@ const Feature = () => {
 
     };
 
+    // Function to add a new comment to a feature
     const handleAddComment = async () => {
         if (newComment.trim() !== '') {
             try {
                 // Adding a new comment using an API call and updating the comments state
                 const response = await api.post(`/comment`, {
                     comment: newComment,
-                    name: userName,
+                    name: currenUserName,
                     featureId: id,
                     photoURL: photoURL
                 });
@@ -102,14 +146,14 @@ const Feature = () => {
                 setNewComment('');
             } catch (error) {
                 console.error('Error adding comment:', error);
-                // Handle error (e.g., show an error message to the user)
+
             }
         }
     };
 
     if (loading) {
-        return <div class=" flex justify-center items-center">
-            <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+        return <div className=" flex justify-center items-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
         </div>
     }
 
@@ -118,11 +162,11 @@ const Feature = () => {
             <div className='flex justify-between'>
                 <div className="flex items-center mb-4">
                     <img
-                        src={authorAvatar}
+                        src={userAvatar}
                         alt="Author Avatar"
                         className="w-10 h-10 rounded-full mr-2"
                     />
-                    <span className="font-semibold">{author}</span>
+                    <span className="font-semibold">{userName}</span>
                 </div>
                 <div>
                     <Link to={'/'}>
@@ -142,21 +186,15 @@ const Feature = () => {
             <h2 className="text-lg font-semibold mb-2">{title}</h2>
             <p className="text-gray-600 mb-4">{description}</p>
             <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-1 text-gray-600">
-                    <button
-                        onClick={() => handleVote('upvote')}
-                        className="flex items-center space-x-1 text-gray-600 hover:text-green-500 focus:outline-none"
-                    >
-                        Upvote
+
+                <div className="flex text-xl items-center">
+                    <button onClick={handleLike} className={`flex items-center text-gray-600 ${liked ? 'text-red-500' : ''}`}>
+                        <FaHeart />
+                        <p className='ml-1'>{liked ? 'Unlike' : loading ? 'Liking' : 'Like'}</p>
                     </button>
-                    <span>{votes}</span>
-                    <button
-                        onClick={() => handleVote('downvote')}
-                        className="flex items-center space-x-1 text-gray-600 hover:text-red-500 focus:outline-none"
-                    >
-                        Downvote
-                    </button>
+                    <span className="text-gray-600 ml-2">{likesCount}</span>
                 </div>
+
                 {/* Comments count */}
                 <div className="flex items-center space-x-1 text-gray-600">
                     <svg
