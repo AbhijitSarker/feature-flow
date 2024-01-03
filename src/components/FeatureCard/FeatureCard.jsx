@@ -1,23 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaComment, FaHeart } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import api from '../../utils/handleApi';
+import useAuth from '../../hooks/useAuth';
 
 const FeatureCard = ({ feature }) => {
-    const { title, description, _id, userAvatar, userName } = feature;
-    const [likes, setLikes] = useState(0);
-    const [liked, setLiked] = useState(false);
+    const { title, description, _id, userAvatar, userName, likes } = feature;
+    console.log(feature.likes);
     const [comments, setComments] = useState(0);
     const [status, setStatus] = useState('In Progress');
+    const [liked, setLiked] = useState(false);
+    const [likesCount, setLikesCount] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const { user } = useAuth()
+    const userEmail = user?.email
+    useEffect(() => {
+        // Set the initial likes count when the component mounts
+        setLikesCount(likes.length);
 
-    const handleLike = () => {
-        if (!liked) {
-            setLikes(likes + 1);
+        // Check if the feature is liked by the current user and update state accordingly
+        const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${userEmail}`)) || [];
+
+        if (likedFeatures.includes(_id)) {
             setLiked(true);
-        } else {
-            setLikes(likes - 1);
-            setLiked(false);
+        }
+    }, [likes, _id, userEmail]);
+
+
+    const handleLike = async () => {
+        try {
+            // Send a request to like/unlike the feature based on the current liked status
+            const response = await api.put(`/feature/${_id}/like`, { email: userEmail }); // Replace with your API endpoint
+
+            if (response.status === 200) {
+                const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${userEmail}`)) || [];
+
+                if (liked && likedFeatures.includes(_id)) {
+                    setLikesCount(likesCount - 1);
+                    const updatedLikedFeatures = likedFeatures.filter((id) => id !== _id);
+                    localStorage.setItem(`likedFeatures_${userEmail}`, JSON.stringify(updatedLikedFeatures));
+                } else {
+                    setLikesCount(likesCount + 1);
+                    localStorage.setItem(`likedFeatures_${userEmail}`, JSON.stringify([...likedFeatures, _id]));
+                }
+                setLiked(!liked);
+            }
+        } catch (error) {
+            console.error('Error toggling like:', error);
         }
     };
+
 
     return (
         <div className="bg-white font-baskerville text-primary rounded-lg shadow-md my-4 border p-4">
@@ -59,12 +91,14 @@ const FeatureCard = ({ feature }) => {
                             </div>
                             <div className='flex gap-3'>
                                 {/* like button */}
-                                <div className="flex  text-xl items-center">
+
+
+                                <div className="flex text-xl items-center">
                                     <button onClick={handleLike} className={`flex items-center text-gray-600 ${liked ? 'text-red-500' : ''}`}>
-                                        <FaHeart></FaHeart>
-                                        <p className='ml-1'>Like</p>
+                                        <FaHeart />
+                                        <p className='ml-1'>{liked ? 'Unlike' : loading ? 'Liking' : 'Like'}</p>
                                     </button>
-                                    <span className="text-gray-600 ml-2">{likes}</span>
+                                    <span className="text-gray-600 ml-2">{likesCount}</span>
                                 </div>
 
                                 {/* comment count */}
