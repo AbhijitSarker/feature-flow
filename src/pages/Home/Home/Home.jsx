@@ -5,35 +5,43 @@ import useFeatures from '../../../hooks/useFeatures';
 import api from '../../../utils/handleApi';
 
 const Home = () => {
+    // Fetch features using custom hook
     const [features] = useFeatures();
     const allFeatures = features.features;
 
+    // State variables to manage filtering and sorting
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredFeatures, setFilteredFeatures] = useState([]);
+    const [statusFilter, setStatusFilter] = useState('all');
     const [sortBy, setSortBy] = useState('createdAt'); // Default sorting by date
     const [order, setOrder] = useState('asc'); // Default order ascending
 
+    // Update filtered features when allFeatures changes
     useEffect(() => {
-        // Update filtered features when allFeatures changes
         setFilteredFeatures(allFeatures);
     }, [allFeatures]);
 
-    const [statusFilter, setStatusFilter] = useState('all');
 
+    // Function to handle status filter
     const handleStatusFilter = (selectedStatus) => {
+        // Filtering features based on status
         setStatusFilter(selectedStatus);
         if (selectedStatus === 'all') {
-            setFilteredFeatures(allFeatures); // Show all features if 'All' status is selected
+            // Show all features if 'All' status is selected
+            setFilteredFeatures(allFeatures);
         } else {
             const filteredByStatus = allFeatures.filter((feature) => feature.status === selectedStatus);
             setFilteredFeatures(filteredByStatus);
         }
     };
 
+    // Function to handle search
     const handleSearch = (searchTerm) => {
+        // Searching through features based on the provided term
         setSearchTerm(searchTerm);
         if (!searchTerm.trim()) {
-            setFilteredFeatures(allFeatures); // If the search term is empty, display all features
+            // If the search term is empty, display all features
+            setFilteredFeatures(allFeatures);
         } else {
             const filteredList = allFeatures.filter(
                 (feature) =>
@@ -44,6 +52,7 @@ const Home = () => {
         }
     };
 
+    // Function to sort filtered features
     const handleSort = async (sortByField, sortOrder) => {
         try {
             let sortedFeatures;
@@ -63,26 +72,29 @@ const Home = () => {
         }
     };
 
-    // Function to sort filtered features
+    // Function to sort features based on the selected sorting options
     const sortFeatures = (featuresToSort, sortByField, sortOrder) => {
         try {
-            // Apply sorting to the given features
+            // Apply sorting to the given features based on the selected field and order
             const sortedFeatures = featuresToSort.sort((a, b) => {
+                // Sorting by different fields (title, createdAt, comments, likes)
                 switch (sortByField) {
                     case 'title':
                         return sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
                     case 'createdAt':
                         return sortOrder === 'asc' ? new Date(a.createdAt) - new Date(b.createdAt) : new Date(b.createdAt) - new Date(a.createdAt);
-                    case 'votes':
-                        return sortOrder === 'asc' ? a.votes - b.votes : b.votes - a.votes;
+
                     case 'comments':
                         return sortOrder === 'asc' ? a.comments - b.comments : b.comments - a.comments;
+                    case 'likes':
+                        return sortOrder === 'asc' ? a.likes.length - b.likes.length : b.likes.length - a.likes.length;
                     default:
                         return 0; // No sorting
                 }
             });
 
             return sortedFeatures;
+
         } catch (error) {
             console.error('Error sorting features:', error);
             return []; // Return an empty array or handle the error as needed
@@ -98,19 +110,21 @@ const Home = () => {
                 throw new Error('Network response was not ok.');
             }
 
-            const { data } = response; // Assuming the features are under 'data' property, update this accordingly
-            // console.log(data.features)
+            const { data } = response;
+
             return data.features;
+
         } catch (error) {
             console.error('Error fetching and sorting features:', error);
             return []; // Return an empty array or handle the error as needed
         }
     }
-
+    // Display features based on the search term or filtered list
     const displayFeatures = searchTerm.trim() ? filteredFeatures : allFeatures;
 
     return (
         <div>
+            {/* FeatureNav component to handle search, status filter, and sorting */}
             <FeatureNav
                 handleSearch={handleSearch}
                 handleStatusFilter={handleStatusFilter}
@@ -119,8 +133,8 @@ const Home = () => {
                 handleSortByDateDesc={() => handleSort('createdAt', 'desc')}
                 handleSortByTitleAsc={() => handleSort('title', 'asc')}
                 handleSortByTitleDesc={() => handleSort('title', 'desc')}
-                handleSortByVoteAsc={() => handleSort('votes', 'asc')}
-                handleSortByVoteDesc={() => handleSort('votes', 'desc')}
+                handleSortByVoteAsc={() => handleSort('likes', 'asc')}
+                handleSortByVoteDesc={() => handleSort('likes', 'desc')}
                 handleSortBCommentsAsc={() => handleSort('comments', 'asc')}
                 handleSortByCommentsDesc={() => handleSort('comments', 'desc')}
             />
