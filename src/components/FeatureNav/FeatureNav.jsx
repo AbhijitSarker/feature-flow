@@ -88,9 +88,9 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
                                 className="px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary rounded-md"
                             >
                                 <option value="all">All Statuses</option>
-                                <option value="pending">Pending</option>
-                                <option value="completed">Completed</option>
-                                <option value="in-progress">In Progress</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                                <option value="In-Progress">In Progress</option>
                                 {/* Add more status options as needed */}
                             </select>
                         </div>

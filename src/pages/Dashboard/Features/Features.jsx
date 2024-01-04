@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import FeatureCard from '../../../components/FeatureCard/FeatureCard';
 import FeatureNav from '../../../components/FeatureNav/FeatureNav';
 import useFeatures from '../../../hooks/useFeatures';
 import api from '../../../utils/handleApi';
