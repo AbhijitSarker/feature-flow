@@ -39,7 +39,7 @@ const Dashboard = () => {
             {/* Sidebar */}
             <aside className={`bg-primary text-white w-full lg:w-80 h-screen ${isSidebarOpen ? 'block' : 'hidden'} lg:block lg:min-h-screen p-3 md:p-6`} >
                 {/* Sidebar content */}
-                <h1 className="text-black text-7xl font-bold">Res2Ran</h1>
+                <Link to={'/'}><h1 className=" text-4xl font-bold">Feature Flow</h1></Link>
                 {/* Sidebar links/menu */}
                 <ul className="p-4 min-h-full">
 

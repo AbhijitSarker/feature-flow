@@ -4,6 +4,31 @@ import api from '../../utils/handleApi';
 import useFeatures from '../../hooks/useFeatures';
 
 const FeatureTable = ({ filteredFeatures }) => {
+    // Pagination state
+    const itemsPerPage = 5;
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // Calculate indexes for pagination and display items for the current page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredFeatures?.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(filteredFeatures?.length / itemsPerPage);     // Calculate the total number of pages based on the cart length and items per page
+
+    // Functions to navigate to the next 
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    // Functions to navigate to the previous pages
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
     const [selectedStatuses, setSelectedStatuses] = React.useState({}); // State to manage selected statuses
     const [, refetch] = useFeatures();
 
@@ -84,7 +109,7 @@ const FeatureTable = ({ filteredFeatures }) => {
                             <th>Actions</th>
                         </tr>
                         {
-                            filteredFeatures?.map(feature => <tr class="border-b hover:bg-orange-100">
+                            currentItems?.map(feature => <tr class="border-b hover:bg-orange-100">
                                 <td class="p-3 px-5">{feature.title}</td>
                                 <td class="p-3 px-5">{feature.userName}</td>
                                 <td class=" p-3 px-5">{feature.likes.length}</td>
@@ -116,6 +141,11 @@ const FeatureTable = ({ filteredFeatures }) => {
 
 
                     </tbody>
+                    <div className=' flex justify-center items-center gap-4 mt-4'>
+                        <button onClick={prevPage} disabled={currentPage === 1} title={'Prev'}>Prev</button>
+                        <span>Page {currentPage} of {totalPages}</span>
+                        <button onClick={nextPage} disabled={currentPage === totalPages} title={'Next'}>Next</button>
+                    </div>
                 </table>
             </div>
         </div>

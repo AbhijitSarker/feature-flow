@@ -122,6 +122,33 @@ const Home = () => {
     // Display features based on the search term or filtered list
     const displayFeatures = searchTerm.trim() ? filteredFeatures : allFeatures;
 
+    // Pagination state
+    const itemsPerPage = 5;
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // Calculate indexes for pagination and display items for the current page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = displayFeatures?.slice(indexOfFirstItem, indexOfLastItem);
+
+    // Calculate the total number of pages based on the features length and items per page
+    const totalPages = Math.ceil(displayFeatures?.length / itemsPerPage);
+
+    // Functions to navigate to the next 
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    // Functions to navigate to the previous pages
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+
     return (
         <div>
             {/* FeatureNav component to handle search, status filter, and sorting */}
@@ -140,13 +167,19 @@ const Home = () => {
             />
             {displayFeatures && displayFeatures.length > 0 ? (
                 <div>
-                    {filteredFeatures?.map((feature) => (
+                    {currentItems?.map((feature) => (
                         <FeatureCard key={feature._id} feature={feature} />
                     ))}
                 </div>
             ) : (
                 <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
             )}
+            {/* pagination buttons */}
+            <div className=' flex justify-center items-center gap-4 mt-4'>
+                <button onClick={prevPage} disabled={currentPage === 1} title={'Prev'}>Prev</button>
+                <span>Page {currentPage} of {totalPages}</span>
+                <button onClick={nextPage} disabled={currentPage === totalPages} title={'Next'}>Next</button>
+            </div>
         </div>
     );
 };
