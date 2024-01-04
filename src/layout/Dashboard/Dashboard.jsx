@@ -47,7 +47,7 @@ const Dashboard = () => {
                     <Link to='/dashboard/mycart'>      <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FiShoppingCart /> <p>My Cart</p> </div>  </Link>
                     <Link to='/dashboard/addItem'>     <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <GiForkKnifeSpoon /> <p>Add An Items</p> </div>  </Link>
                     <Link to='/dashboard/manageItems'> <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaBook /> <p>Manage Items</p> </div>  </Link>
-                    <Link to='/dashboard/allusers'>    <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaUsers /> <p>All Users</p> </div>  </Link>
+                    <Link to='/dashboard/users'>    <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaUsers /> <p>All Users</p> </div>  </Link>
                 </ul>
             </aside>
 
