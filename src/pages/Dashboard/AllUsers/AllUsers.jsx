@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../../../utils/handleApi";
+import Swal from 'sweetalert2'
 
 const AllUsers = () => {
 
@@ -11,8 +12,32 @@ const AllUsers = () => {
             return response.data;
         },
     });
+
     const allUsers = users.users
 
+    const makeAdmin = (userId) => {
+        try {
+            Swal.fire({
+                title: "Are you sure?",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Make Admin!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    api.patch(`/user/${userId}`, { role: 'admin' });
+                    refetch()
+
+                    Swal.fire({
+                        title: "Successful!",
+                    });
+                }
+            });
+
+        } catch (error) {
+            console.error('Error updating user role:', error);
+        }
+    };
     return (
         <div class="text-gray-900 bg-gray-200">
             <div class="p-4 flex">
@@ -27,19 +52,17 @@ const AllUsers = () => {
                             <th class="text-left p-3 px-5">Name</th>
                             <th class="text-left p-3 px-5">Email</th>
                             <th class="text-left p-3 px-5">Role</th>
-                            <th></th>
+                            <th>Actions</th>
                         </tr>
                         {
                             allUsers?.map(user => <tr class="border-b hover:bg-orange-100">
                                 <td class="p-3 px-5">{user.name}</td>
                                 <td class="p-3 px-5">{user.email}</td>
-                                <td class="p-3 px-5">
-                                    <select value={user.role} class="bg-transparent">
-                                        <option value="user">user</option>
-                                        <option value="admin">admin</option>
-                                    </select>
+                                <td class="p-3 px-5">{user.role} </td>
+                                <td class="p-3 px-5 flex justify-end">
+                                    <button type="button" onClick={() => makeAdmin(user._id)} class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Make Admin</button>
+                                    <button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
                                 </td>
-                                <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
                             </tr>)
                         }
 
