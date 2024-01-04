@@ -8,6 +8,7 @@ import EditFeature from "../pages/EditFeature/EditFeature";
 import Dashboard from "../layout/Dashboard/Dashboard";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import Features from "../pages/Dashboard/Features/Features";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path: '',
                 element: <UserHome></UserHome>
+            },
+            {
+                path: 'features',
+                element: <Features></Features>
             },
             {
                 path: 'users',
