@@ -38,6 +38,30 @@ const AllUsers = () => {
             console.error('Error updating user role:', error);
         }
     };
+
+    const deleteUser = async (userId) => {
+        try {
+            Swal.fire({
+                title: "Are you sure?",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Delete!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    api.delete(`/user/${userId}`);
+                    refetch()
+
+                    Swal.fire({
+                        title: "Successful!",
+                    });
+                }
+            });
+
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    };
     return (
         <div class="text-gray-900 bg-gray-200">
             <div class="p-4 flex">
@@ -60,8 +84,8 @@ const AllUsers = () => {
                                 <td class="p-3 px-5">{user.email}</td>
                                 <td class="p-3 px-5">{user.role} </td>
                                 <td class="p-3 px-5 flex justify-end">
-                                    <button type="button" onClick={() => makeAdmin(user._id)} class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Make Admin</button>
-                                    <button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                    <button type="button" onClick={() => makeAdmin(user._id)} class={`${user.role === 'admin' ? 'hidden' : ''} mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline`}>Make Admin</button>
+                                    <button type="button" onClick={() => deleteUser(user._id)} class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
                                 </td>
                             </tr>)
                         }
