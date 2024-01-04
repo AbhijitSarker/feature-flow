@@ -1,15 +1,13 @@
 import { useState } from "react";
 import Footer from "../components/Footer/Footer";
-import NavBar from "../components/NavBar/NavBar";
-import SideBar from "../pages/Home/SideBar/SideBar";
+
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { GiCrossedBones } from "react-icons/gi";
 import { FaBarsStaggered } from "react-icons/fa6";
-import Search from "../components/Search/Search";
+
 import FeatureForm from "../components/FeatureForm/FeatureForm";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
-import FeatureNav from "../components/FeatureNav/FeatureNav";
-import FeatureCard from "../components/FeatureCard/FeatureCard";
+
 
 const Main = () => {
 
@@ -30,8 +28,8 @@ const Main = () => {
                     <h1 className='text-secondary text-4xl font-bold font-baskerville'></h1>
 
                     <ul className='md:flex hidden  space-x-5'>
-                        <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Homes</Link>
-                        <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>abouts</Link>
+                        <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
+                        <Link to={'/dashboard'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
                     </ul>
 
                 </div>
@@ -61,6 +59,7 @@ const Main = () => {
 
                 </main>
             </div>
+            <Footer></Footer>
         </div >
     );
 };
