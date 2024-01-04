@@ -10,7 +10,7 @@ const NavBar = () => {
         <nav className="bg-gray-900 w-full ">
             <div className='flex justify-between pt-10 h-48 mx-10 '>
 
-                <h1 className='text-secondary text-4xl font-bold font-baskerville'>Feature Flow</h1>
+                <h1 className='text-secondary text-4xl font-bold  '>Feature Flow</h1>
 
                 {/*for small device */}
                 <ul className={`absolute w-full h-screen flex flex-col gap-10 justify-center items-center bg-secondary transform duration-500 ease-in-out ${open ? 'left-0 top-0' : '-top-[2000px]  left-0'} `}>
@@ -26,7 +26,7 @@ const NavBar = () => {
 
 
 
-                <Link to={'/signup'}><button className='hidden md:flex hover:text-secondary font-baskerville w-36 h-12 items-center justify-center rounded-lg font-bold text-xl text-white transition ease-in-out duration-200'>Login / Register</button></Link>
+                <Link to={'/signup'}><button className='hidden md:flex hover:text-secondary   w-36 h-12 items-center justify-center rounded-lg font-bold text-xl text-white transition ease-in-out duration-200'>Login / Register</button></Link>
                 <div className='md:hidden z-20' onClick={() => setOpen(!open)}>
                     {
                         open ? <GiCrossedBones className='text-4xl text-primary' /> : <FaBarsStaggered className='text-4xl text-secondary' />

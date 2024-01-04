@@ -94,7 +94,7 @@ const FeatureCard = ({ feature }) => {
 
 
     return (
-        <div className="bg-white font-baskerville text-primary rounded-lg shadow-md my-4 border p-4">
+        <div className="bg-white   text-primary rounded-lg shadow-md my-4 border p-4">
 
             <Link to={`/feature/${_id}`}>
                 <div className='flex flex-col md:flex-row justify-between'>
@@ -157,17 +157,15 @@ const FeatureCard = ({ feature }) => {
                 </div>
 
                 {/* comment input */}
-                <div className="relative w-full">
+                <div className="m-4 flex">
                     <input
+                        className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-primary border-gray-200 bg-white focus:border"
                         type="text"
                         placeholder="Add a comment..."
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
-                        className="w-full bg-gray-200 rounded-md px-3 py-1 focus:outline-none focus:ring-1 focus:ring-gray-300"
                     />
-                    <button onClick={handleAddComment} className="absolute right-0 top-0 mt-1 mr-2 focus:outline-none">
-                        Post
-                    </button>
+                    <button onClick={handleAddComment} className="px-8 rounded-r-lg bg-primary  text-white font-bold p-4 uppercase border-t border-b border-r border-primary">Comment</button>
                 </div>
 
             </div>

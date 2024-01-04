@@ -38,48 +38,6 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
                     <div className="flex justify-around space-x-4">
 
                         {/* filter */}
-                        <div className="dropdown inline-block relative">
-                            <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-                                <span>Sort By</span>
-                            </button>
-
-                            <ul className="dropdown-content absolute hidden text-gray-700 pt-1">
-
-                                <li className="dropdown">
-                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Date</a>
-                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Newest</a></li>
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Oldest</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li className="dropdown">
-                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Title</a>
-                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Ascending</a></li>
-
-                                        <li><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Descending</a></li>
-                                    </ul>
-                                </li>
-                                <li className="dropdown">
-                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Vote</a>
-                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</a></li>
-
-                                        <li><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</a></li>
-                                    </ul>
-                                </li>
-                                <li className="dropdown">
-                                    <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Comments</a>
-                                    <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</a></li>
-                                        <li><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
 
                         <div className="flex justify-around space-x-4">
                             <select

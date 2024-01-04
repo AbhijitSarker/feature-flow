@@ -19,7 +19,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="bg-white text-primary relative font-baskerville">
+        <div className="bg-white text-primary relative  ">
             <div className="flex flex-col items-center justify-between  max-w-7xl xl:px-5 lg:flex-row">
                 <div className="flex flex-col justify-center items-center w-full pt-5  pb-20  lg:flex-row">
                     <div className="w-full mt-5 md:mt-20  relative z-10 max-w-2xl lg:mt-0 ">
@@ -27,7 +27,7 @@ const SignUp = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="flex my-10 border flex-col items-start justify-start pt-10 pr-5 pb-10 pl-5 md:px-10 bg-white shadow-2xl rounded-xl relative z-10">
 
 
-                            <div className=' p-5 my-5 text-primary justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200  hover:shadow-2xl ease'><span className='text-sm'>Sign In With</span><FcGoogle /><span className='font-bold font-baskerville'>OOGLE</span></div>
+                            <div className=' p-5 my-5 text-primary justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200  hover:shadow-2xl ease'><span className='text-sm'>Sign In With</span><FcGoogle /><span className='font-bold  '>OOGLE</span></div>
                             <div className="h-[1px] w-full bg-gray-300 my-5"></div>
 
                             <div className="w-full mt-6 relative space-y-10">

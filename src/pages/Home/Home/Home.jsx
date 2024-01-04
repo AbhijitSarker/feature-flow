@@ -129,10 +129,10 @@ const Home = () => {
     // Calculate indexes for pagination and display items for the current page
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = displayFeatures?.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filteredFeatures?.slice(indexOfFirstItem, indexOfLastItem);
 
     // Calculate the total number of pages based on the features length and items per page
-    const totalPages = Math.ceil(displayFeatures?.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredFeatures?.length / itemsPerPage);
 
     // Functions to navigate to the next 
     const nextPage = () => {
@@ -175,10 +175,10 @@ const Home = () => {
                 <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
             )}
             {/* pagination buttons */}
-            <div className=' flex justify-center items-center gap-4 mt-4'>
-                <button onClick={prevPage} disabled={currentPage === 1} title={'Prev'}>Prev</button>
-                <span>Page {currentPage} of {totalPages}</span>
-                <button onClick={nextPage} disabled={currentPage === totalPages} title={'Next'}>Next</button>
+            <div className='   flex justify-center items-center gap-4 mt-4'>
+                <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={prevPage} disabled={currentPage === 1} >Prev</button>
+                <span className='text-primary'>Page {currentPage} of {totalPages}</span>
+                <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={nextPage} disabled={currentPage === totalPages}>Next</button>
             </div>
         </div>
     );

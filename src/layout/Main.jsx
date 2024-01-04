@@ -25,7 +25,7 @@ const Main = () => {
             <nav className="bg-primary w-full ">
                 <div className='flex justify-between pt-10 h-48 mx-10 '>
 
-                    <h1 className='text-secondary text-4xl font-bold font-baskerville'></h1>
+                    <h1 className='text-secondary text-4xl font-bold  '></h1>
 
                     <ul className='md:flex hidden  space-x-5'>
                         <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
@@ -47,7 +47,7 @@ const Main = () => {
                 <aside className={` rounded-md space-y-16  md:sticky md:top-28 md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
                     {/* Sidebar content */}
                     <ProfileCard></ProfileCard>
-                    {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold font-baskerville'>Feature Flow</h1> */}
+                    {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold  '>Feature Flow</h1> */}
                     <FeatureForm></FeatureForm>
 
                 </aside>

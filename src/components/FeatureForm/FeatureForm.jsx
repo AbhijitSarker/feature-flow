@@ -46,7 +46,7 @@ const FeatureForm = () => {
     };
 
     return (
-        <div className=' bg-white border shadow-xl font-baskerville  px-5 py-5  flex flex-col'>
+        <div className=' bg-white border shadow-xl    px-5 py-5  flex flex-col'>
             <div className='text-center text-4xl text-primary font-medium mt-4 mb-8'>
                 <h1>Request A Feature</h1>
             </div>
