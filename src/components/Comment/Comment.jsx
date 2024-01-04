@@ -6,11 +6,12 @@ const Comment = ({ comment, featureId }) => {
     const { refetch } = useComments(featureId)
     // console.log(comment)
     const handleDelete = (commentId) => {
-        api.delete(`/comment/${commentId}`)
+        api.delete(`/comment/${commentId}/${featureId}`)
             .then(() => {
                 refetch()
             })
     };
+
     return (
         <div className="flex items-start mb-4">
             <img

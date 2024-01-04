@@ -129,8 +129,8 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
                                 <li className="dropdown">
                                     <a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Comments</a>
                                     <ul className="dropdown-content absolute hidden text-gray-700 pl-5 ml-24 -mt-10">
-                                        <li onClick={handleSortBCommentsAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Highest</li>
-                                        <li onClick={handleSortByCommentsDesc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</li>
+                                        <li onClick={handleSortByCommentsDesc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >highest</li>
+                                        <li onClick={handleSortBCommentsAsc} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" >Lowest</li>
 
                                     </ul>
                                 </li>

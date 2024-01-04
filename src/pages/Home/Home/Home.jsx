@@ -85,7 +85,7 @@ const Home = () => {
                         return sortOrder === 'asc' ? new Date(a.createdAt) - new Date(b.createdAt) : new Date(b.createdAt) - new Date(a.createdAt);
 
                     case 'comments':
-                        return sortOrder === 'asc' ? a.comments - b.comments : b.comments - a.comments;
+                        return sortOrder === 'asc' ? a.comments.length - b.comments.length : b.comments.length - a.comments.length;
                     case 'likes':
                         return sortOrder === 'asc' ? a.likes.length - b.likes.length : b.likes.length - a.likes.length;
                     default:
