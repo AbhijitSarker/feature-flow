@@ -5,6 +5,8 @@ import SignUp from "../pages/SignUp/SignUp";
 import SignIn from "../pages/SignIn/SignIn";
 import Feature from "../pages/Feature/Feature";
 import EditFeature from "../pages/EditFeature/EditFeature";
+import Dashboard from "../layout/Dashboard/Dashboard";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
 
 export const router = createBrowserRouter([
     {
@@ -33,4 +35,16 @@ export const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            //user routes
+            {
+                path: '',
+                element: <UserHome></UserHome>
+            },
+
+        ]
+    }
 ]);
