@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import useAuth from '../../hooks/useAuth';
 import useComments from '../../hooks/useComments';
 import { FaComment, FaHeart } from 'react-icons/fa6';
+import verifyUser from '../../utils/verifyUser';
 
 const Feature = () => {
     const { user } = useAuth(); // Using the useAuth hook to get user information
@@ -225,7 +226,7 @@ const Feature = () => {
                     <div className='flex gap-3 my-2'>
                         {/* like button */}
                         <div className="flex items-center">
-                            <button onClick={handleLike} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-red-500' : ''}`}>
+                            <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-red-500' : ''}`}>
                                 <FaHeart />
                                 <p className='ml-2 text-xl'>{liked ? 'Unvote' : loadingLike ? 'Voting' : 'Vote'}</p>
                             </button>
@@ -242,16 +243,17 @@ const Feature = () => {
 
 
                     {/* comment input */}
-                    <div className="flex  ">
+                    <form className="flex  ">
                         <input
                             className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-200 bg-white"
                             type="text"
+                            required
                             placeholder="Add a comment..."
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
                         />
-                        <button onClick={handleAddComment} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
-                    </div>
+                        <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
+                    </form>
 
                 </div>
 

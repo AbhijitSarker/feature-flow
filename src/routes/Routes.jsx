@@ -9,7 +9,6 @@ import Dashboard from "../layout/Dashboard/Dashboard";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import Features from "../pages/Dashboard/Features/Features";
-import FeatureDetailPage from "../pages/Feature/FeatureDetailPage";
 
 export const router = createBrowserRouter([
     {

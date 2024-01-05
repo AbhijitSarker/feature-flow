@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import api from '../../utils/handleApi';
 import useFeatures from '../../hooks/useFeatures';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../hooks/useAuth';
-import { Link } from 'react-router-dom';
+import verifyUser from '../../utils/verifyUser';
 
 const FeatureForm = () => {
     const [, refetch] = useFeatures(); // Fetch features using a custom hook
@@ -18,19 +18,7 @@ const FeatureForm = () => {
     const userEmail = user?.email;
     const userAvatar = user?.photoURL;
 
-    const verifyUser = (e) => {
-        e.preventDefault();
-        toast.error('You must login to Request a Feature!', {
-            position: "bottom-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        });
-    }
+
 
     // Function to handle form submission
     const handleSubmit = async (e) => {
@@ -100,23 +88,14 @@ const FeatureForm = () => {
                         </div>
 
                     </div>
-                    {
-                        user ?
-                            <button
-                                onClick={handleSubmit}
-                                disabled={loading} // Disable button based on loading state
-                                className={`w-full h-16 mt-10 border border-primary text-secondary text-2xl font-semibold rounded-lg transition duration-200 hover:bg-primary ease ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            >Request A Feature
-                            </button>
-                            :
 
-                            <button
-                                onClick={verifyUser}
-                                className={`w-full h-16 mt-10 border border-primary text-secondary text-2xl font-semibold rounded-lg transition duration-200 hover:bg-primary ease `}
-                            >Request A Feature
-                            </button>
+                    <button
+                        onClick={user ? handleSubmit : verifyUser}
+                        disabled={loading} // Disable button based on loading state
+                        className={`w-full h-16 mt-10 border border-primary text-secondary text-2xl font-semibold rounded-lg transition duration-200 hover:bg-primary ease ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >Request A Feature
+                    </button>
 
-                    }
                 </form>
                 <ToastContainer />
             </div>

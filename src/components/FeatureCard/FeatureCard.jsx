@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import api from '../../utils/handleApi';
 import useAuth from '../../hooks/useAuth';
 import useComments from '../../hooks/useComments';
+import verifyUser from '../../utils/verifyUser';
 
 const FeatureCard = ({ feature }) => {
     // Destructuring feature properties
@@ -157,7 +158,7 @@ const FeatureCard = ({ feature }) => {
                 <div className='flex gap-3 my-2'>
                     {/* like button */}
                     <div className="flex items-center">
-                        <button onClick={handleLike} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-red-500' : ''}`}>
+                        <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-red-500' : ''}`}>
                             <FaHeart />
                             <p className='ml-2 text-xl'>{liked ? 'Unvote' : loading ? 'Voting' : 'Vote'}</p>
                         </button>
@@ -172,16 +173,17 @@ const FeatureCard = ({ feature }) => {
                 </div>
 
                 {/* comment input */}
-                <div className="flex  ">
+                <form className="flex  ">
                     <input
                         className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-200 bg-white"
                         type="text"
+                        required
                         placeholder="Add a comment..."
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button onClick={handleAddComment} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">Comment</button>
-                </div>
+                    <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">Comment</button>
+                </form>
 
             </div>
         </div>
