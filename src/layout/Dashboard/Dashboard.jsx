@@ -21,7 +21,7 @@ const Dashboard = () => {
             {/* Mobile Menu Icon */}
             <div className="lg:hidden flex justify-between items-center">
                 <Link to={'/'}>
-                    <h1 className='text-5xl font-bold text-primary'>Res2Ran</h1>
+                    <h1 className='text-5xl font-bold text-primary'>Feature FLow</h1>
                 </Link>
                 <button
                     onClick={toggleSidebar}
