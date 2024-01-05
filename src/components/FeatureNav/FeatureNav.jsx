@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, handleSortByDateDesc, handleSortByTitleAsc, handleSortByTitleDesc, handleSortByVoteAsc, handleSortByVoteDesc, handleSortBCommentsAsc, handleSortByCommentsDesc }) => {
+    // State to manage search term
     const [searchTerm, setSearchTerm] = useState('');
 
+    // Function to handle changes in the search input
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
         handleSearch(event.target.value); // Pass search term to parent component
     };
 
+    // State to manage selected status filter
     const [selectedStatus, setSelectedStatus] = useState('all');
 
+    // Function to handle changes in the status filter
     const handleStatusChange = (event) => {
         const status = event.target.value;
         setSelectedStatus(status);
@@ -18,7 +22,6 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
     };
 
     return (
-
         <nav className="border border-gray-500 text-primary bg-gray-200 z-20 sticky top-5  mt-4 rounded-md">
             <div className="space-y-2 px-4">
 
@@ -38,7 +41,6 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
                     <div className="flex justify-around space-x-4">
 
                         {/* filter */}
-
                         <div className="flex justify-around space-x-4">
                             <select
                                 value={selectedStatus}
@@ -53,6 +55,7 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
                             </select>
                         </div>
 
+                        {/* sorting  */}
                         <div className="dropdown inline-block relative">
                             <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
                                 <span>Sort By</span>

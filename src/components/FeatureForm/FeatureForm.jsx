@@ -6,18 +6,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../hooks/useAuth';
 
 const FeatureForm = () => {
-    const [, refetch] = useFeatures();
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const [, refetch] = useFeatures(); // Fetch features using a custom hook
+    const [title, setTitle] = useState(''); // State for feature title
+    const [description, setDescription] = useState(''); // State for feature description
     const [loading, setLoading] = useState(false); // State to track loading
+
+    // Fetching user details using a custom hook
     const { user } = useAuth();
     const userName = user?.displayName;
     const userEmail = user?.email;
     const userAvatar = user?.photoURL;
+
+
+    // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true); // Set loading state to true when submitting
         try {
+            // Make an API call to create a new feature request
             await api.post('/feature', {
                 title,
                 description,
@@ -25,6 +31,7 @@ const FeatureForm = () => {
                 userEmail,
                 userAvatar
             });
+            // Show success toast upon successful feature request
             toast.success('Feature Request Successful!', {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -35,6 +42,7 @@ const FeatureForm = () => {
                 progress: undefined,
                 theme: "dark",
             });
+            // Refetch features and reset form fields
             refetch();
             setTitle('');
             setDescription('');

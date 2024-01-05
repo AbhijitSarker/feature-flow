@@ -7,7 +7,7 @@ const Comments = ({ featureId }) => {
     const { comments, isLoading, isError } = useComments(featureId);
 
     const foundComments = comments?.comments; // Extracting comments from the API response
-    console.log(foundComments);
+
     // Display loading spinner while comments are being fetched
     if (isLoading) {
         return <div className=" flex justify-center items-center">

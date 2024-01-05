@@ -33,7 +33,7 @@ const Feature = () => {
     const [feature, setFeature] = useState({})
 
     const { _id, title, description, userName, userAvatar, likes, createdAt, userEmail } = feature;
-    console.log(feature)
+
     // Formatting date and time from createdAt property
     const date = new Date(createdAt);
     const formattedTime = date.toLocaleString('en-US', {

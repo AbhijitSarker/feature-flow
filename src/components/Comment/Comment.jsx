@@ -5,13 +5,15 @@ import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2'
 
 const Comment = ({ comment, featureId }) => {
+    // Fetch comments based on featureId using a custom hook
     const { refetch, } = useComments(featureId)
+
+    // Fetching current user details using a custom hook
     const { user } = useAuth();
     const currentUserEmail = user?.email;
 
-    console.log(comment?.email, currentUserEmail)
+    // Function to handle comment deletion
     const handleDelete = (commentId) => {
-
         Swal.fire({
             title: "Are you sure?",
             showCancelButton: true,
@@ -23,8 +25,8 @@ const Comment = ({ comment, featureId }) => {
                 // Deleting the comment using an API call
                 api.delete(`/comment/${commentId}/${featureId}`)
                     .then(() => {
+                        // Refetch comments to update UI after deletion
                         refetch()
-
                     })
                     .catch((error) => {
                         console.error('Error deleting comment:', error);
