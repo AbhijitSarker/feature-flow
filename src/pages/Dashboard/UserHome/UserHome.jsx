@@ -1,7 +1,11 @@
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 
+const img_hosting_token = import.meta.env.VITE_Image_Upload_token
 const UserHome = () => {
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+
+
     const { user } = useAuth();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -27,6 +31,23 @@ const UserHome = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('image', image);
+
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                // Handle the image hosting response
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    console.log(imgURL);
+                }
+            })
+
+
         // Handle form submission logic here
         console.log('Title:', title);
         console.log('Description:', description);
@@ -101,7 +122,7 @@ const UserHome = () => {
                                 {image ? (
                                     <img src={URL.createObjectURL(image)} alt="Uploaded" className="max-w-full h-auto mb-2" />
                                 ) : (
-                                    <p className="text-gray-500">Drag & drop or click to upload an image</p>
+                                    <p className="text-gray-500">Drag & drop to upload an image</p>
                                 )}
                             </div>
                         </div>
