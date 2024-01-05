@@ -12,7 +12,8 @@ const Feature = () => {
     // Extracting the user's information 
     const currenUserName = user?.displayName;
     const photoURL = user?.photoURL
-    const userEmail = user?.email
+    const currentUserEmail = user?.email
+
 
     const { id } = useParams(); // Getting the 'id' parameter from the URL using useParams
     const navigate = useNavigate(); // Getting the navigate function from useNavigate
@@ -31,8 +32,8 @@ const Feature = () => {
 
     const [feature, setFeature] = useState({})
 
-    const { _id, title, description, userName, userAvatar, likes, createdAt } = feature;
-
+    const { _id, title, description, userName, userAvatar, likes, createdAt, userEmail } = feature;
+    console.log(feature)
     // Formatting date and time from createdAt property
     const date = new Date(createdAt);
     const formattedTime = date.toLocaleString('en-US', {
@@ -82,30 +83,30 @@ const Feature = () => {
         setLikesCount(likes?.length);
 
         // Check if the feature is liked by the current user and update state accordingly
-        const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${userEmail}`)) || [];
+        const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${currentUserEmail}`)) || [];
 
         if (likedFeatures.includes(_id)) {
             setLiked(true);
         }
-    }, [likes, _id, userEmail]);
+    }, [likes, _id, currentUserEmail]);
 
 
     const handleLike = async () => {
         try {
             setLoadingLike(true);
             // Send a request to like/unlike the feature based on the current liked status
-            const response = await api.put(`/feature/${_id}/like`, { email: userEmail });
+            const response = await api.put(`/feature/${_id}/like`, { email: currentUserEmail });
 
             if (response.status === 200) {
-                const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${userEmail}`)) || [];
+                const likedFeatures = JSON.parse(localStorage.getItem(`likedFeatures_${currentUserEmail}`)) || [];
 
                 if (liked && likedFeatures.includes(_id)) {
                     setLikesCount(likesCount - 1);
                     const updatedLikedFeatures = likedFeatures.filter((id) => id !== _id);
-                    localStorage.setItem(`likedFeatures_${userEmail}`, JSON.stringify(updatedLikedFeatures));
+                    localStorage.setItem(`likedFeatures_${currentUserEmail}`, JSON.stringify(updatedLikedFeatures));
                 } else {
                     setLikesCount(likesCount + 1);
-                    localStorage.setItem(`likedFeatures_${userEmail}`, JSON.stringify([...likedFeatures, _id]));
+                    localStorage.setItem(`likedFeatures_${currentUserEmail}`, JSON.stringify([...likedFeatures, _id]));
                 }
                 setLiked(!liked);
                 setLoadingLike(false);
@@ -155,6 +156,7 @@ const Feature = () => {
                 const response = await api.post(`/comment`, {
                     comment: newComment,
                     name: currenUserName,
+                    email: currentUserEmail,
                     featureId: id,
                     photoURL: photoURL
                 });
@@ -184,18 +186,21 @@ const Feature = () => {
                 <Link to={'/'}>
                     <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> Go Back </button>
                 </Link>
-
-                <div className='flex items-center gap-5'>
-                    <button
-                        onClick={handleDeleteFeature}
-                        className="block py-2 px-4 bg-red-500 text-white rounded-md focus:outline-none hover:bg-red-600"
-                    >
-                        Delete
-                    </button>
-                    <Link to={`/editfeature/${id}`}><button className=" hover:bg-secondary py-2 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer">
-                        Edit
-                    </button></Link>
-                </div>
+                {
+                    currentUserEmail === userEmail ?
+                        <div className='flex items-center gap-5'>
+                            <button
+                                onClick={handleDeleteFeature}
+                                className="block py-2 px-4 bg-red-500 text-white rounded-md focus:outline-none hover:bg-red-600"
+                            >
+                                Delete
+                            </button>
+                            <Link to={`/editfeature/${id}`}><button className=" hover:bg-secondary py-2 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer">
+                                Edit
+                            </button></Link>
+                        </div>
+                        : <></>
+                }
             </div>
 
             <div className="bg-white p-4 rounded shadow">
@@ -250,21 +255,7 @@ const Feature = () => {
 
                 </div>
 
-                {/* <div className="mt-4">
-                <input
-                    type="text"
-                    placeholder="Add a comment"
-                    className="border border-gray-300 rounded-md w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={newComment}
-                    onChange={(e) => setNewComment(e.target.value)}
-                />
-                <button
-                    onClick={handleAddComment}
-                    className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"
-                >
-                    Comment
-                </button>
-            </div> */}
+
                 <Comments featureId={id}></Comments>
             </div>
         </div>
