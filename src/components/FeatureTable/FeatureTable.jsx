@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2'
 import api from '../../utils/handleApi';
 import useFeatures from '../../hooks/useFeatures';
+import { Link } from 'react-router-dom';
 
 const FeatureTable = ({ filteredFeatures }) => {
     // Pagination state
@@ -95,27 +96,27 @@ const FeatureTable = ({ filteredFeatures }) => {
         }));
     };
     return (
-        <div class="text-primary   bg-gray-200 flex flex-col">
+        <div className="text-primary   bg-gray-200 flex flex-col">
 
-            <div class="px-3 py-4 flex justify-center">
-                <table class="w-full text-md bg-white shadow-md rounded mb-4">
+            <div className="px-3 py-4 flex justify-center">
+                <table className="w-full text-md bg-white shadow-md rounded mb-4">
                     <tbody>
-                        <tr class="border-b">
-                            <th class="text-left p-3 px-5">Name</th>
-                            <th class="text-left p-3 px-5">Author</th>
-                            <th class="text-left p-3 px-5">Likes </th>
-                            <th class="text-left p-3 px-5"> Comments</th>
-                            <th class="text-left p-3 px-5">Status</th>
+                        <tr className="border-b">
+                            <th className="text-left p-3 px-5">Name</th>
+                            <th className="text-left p-3 px-5">Author</th>
+                            <th className="text-left p-3 px-5">Likes </th>
+                            <th className="text-left p-3 px-5"> Comments</th>
+                            <th className="text-left p-3 px-5">Status</th>
                             <th>Actions</th>
                         </tr>
                         {
-                            currentItems?.map(feature => <tr class="border-b hover:bg-orange-100">
-                                <td class="p-3 px-5">{feature.title}</td>
-                                <td class="p-3 px-5">{feature.userName}</td>
-                                <td class=" p-3 px-5">{feature.likes.length}</td>
-                                <td class=" p-3 px-5"> {feature.comments.length}</td>
-                                <td class="p-3 px-5"> {feature.status}</td>
-                                <td class="p-3 px-5 flex gap-4 justify-end">
+                            currentItems?.map(feature => <tr key={feature._id} className="border-b hover:bg-orange-100">
+                                <Link to={`/feature/${feature._id}`}><td className="p-3 px-5 hover:underline">{feature.title.length > 40 ? `${feature.title.slice(0, 40)}.....` : feature.title}</td></Link>
+                                <td className="p-3 px-5">{feature.userName}</td>
+                                <td className=" p-3 px-5">{feature.likes.length}</td>
+                                <td className=" p-3 px-5"> {feature.comments.length}</td>
+                                <td className="p-3 px-5"> {feature.status}</td>
+                                <td className="p-3 px-5 flex gap-4 justify-end">
                                     <select
                                         value={selectedStatuses[feature._id] || ''}
                                         onChange={(e) => handleStatusChange(feature._id, e.target.value)}
@@ -129,11 +130,11 @@ const FeatureTable = ({ filteredFeatures }) => {
                                     </select>
                                     <button
                                         onClick={() => changeStatus(feature._id)}
-                                        class="text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline  focus:shadow-outline"
+                                        className="text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline  focus:shadow-outline"
                                     >
                                         Change Status
                                     </button>
-                                    <button type="button" onClick={() => deleteFeature(feature._id)} class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                    <button type="button" onClick={() => deleteFeature(feature._id)} className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
                                 </td>
                             </tr>)
                         }
