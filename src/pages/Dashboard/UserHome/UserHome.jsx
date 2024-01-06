@@ -1,16 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
+import api from '../../../utils/handleApi';
+import { useQuery } from "@tanstack/react-query";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token
 const UserHome = () => {
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
-
 
     const { user } = useAuth();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
     const [formVisible, setFormVisible] = useState(false);
+
+    //tanstack query to query to get all users
+    const { data, refetch } = useQuery({
+        queryKey: ["appInfo"],
+        queryFn: async () => {
+            const response = await api.get('/app');
+            return response.data;
+        },
+    });
+    const appInfo = data?.appInfo[0]
+    console.log(appInfo)
+    // useEffect(() => {
+    //     api.get('/app')
+    //         .then((response) => {
+    //             console.log(response.data.appInfo);
+    //             setTitle(response.data.appInfo.title);
+    //             setDescription(response.data.appInfo.description);
+    //             setImage(response.data.appInfo.logo);
+    //         })
+    // }, [])
 
     const handleImageDrop = (e) => {
         e.preventDefault();
@@ -44,6 +65,8 @@ const UserHome = () => {
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
                     console.log(imgURL);
+
+                    api.post('/app', { title: title, description: description, logo: imgURL })
                 }
             })
 
@@ -61,6 +84,9 @@ const UserHome = () => {
     return (
         <div className="w-full m-4">
             <h3>Hi, {user?.displayName}, Welcome Back</h3>
+            <h2 className="text-2xl font-bold mb-4">{appInfo.title}</h2>
+            <p className="text-gray-700 mb-4">{appInfo.description}</p>
+            <img src={appInfo.logo} alt="App Logo" className="w-28 mb-2" />
 
 
             <div className="max-w-md mx-auto mt-10 p-6 border rounded-md shadow-lg">
