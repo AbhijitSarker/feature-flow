@@ -8,10 +8,11 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import FeatureForm from "../components/FeatureForm/FeatureForm";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import Navbar from "../components/NavBar/NavBar";
+import useApp from "../hooks/useApp";
 
 
 const Main = () => {
-
+    const { data } = useApp()
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for toggling the sidebar
 
     // Function to toggle the sidebar visibility
@@ -25,12 +26,13 @@ const Main = () => {
         <div >
 
             <Navbar></Navbar>
-            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-28 md:-mt-16">
+            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-40 md:-mt-16">
 
                 {/* Mobile Menu Icon */}
                 <div className="lg:hidden flex justify-between items-center">
                     <button onClick={toggleSidebar} className="text-gray-200 p-3 focus:outline-none" >
                         {isSidebarOpen ? <GiCrossedBones className='text-4xl text-primary' /> : <FaBarsStaggered className='text-4xl text-primary' />} </button>
+                    {/* <p>{data?.appInfo[0].description}</p> */}
                 </div>
 
                 {/* Sidebar */}

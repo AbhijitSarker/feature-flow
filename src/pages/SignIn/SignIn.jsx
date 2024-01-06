@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 const SignIn = () => {
     const { login } = useAuth()
     const navigate = useNavigate();
-
+    const [error, setError] = useState('')
     const {
         register,
         handleSubmit,
@@ -34,7 +34,7 @@ const SignIn = () => {
                 });
             })
             .catch((error) => {
-                console.log(error.message);;
+                setError(error.message);;
             })
     };
 
@@ -71,7 +71,7 @@ const SignIn = () => {
                                 <div>
                                     <p>Don't have an Account? <span><Link className='text-secondary' to={'/signup'} >Sign Up</Link></span></p>
                                 </div>
-
+                                <p className='text-red-600'>{error}</p>
                                 <div className="relative">
                                     <input className="w-full h-16 mt-5 border border-primary text-secondary text-2xl font-semibold  rounded-lg transition duration-200 hover:bg-primary ease" type="submit" value={'Submit'} />
                                 </div>

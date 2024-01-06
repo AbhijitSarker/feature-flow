@@ -8,12 +8,12 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav className="bg-gray-900 w-full ">
-            <div className='flex justify-between  pt-5 h-48 mx-10 '>
+        <nav className="bg-gray-900 w-full h-60">
+            <div className='flex justify-between  pt-5  mx-10 '>
 
                 <LogoTitle></LogoTitle>
                 {/*for small device */}
-                <ul className={`absolute w-full h-screen flex flex-col gap-10 justify-center items-center bg-secondary transform duration-500 ease-in-out ${open ? 'left-0 top-0' : '-top-[2000px]  left-0'} `}>
+                <ul className={`absolute z-10 w-full h-screen flex flex-col gap-10 justify-center items-center bg-secondary transform duration-500 ease-in-out ${open ? 'left-0 top-0' : '-top-[2000px]  left-0'} `}>
                     <Link to={'/'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
                     <Link to={'/dashboard'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
 
