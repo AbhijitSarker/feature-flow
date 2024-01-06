@@ -2,8 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import useAuth from '../../hooks/useAuth';
 
 const SignUp = () => {
+    const { createUser } = useAuth();
     const {
         register,
         handleSubmit,
@@ -15,6 +17,7 @@ const SignUp = () => {
     password.current = watch('password', '');
 
     const onSubmit = (data) => {
+        createUser(data.email, data.password)
         console.log(data);
     };
 

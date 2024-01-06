@@ -16,7 +16,7 @@ const FeatureForm = () => {
     const { user } = useAuth();
     const userName = user?.displayName;
     const userEmail = user?.email;
-    const userAvatar = user?.photoURL;
+    const userAvatar = user?.photoURL || 'https://avatar.iran.liara.run/public/46';
 
 
 
