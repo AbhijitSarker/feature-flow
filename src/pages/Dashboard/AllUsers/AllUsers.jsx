@@ -8,13 +8,16 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
+            // Making an API call to retrieve user data
             const response = await api.get('/user');
             return response.data;
         },
     });
 
+    // Extracting users from the fetched data
     const allUsers = users.users
 
+    // Function to promote a user to admin
     const makeAdmin = (userId) => {
         try {
             Swal.fire({
@@ -25,7 +28,9 @@ const AllUsers = () => {
                 confirmButtonText: "Yes, Make Admin!"
             }).then((result) => {
                 if (result.isConfirmed) {
+                    // Making a PATCH request to update user role to 'admin'
                     api.patch(`/user/${userId}`, { role: 'admin' });
+                    // Triggering a data refetch after updating the user
                     refetch()
 
                     Swal.fire({
@@ -39,6 +44,7 @@ const AllUsers = () => {
         }
     };
 
+    // Function to delete a user
     const deleteUser = async (userId) => {
         try {
             Swal.fire({
@@ -49,7 +55,9 @@ const AllUsers = () => {
                 confirmButtonText: "Yes, Delete!"
             }).then((result) => {
                 if (result.isConfirmed) {
+                    // Making a DELETE request to delete the user
                     api.delete(`/user/${userId}`);
+                    // Triggering a data refetch after deleting the user
                     refetch()
 
                     Swal.fire({

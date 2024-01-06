@@ -7,6 +7,7 @@ import { FaBarsStaggered } from "react-icons/fa6";
 
 import FeatureForm from "../components/FeatureForm/FeatureForm";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
+import Navbar from "../components/NavBar/NavBar";
 
 
 const Main = () => {
@@ -22,7 +23,7 @@ const Main = () => {
     const noFeatureNav = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div >
-            <nav className="bg-primary w-full ">
+            {/* <nav className="bg-primary w-full ">
                 <div className='flex justify-between pt-10 h-48 mx-10 '>
 
                     <h1 className='text-secondary text-4xl font-bold  '></h1>
@@ -33,9 +34,9 @@ const Main = () => {
                     </ul>
 
                 </div>
-            </nav>
-
-            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-24">
+            </nav> */}
+            <Navbar></Navbar>
+            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-16">
 
                 {/* Mobile Menu Icon */}
                 <div className="lg:hidden flex justify-between items-center">
@@ -44,7 +45,7 @@ const Main = () => {
                 </div>
 
                 {/* Sidebar */}
-                <aside className={` rounded-md space-y-16  md:sticky md:top-28 md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
+                <aside className={` rounded-md space-y-16   md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
                     {/* Sidebar content */}
                     <ProfileCard></ProfileCard>
                     {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold  '>Feature Flow</h1> */}
