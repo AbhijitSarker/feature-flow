@@ -23,20 +23,9 @@ const Main = () => {
     const noFeatureNav = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div >
-            {/* <nav className="bg-primary w-full ">
-                <div className='flex justify-between pt-10 h-48 mx-10 '>
 
-                    <h1 className='text-secondary text-4xl font-bold  '></h1>
-
-                    <ul className='md:flex hidden  space-x-5'>
-                        <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
-                        <Link to={'/dashboard'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
-                    </ul>
-
-                </div>
-            </nav> */}
             <Navbar></Navbar>
-            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-16">
+            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-28 md:-mt-16">
 
                 {/* Mobile Menu Icon */}
                 <div className="lg:hidden flex justify-between items-center">

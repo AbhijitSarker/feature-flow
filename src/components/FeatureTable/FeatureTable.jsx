@@ -111,7 +111,7 @@ const FeatureTable = ({ filteredFeatures }) => {
                         </tr>
                         {
                             currentItems?.map(feature => <tr key={feature._id} className="border-b hover:bg-orange-100">
-                                <Link to={`/feature/${feature._id}`}><td className="p-3 px-5 hover:underline">{feature.title.length > 40 ? `${feature.title.slice(0, 40)}.....` : feature.title}</td></Link>
+                                <td className="p-3 px-5 hover:underline">   <Link to={`/feature/${feature._id}`}>{feature.title.length > 40 ? `${feature.title.slice(0, 40)}.....` : feature.title}</Link></td>
                                 <td className="p-3 px-5">{feature.userName}</td>
                                 <td className=" p-3 px-5">{feature.likes.length}</td>
                                 <td className=" p-3 px-5"> {feature.comments.length}</td>
