@@ -1,11 +1,15 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
+import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
+    const { login } = useAuth()
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
@@ -15,7 +19,23 @@ const SignIn = () => {
 
 
     const onSubmit = (data) => {
-        console.log(data);
+        login(data.email, data.password)
+            .then((result) => {
+                navigate('/')
+                toast.success('Login Successfully!', {
+                    position: "bottom-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            })
+            .catch((error) => {
+                console.log(error.message);;
+            })
     };
 
     return (
@@ -49,7 +69,7 @@ const SignIn = () => {
                                 </div>
 
                                 <div>
-                                    <p>Don't have an Account? <span><Link className='text-secondary' to={'/signup'} >Sign IN</Link></span></p>
+                                    <p>Don't have an Account? <span><Link className='text-secondary' to={'/signup'} >Sign Up</Link></span></p>
                                 </div>
 
                                 <div className="relative">
