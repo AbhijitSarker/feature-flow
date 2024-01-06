@@ -22,7 +22,7 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
     };
 
     return (
-        <nav className="border border-gray-500 text-primary bg-gray-200 z-20 sticky top-5  mt-4 rounded-md">
+        <nav className="border border-gray-500 text-primary bg-gray-200 -z-0 sticky top-5  mt-4 rounded-md">
             <div className="space-y-2 px-4">
 
                 <div className="relative pt-4 ">
@@ -39,21 +39,6 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
                 </div>
                 <div className="flex flex-col pb-2">
                     <div className="flex justify-around space-x-4">
-
-                        {/* filter */}
-                        <div className="flex justify-around space-x-4">
-                            <select
-                                value={selectedStatus}
-                                onChange={handleStatusChange}
-                                className="px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary rounded-md"
-                            >
-                                <option value="all">All Statuses</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Completed">Completed</option>
-                                <option value="In-Progress">In Progress</option>
-                                {/* Add more status options as needed */}
-                            </select>
-                        </div>
 
                         {/* sorting  */}
                         <div className="dropdown inline-block relative">
@@ -97,6 +82,23 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
                                 </li>
                             </ul>
                         </div>
+
+
+                        {/* filter */}
+                        <div className="flex justify-around space-x-4">
+                            <select
+                                value={selectedStatus}
+                                onChange={handleStatusChange}
+                                className="px-3 py-1 focus:outline-none focus:ring-1 focus:ring-primary rounded-md"
+                            >
+                                <option value="all">All Statuses</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                                <option value="In-Progress">In Progress</option>
+                                {/* Add more status options as needed */}
+                            </select>
+                        </div>
+
 
 
                     </div>

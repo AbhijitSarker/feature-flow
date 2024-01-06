@@ -1,9 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import useAuth from '../../hooks/useAuth';
+import api from '../../utils/handleApi';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
+    const { createUser, updateUserProfile } = useAuth();
     const {
         register,
         handleSubmit,
@@ -11,11 +15,31 @@ const SignUp = () => {
         watch,
     } = useForm();
 
+    const navigate = useNavigate();
+
     const password = React.useRef({});
     password.current = watch('password', '');
 
     const onSubmit = (data) => {
-        console.log(data);
+
+        createUser(data.email, data.password)
+            .then(result => {
+                updateUserProfile(data.name)
+                    .then(result => {
+                        api.post('/user', { name: data.name, email: data.email, password: data.password })
+                        navigate('/')
+                        toast.success('User registered Successfully!', {
+                            position: "bottom-center",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                        });
+                    })
+            })
     };
 
     return (

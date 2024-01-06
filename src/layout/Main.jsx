@@ -7,10 +7,12 @@ import { FaBarsStaggered } from "react-icons/fa6";
 
 import FeatureForm from "../components/FeatureForm/FeatureForm";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
+import Navbar from "../components/NavBar/NavBar";
+import useApp from "../hooks/useApp";
 
 
 const Main = () => {
-
+    const { data } = useApp()
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for toggling the sidebar
 
     // Function to toggle the sidebar visibility
@@ -22,29 +24,19 @@ const Main = () => {
     const noFeatureNav = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div >
-            <nav className="bg-primary w-full ">
-                <div className='flex justify-between pt-10 h-48 mx-10 '>
 
-                    <h1 className='text-secondary text-4xl font-bold  '></h1>
-
-                    <ul className='md:flex hidden  space-x-5'>
-                        <Link className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
-                        <Link to={'/dashboard'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
-                    </ul>
-
-                </div>
-            </nav>
-
-            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-24">
+            <Navbar></Navbar>
+            <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-40 md:-mt-16">
 
                 {/* Mobile Menu Icon */}
                 <div className="lg:hidden flex justify-between items-center">
                     <button onClick={toggleSidebar} className="text-gray-200 p-3 focus:outline-none" >
                         {isSidebarOpen ? <GiCrossedBones className='text-4xl text-primary' /> : <FaBarsStaggered className='text-4xl text-primary' />} </button>
+                    {/* <p>{data?.appInfo[0].description}</p> */}
                 </div>
 
                 {/* Sidebar */}
-                <aside className={` rounded-md space-y-16  md:sticky md:top-28 md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
+                <aside className={` rounded-md space-y-16   md:h-full text-primary w-full lg:w-1/3 ${isSidebarOpen ? 'block' : 'hidden'} lg:block  p-3 md:p-3`} >
                     {/* Sidebar content */}
                     <ProfileCard></ProfileCard>
                     {/* <h1 className='text-primary text-4xl text-center mb-5 font-bold  '>Feature Flow</h1> */}

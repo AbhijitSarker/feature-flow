@@ -36,7 +36,7 @@ const ProfileCard = () => {
     return (
         <div className="   border shadow-xl w-full flex flex-row justify-center items-center">
             <div className="card w-full mx-auto bg-white  hover:shadow-xl shadow">
-                <img className="w-32 mx-auto  rounded-full -mt-20 border-8 border-white" src={user ? user.photoURL : `https://avatar.iran.liara.run/public/46`} alt="" />
+                <img className="w-32 mx-auto  rounded-full -mt-20 border-8 border-white" src={user?.photoURL ? user?.photoURL : `https://avatar.iran.liara.run/public/46`} alt="" />
                 {
                     user ? <div className="text-center mt-2 text-3xl font-medium">{user.displayName}</div>
 
