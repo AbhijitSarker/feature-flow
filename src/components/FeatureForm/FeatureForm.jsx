@@ -35,7 +35,7 @@ const FeatureForm = () => {
             });
             // Show success toast upon successful feature request
             toast.success('Feature Request Successful!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,

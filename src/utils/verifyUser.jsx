@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 const verifyUser = (e) => {
     e.preventDefault();
     toast.error('You must login to to perform the action!', {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,

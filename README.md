@@ -1,4 +1,9 @@
-# Feature Flow Server
+# Feature Flow
+
+- Backend Code: https://github.com/AbhijitSarker/feature-flow-server
+- Backend Live Server: https://feature-flow-server.vercel.app
+
+## App Deatails
 
 The project revolves around a feature board management system designed to streamline feature requests, updates, and management within a web application. Its primary goals include:
 
@@ -67,7 +72,6 @@ The primary focus is on creating a feature-rich, user-centric platform that empo
 7.  **Testing and Development:**
     - Verify if the application is running without errors.
     - Test authentication, image uploading, and other features.
-    -
 8.  **Deployment to Firebase Hosting:**
 
     - Set up Firebase hosting for your project.

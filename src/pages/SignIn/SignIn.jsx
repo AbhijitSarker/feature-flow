@@ -23,7 +23,7 @@ const SignIn = () => {
             .then((result) => {
                 navigate('/')
                 toast.success('Login Successfully!', {
-                    position: "bottom-center",
+                    position: "top-center",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,

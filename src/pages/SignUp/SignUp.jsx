@@ -29,7 +29,7 @@ const SignUp = () => {
                         api.post('/user', { name: data.name, email: data.email, password: data.password })
                         navigate('/')
                         toast.success('User registered Successfully!', {
-                            position: "bottom-center",
+                            position: "top-center",
                             autoClose: 2000,
                             hideProgressBar: false,
                             closeOnClick: true,
