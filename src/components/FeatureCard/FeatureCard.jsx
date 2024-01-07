@@ -52,7 +52,8 @@ const FeatureCard = ({ feature }) => {
     }, []);
 
     // Function to add a new comment to a feature
-    const handleAddComment = async () => {
+    const handleAddComment = async (e) => {
+        e.preventDefault();
         if (newComment.trim() !== '') {
             try {
                 // Adding a new comment using an API call and updating the comments state
