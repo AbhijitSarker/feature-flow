@@ -4,12 +4,13 @@ import api from '../../../utils/handleApi';
 import useApp from "../../../hooks/useApp";
 import LogoTitle from "../../../components/LogoTitle/LogoTitle";
 import useAdmin from "../../../hooks/useAdmin";
+import AdminInfo from "../../../components/AdminInfo/AdminInfo";
 
 // Fetch the image hosting token from environment variables
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
 const UserHome = () => {
-    const [isAdmin] = useAdmin()
+    const [isAdmin, isLoading] = useAdmin()
     // Construct the image hosting URL using the token
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
@@ -85,9 +86,11 @@ const UserHome = () => {
         setFormVisible(!formVisible);
     };
 
-    if (isAdmin !== 'admin') {
-        return <h1>not admin</h1>
+
+    if (isAdmin === 'user') {
+        return <AdminInfo></AdminInfo>
     }
+
 
     return (
         <div className="w-full m-4">

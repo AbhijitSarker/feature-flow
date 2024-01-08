@@ -4,6 +4,7 @@ import useFeatures from '../../../hooks/useFeatures';
 import api from '../../../utils/handleApi';
 import FeatureTable from '../../../components/FeatureTable/FeatureTable';
 import useAdmin from '../../../hooks/useAdmin';
+import AdminInfo from '../../../components/AdminInfo/AdminInfo';
 
 const Features = () => {
     // Fetch features using custom hook
@@ -125,8 +126,8 @@ const Features = () => {
 
     const [isAdmin] = useAdmin()
 
-    if (isAdmin !== 'admin') {
-        return <h1>not admin</h1>
+    if (isAdmin === 'user') {
+        return <AdminInfo></AdminInfo>
     }
 
     return (

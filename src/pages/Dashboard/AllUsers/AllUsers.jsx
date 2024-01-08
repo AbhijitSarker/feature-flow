@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "../../../utils/handleApi";
 import Swal from 'sweetalert2'
 import useAdmin from "../../../hooks/useAdmin";
+import AdminInfo from "../../../components/AdminInfo/AdminInfo";
 
 const AllUsers = () => {
 
@@ -73,8 +74,8 @@ const AllUsers = () => {
     };
     const [isAdmin] = useAdmin()
 
-    if (isAdmin !== 'admin') {
-        return <h1>not admin</h1>
+    if (isAdmin === 'user') {
+        return <AdminInfo></AdminInfo>
     }
 
     return (
