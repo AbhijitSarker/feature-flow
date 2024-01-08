@@ -3,6 +3,7 @@ import FeatureNav from '../../../components/FeatureNav/FeatureNav';
 import useFeatures from '../../../hooks/useFeatures';
 import api from '../../../utils/handleApi';
 import FeatureTable from '../../../components/FeatureTable/FeatureTable';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Features = () => {
     // Fetch features using custom hook
@@ -121,6 +122,12 @@ const Features = () => {
     }
     // Display features based on the search term or filtered list
     const displayFeatures = searchTerm.trim() ? filteredFeatures : allFeatures;
+
+    const [isAdmin] = useAdmin()
+
+    if (isAdmin !== 'admin') {
+        return <h1>not admin</h1>
+    }
 
     return (
         <div>

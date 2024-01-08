@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../../../utils/handleApi";
 import Swal from 'sweetalert2'
+import useAdmin from "../../../hooks/useAdmin";
 
 const AllUsers = () => {
 
@@ -70,6 +71,12 @@ const AllUsers = () => {
             console.error('Error deleting user:', error);
         }
     };
+    const [isAdmin] = useAdmin()
+
+    if (isAdmin !== 'admin') {
+        return <h1>not admin</h1>
+    }
+
     return (
         <div className="text-gray-900 bg-gray-200">
             <div className="p-4 flex">

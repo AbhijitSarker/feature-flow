@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { GiCrossedBones } from "react-icons/gi";
 import { FaBook, FaHome, FaUsers } from "react-icons/fa";
 import { FaBarsStaggered } from 'react-icons/fa6';
 import LogoTitle from '../../components/LogoTitle/LogoTitle';
-import Footer from '../../components/Footer/Footer';
+
+import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
+    const [isAdmin] = useAdmin();
+
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for toggling the sidebar
 
     // Function to toggle the sidebar visibility
@@ -40,12 +43,15 @@ const Dashboard = () => {
                 {/* Sidebar content */}
                 <Link to={'/'}><LogoTitle></LogoTitle></Link>
                 {/* Sidebar links/menu */}
-                <ul className="p-4 min-h-full">
+                {
+                    isAdmin !== 'admin' ? <></> :
+                        <ul className="p-4 min-h-full">
 
-                    <Link to='/dashboard'>   <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaHome /> <p>Admin Home</p> </div>  </Link>
-                    <Link to='/dashboard/features'> <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaBook /> <p>Manage Items</p> </div>  </Link>
-                    <Link to='/dashboard/users'>    <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaUsers /> <p>All Users</p> </div>  </Link>
-                </ul>
+                            <Link to='/dashboard'>   <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaHome /> <p>Admin Home</p> </div>  </Link>
+                            <Link to='/dashboard/features'> <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaBook /> <p>Manage Items</p> </div>  </Link>
+                            <Link to='/dashboard/users'>    <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaUsers /> <p>All Users</p> </div>  </Link>
+                        </ul>
+                }
             </aside>
 
             {/* Main content area */}
