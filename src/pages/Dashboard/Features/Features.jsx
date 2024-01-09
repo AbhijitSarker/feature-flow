@@ -126,34 +126,35 @@ const Features = () => {
 
     const [isAdmin] = useAdmin()
 
-    if (isAdmin === 'user') {
+    if (isAdmin === 'admin') {
+        return (
+            <div>
+                {/* FeatureNav component to handle search, status filter, and sorting */}
+                <FeatureNav
+                    handleSearch={handleSearch}
+                    handleStatusFilter={handleStatusFilter}
+
+                    handleSortByDateAsc={() => handleSort('createdAt', 'asc')}
+                    handleSortByDateDesc={() => handleSort('createdAt', 'desc')}
+                    handleSortByTitleAsc={() => handleSort('title', 'asc')}
+                    handleSortByTitleDesc={() => handleSort('title', 'desc')}
+                    handleSortByVoteAsc={() => handleSort('likes', 'asc')}
+                    handleSortByVoteDesc={() => handleSort('likes', 'desc')}
+                    handleSortBCommentsAsc={() => handleSort('comments', 'asc')}
+                    handleSortByCommentsDesc={() => handleSort('comments', 'desc')}
+                />
+                {displayFeatures && displayFeatures.length > 0 ? (
+                    <FeatureTable filteredFeatures={filteredFeatures}>
+                    </FeatureTable>
+                ) : (
+                    <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
+                )}
+            </div>
+        );
+    } else {
         return <AdminInfo></AdminInfo>
+
     }
-
-    return (
-        <div>
-            {/* FeatureNav component to handle search, status filter, and sorting */}
-            <FeatureNav
-                handleSearch={handleSearch}
-                handleStatusFilter={handleStatusFilter}
-
-                handleSortByDateAsc={() => handleSort('createdAt', 'asc')}
-                handleSortByDateDesc={() => handleSort('createdAt', 'desc')}
-                handleSortByTitleAsc={() => handleSort('title', 'asc')}
-                handleSortByTitleDesc={() => handleSort('title', 'desc')}
-                handleSortByVoteAsc={() => handleSort('likes', 'asc')}
-                handleSortByVoteDesc={() => handleSort('likes', 'desc')}
-                handleSortBCommentsAsc={() => handleSort('comments', 'asc')}
-                handleSortByCommentsDesc={() => handleSort('comments', 'desc')}
-            />
-            {displayFeatures && displayFeatures.length > 0 ? (
-                <FeatureTable filteredFeatures={filteredFeatures}>
-                </FeatureTable>
-            ) : (
-                <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
-            )}
-        </div>
-    );
 };
 
 export default Features;

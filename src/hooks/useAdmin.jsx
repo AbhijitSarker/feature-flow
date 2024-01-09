@@ -7,12 +7,12 @@ const useAdmin = () => {
 
     const { data: isAdmin, isLoading } = useQuery({
         queryKey: ['isAdmin', user?.email],
-        enabled: !!user && loading, // Enable the query when 'user' is truthy and not loading
+        enabled: !!user && loading, // Enabled the query when 'user' is truthy and not loading
         queryFn: async () => {
             const res = await api.get(`/user/email/${user?.email}`);
             return res.data.user.role;
         },
-        // Pass 'user' as a dependency to re-run the query when 'user' changes
+        // Passed 'user' as a dependency to re-run the query when 'user' changes
         deps: [user]
     });
 

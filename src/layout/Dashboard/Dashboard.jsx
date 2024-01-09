@@ -39,18 +39,20 @@ const Dashboard = () => {
             </div>
 
             {/* Sidebar */}
-            <aside className={`bg-primary text-white w-full lg:w-80 h-screen ${isSidebarOpen ? 'block' : 'hidden'} lg:block lg:min-h-screen p-3 md:p-6`} >
+            <aside className={`bg-primary text-white w-full lg:w-96 h-screen ${isSidebarOpen ? 'block' : 'hidden'} lg:block lg:min-h-screen p-3 md:p-6`} >
                 {/* Sidebar content */}
                 <Link to={'/'}><LogoTitle></LogoTitle></Link>
                 {/* Sidebar links/menu */}
                 {
-                    isAdmin !== 'admin' ? <></> :
+                    isAdmin === 'admin' ?
                         <ul className="p-4 min-h-full">
 
                             <Link to='/dashboard'>   <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaHome /> <p>Admin Home</p> </div>  </Link>
                             <Link to='/dashboard/features'> <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaBook /> <p>Manage Features</p> </div>  </Link>
                             <Link to='/dashboard/users'>    <div className='flex items-center gap-2 text-2xl mb-4 rounded-md px-2 py-1 hover:bg-gray-800 hover:text-white '> <FaUsers /> <p>All Users</p> </div>  </Link>
                         </ul>
+                        :
+                        <></>
                 }
             </aside>
 

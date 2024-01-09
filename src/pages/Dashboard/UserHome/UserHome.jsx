@@ -87,94 +87,94 @@ const UserHome = () => {
     };
 
 
-    if (isAdmin === 'user') {
-        return <AdminInfo></AdminInfo>
-    }
+    if (isAdmin === 'admin') {
+
+        return (
+            <div className="w-full m-4">
+                <h3>Hi, {user?.displayName}, Welcome Back</h3>
+                <p className="text-2xl font-semibold text-primary mt-5">Logo and Title</p>
+                <LogoTitle></LogoTitle>
+
+                <p className="text-2xl font-semibold text-primary mt-5">Description</p>
+                <p className="text-gray-700 mb-10">{data?.appInfo[0].description}</p>
 
 
-    return (
-        <div className="w-full m-4">
-            <h3>Hi, {user?.displayName}, Welcome Back</h3>
-            <p className="text-2xl font-semibold text-primary mt-5">Logo and Title</p>
-            <LogoTitle></LogoTitle>
-
-            <p className="text-2xl font-semibold text-primary mt-5">Description</p>
-            <p className="text-gray-700 mb-10">{data?.appInfo[0].description}</p>
-
-
-            {!formVisible ? (
-                <button
-                    onClick={toggleFormVisibility}
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                    Edit App Info
-                </button>
-            ) : (<>
-                <button
-                    onClick={toggleFormVisibility}
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                    Hide Form
-                </button>
-                <form onSubmit={handleFormSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
-                            Title
-                        </label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value={title}
-                            onChange={handleInputChange}
-                            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
-                            placeholder="Enter title"
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="description" className="block text-gray-700 font-bold mb-2">
-                            Description
-                        </label>
-                        <textarea
-                            id="description"
-                            name="description"
-                            value={description}
-                            onChange={handleInputChange}
-                            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
-                            placeholder="Enter description"
-                            required
-                        ></textarea>
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="image" className="block text-gray-700 font-bold mb-2">
-                            Image
-                        </label>
-                        <div
-                            id="image"
-                            className="border border-dashed border-gray-500 rounded-md p-4 cursor-pointer"
-                            onDrop={handleImageDrop}
-                            onDragOver={(e) => e.preventDefault()}
-                        >
-                            {image ? (
-                                <img src={URL.createObjectURL(image)} alt="Uploaded" className="w-28 h-auto mb-2" />
-                            ) : (
-                                <p className="text-gray-500">Drag & drop to upload an image</p>
-                            )}
-                        </div>
-                    </div>
+                {!formVisible ? (
                     <button
-                        type="submit"
+                        onClick={toggleFormVisibility}
                         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
-                        Submit
+                        Edit App Info
                     </button>
-                </form>
-            </>
-            )}
-        </div>
+                ) : (<>
+                    <button
+                        onClick={toggleFormVisibility}
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                        Hide Form
+                    </button>
+                    <form onSubmit={handleFormSubmit}>
+                        <div className="mb-4">
+                            <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
+                                Title
+                            </label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                value={title}
+                                onChange={handleInputChange}
+                                className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                                placeholder="Enter title"
+                                required
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="description" className="block text-gray-700 font-bold mb-2">
+                                Description
+                            </label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                value={description}
+                                onChange={handleInputChange}
+                                className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                                placeholder="Enter description"
+                                required
+                            ></textarea>
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="image" className="block text-gray-700 font-bold mb-2">
+                                Image
+                            </label>
+                            <div
+                                id="image"
+                                className="border border-dashed border-gray-500 rounded-md p-4 cursor-pointer"
+                                onDrop={handleImageDrop}
+                                onDragOver={(e) => e.preventDefault()}
+                            >
+                                {image ? (
+                                    <img src={URL.createObjectURL(image)} alt="Uploaded" className="w-28 h-auto mb-2" />
+                                ) : (
+                                    <p className="text-gray-500">Drag & drop to upload an image</p>
+                                )}
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </>
+                )}
+            </div>
 
-    );
+        );
+    } else {
+        return <AdminInfo></AdminInfo>
+    }
 };
 
 export default UserHome;
