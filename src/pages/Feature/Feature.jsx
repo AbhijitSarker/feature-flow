@@ -7,6 +7,7 @@ import useAuth from '../../hooks/useAuth';
 import useComments from '../../hooks/useComments';
 import { FaComment, FaHeart } from 'react-icons/fa6';
 import verifyUser from '../../utils/verifyUser';
+import { toast } from 'react-toastify';
 
 const Feature = () => {
     const { user } = useAuth(); // Using the useAuth hook to get user information
@@ -139,10 +140,17 @@ const Feature = () => {
                     });
 
                 // Displaying a success message after deleting the feature
-                Swal.fire({
-                    title: "Deleted Successfully!",
-                    icon: "success"
+                toast.success('Successfully Deleted!', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
                 });
+
             }
         });
 
@@ -168,6 +176,16 @@ const Feature = () => {
                 refetch();
                 setLoadingComment(false)
                 setNewComment('');
+                toast.success('Comment Added!', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             } catch (error) {
                 console.error('Error adding comment:', error);
                 setLoadingComment(false)

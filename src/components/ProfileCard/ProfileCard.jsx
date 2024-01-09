@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 
 const ProfileCard = () => {
@@ -24,9 +24,15 @@ const ProfileCard = () => {
                 logout();
                 navigate(`/`); // Redirect to the feature page after update
 
-                Swal.fire({
-                    title: "Logout Successful!",
-                    icon: "success"
+                toast.success('Successfully Logged Out!', {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
                 });
             }
         });
@@ -55,7 +61,6 @@ const ProfileCard = () => {
 
 
                 }
-
 
             </div>
         </div>

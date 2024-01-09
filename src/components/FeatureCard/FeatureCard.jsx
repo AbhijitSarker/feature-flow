@@ -5,6 +5,7 @@ import api from '../../utils/handleApi';
 import useAuth from '../../hooks/useAuth';
 import useComments from '../../hooks/useComments';
 import verifyUser from '../../utils/verifyUser';
+import { toast } from 'react-toastify';
 
 const FeatureCard = ({ feature }) => {
     // Destructuring feature properties
@@ -72,6 +73,16 @@ const FeatureCard = ({ feature }) => {
                 refetch();
                 setNewComment('');
                 setLoadingComment(false)
+                toast.success('Comment Added!', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             } catch (error) {
                 console.error('Error adding comment:', error);
                 setLoadingComment(false)

@@ -91,11 +91,12 @@ const UserHome = () => {
 
         return (
             <div className="w-full m-4">
-                <h3>Hi, {user?.displayName}, Welcome Back</h3>
-                <p className="text-2xl font-semibold text-primary mt-5">Logo and Title</p>
+                <p className="text-5xl font-bold mb-5"> Dashboard</p>
+                <h3 className="text-lg">Hi, {user?.displayName}, Welcome Back</h3>
+                <p className="text-2xl font-semibold text-primary my-5">Logo and Title</p>
                 <LogoTitle></LogoTitle>
 
-                <p className="text-2xl font-semibold text-primary mt-5">Description</p>
+                <p className="text-2xl font-semibold text-primary my-5">Description</p>
                 <p className="text-gray-700 mb-10">{data?.appInfo[0].description}</p>
 
 
