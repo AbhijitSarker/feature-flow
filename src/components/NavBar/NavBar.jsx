@@ -3,13 +3,14 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { GiCrossedBones } from "react-icons/gi";
 import { Link } from 'react-router-dom';
 import LogoTitle from '../LogoTitle/LogoTitle';
+import useApp from '../../hooks/useApp';
 
 const NavBar = () => {
     const [open, setOpen] = useState(false);
-
+    const { data } = useApp();
     return (
         <nav className="bg-gray-900 w-full h-60">
-            <div className='flex justify-between  pt-5  mx-10 '>
+            <div className='flex justify-between  pt-5  mx-2 md:mx-10 '>
 
                 <LogoTitle></LogoTitle>
                 {/*for small device */}
@@ -33,6 +34,9 @@ const NavBar = () => {
                         open ? <GiCrossedBones className='text-4xl text-primary' /> : <FaBarsStaggered className='text-4xl text-secondary' />
                     }
                 </div>
+            </div>
+            <div className='hidden md:flex justify-center container mx-auto w-[700px] mt-5 text-secondary'>
+                <p>{data?.appInfo[0].description}</p>
             </div>
         </nav>
     );

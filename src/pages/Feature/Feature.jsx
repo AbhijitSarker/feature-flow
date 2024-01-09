@@ -12,7 +12,7 @@ const Feature = () => {
     const { user } = useAuth(); // Using the useAuth hook to get user information
     // Extracting the user's information 
     const currenUserName = user?.displayName;
-    const photoURL = user?.photoURL
+    const photoURL = user?.photoURL || 'https://avatar.iran.liara.run/public/46'
     const currentUserEmail = user?.email
 
 

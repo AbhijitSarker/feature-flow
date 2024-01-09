@@ -34,7 +34,6 @@ const Dashboard = () => {
                     ) : (
                         <FaBarsStaggered className='text-4xl text-primary' />
                     )}
-
                 </button>
             </div>
 

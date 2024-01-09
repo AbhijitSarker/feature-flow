@@ -1,27 +1,23 @@
 import { useState } from "react";
 import Footer from "../components/Footer/Footer";
 
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { GiCrossedBones } from "react-icons/gi";
 import { FaBarsStaggered } from "react-icons/fa6";
-
 import FeatureForm from "../components/FeatureForm/FeatureForm";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import Navbar from "../components/NavBar/NavBar";
-import useApp from "../hooks/useApp";
+import { FaArrowLeft } from "react-icons/fa";
 
 
 const Main = () => {
-    const { data } = useApp()
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for toggling the sidebar
 
     // Function to toggle the sidebar visibility
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
-    const location = useLocation();
 
-    const noFeatureNav = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div >
 
@@ -32,7 +28,10 @@ const Main = () => {
                 <div className="lg:hidden flex justify-between items-center">
                     <button onClick={toggleSidebar} className="text-gray-200 p-3 focus:outline-none" >
                         {isSidebarOpen ? <GiCrossedBones className='text-4xl text-primary' /> : <FaBarsStaggered className='text-4xl text-primary' />} </button>
-                    {/* <p>{data?.appInfo[0].description}</p> */}
+                    <div className='text-primary text-2xl font-semibold flex items-center'>
+                        <FaArrowLeft />
+                        <span>Request Feature</span>
+                    </div>
                 </div>
 
                 {/* Sidebar */}

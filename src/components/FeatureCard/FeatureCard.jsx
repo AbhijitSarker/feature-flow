@@ -32,12 +32,13 @@ const FeatureCard = ({ feature }) => {
     const [liked, setLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [loadingComment, setLoadingComment] = useState(false);
 
     // Retrieving user information using useAuth hook
     const { user } = useAuth()
     const userEmail = user?.email
     const currentUserName = user?.displayName
-    const photoURL = user?.photoURL
+    const photoURL = user?.photoURL || 'https://avatar.iran.liara.run/public/46'
 
 
     // Fetching comments on component mount
@@ -54,11 +55,13 @@ const FeatureCard = ({ feature }) => {
     // Function to add a new comment to a feature
     const handleAddComment = async (e) => {
         e.preventDefault();
+        setLoadingComment(true);
         if (newComment.trim() !== '') {
             try {
                 // Adding a new comment using an API call and updating the comments state
                 const response = await api.post(`/comment`, {
                     comment: newComment,
+                    email: userEmail,
                     name: currentUserName,
                     featureId: _id,
                     photoURL: photoURL
@@ -68,9 +71,10 @@ const FeatureCard = ({ feature }) => {
                 setComments(updatedComments);
                 refetch();
                 setNewComment('');
+                setLoadingComment(false)
             } catch (error) {
                 console.error('Error adding comment:', error);
-
+                setLoadingComment(false)
             }
         }
     };
@@ -183,7 +187,7 @@ const FeatureCard = ({ feature }) => {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">Comment</button>
+                    <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
                 </form>
 
             </div>
