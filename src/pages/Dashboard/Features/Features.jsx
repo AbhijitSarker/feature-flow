@@ -5,6 +5,7 @@ import api from '../../../utils/handleApi';
 import FeatureTable from '../../../components/FeatureTable/FeatureTable';
 import useAdmin from '../../../hooks/useAdmin';
 import AdminInfo from '../../../components/AdminInfo/AdminInfo';
+import { Helmet } from 'react-helmet-async';
 
 const Features = () => {
     // Fetch features using custom hook
@@ -129,6 +130,10 @@ const Features = () => {
     if (isAdmin === 'admin') {
         return (
             <div>
+                <Helmet>
+                    <title>Manage Features | Feature Flow </title>
+                </Helmet>
+                <h2 className='text-4xl font-semibold text-primary'>Manage Features</h2>
                 {/* FeatureNav component to handle search, status filter, and sorting */}
                 <FeatureNav
                     handleSearch={handleSearch}

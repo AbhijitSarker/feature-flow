@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../utils/handleApi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 const EditFeature = () => {
     const [title, setTitle] = useState('');
@@ -45,6 +46,9 @@ const EditFeature = () => {
 
     return (
         <div className="bg-white p-4 rounded shadow">
+            <Helmet>
+                <title>Edit Feature | Feature Flow </title>
+            </Helmet>
             <h2 className="text-lg font-semibold mb-2">Edit Feature</h2>
             <form onSubmit={handleUpdateFeature}>
                 <div className="mb-4">

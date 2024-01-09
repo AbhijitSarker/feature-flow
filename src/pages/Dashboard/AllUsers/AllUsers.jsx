@@ -3,6 +3,7 @@ import api from "../../../utils/handleApi";
 import Swal from 'sweetalert2'
 import useAdmin from "../../../hooks/useAdmin";
 import AdminInfo from "../../../components/AdminInfo/AdminInfo";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
 
@@ -77,8 +78,11 @@ const AllUsers = () => {
     if (isAdmin === 'admin') {
         return (
             <div className="text-gray-900 bg-gray-200">
+                <Helmet>
+                    <title>Users | Feature Flow </title>
+                </Helmet>
                 <div className="p-4 flex">
-                    <h1 className="text-3xl">
+                    <h1 className="text-4xl font-semibold text-primary">
                         Users
                     </h1>
                 </div>

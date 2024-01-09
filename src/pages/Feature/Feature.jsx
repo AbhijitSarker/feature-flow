@@ -8,6 +8,7 @@ import useComments from '../../hooks/useComments';
 import { FaComment, FaHeart } from 'react-icons/fa6';
 import verifyUser from '../../utils/verifyUser';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const Feature = () => {
     const { user } = useAuth(); // Using the useAuth hook to get user information
@@ -201,7 +202,9 @@ const Feature = () => {
 
     return (
         <div>
-
+            <Helmet>
+                <title> Feature | Feature Flow </title>
+            </Helmet>
             <div className='flex justify-between items-center my-5'>
                 <Link to={'/'}>
                     <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> Go Back </button>

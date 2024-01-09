@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from '../../hooks/useAuth';
 import api from '../../utils/handleApi';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useAuth();
@@ -44,6 +45,9 @@ const SignUp = () => {
 
     return (
         <div className="bg-white text-primary relative  ">
+            <Helmet>
+                <title>Sign UP | Feature Flow </title>
+            </Helmet>
             <div className="flex flex-col items-center justify-between  max-w-7xl xl:px-5 lg:flex-row">
                 <div className="flex flex-col justify-center items-center w-full pt-5  pb-20  lg:flex-row">
                     <div className="w-full mt-5 md:mt-20  relative z-10 max-w-2xl lg:mt-0 ">

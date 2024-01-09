@@ -6,6 +6,7 @@ import { FaBarsStaggered } from 'react-icons/fa6';
 import LogoTitle from '../../components/LogoTitle/LogoTitle';
 
 import useAdmin from '../../hooks/useAdmin';
+import { Helmet } from 'react-helmet-async';
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
@@ -19,7 +20,9 @@ const Dashboard = () => {
 
     return (
         <div className="flex flex-col lg:flex-row h-screen ">
-
+            <Helmet>
+                <title>Dashboard | Feature Flow </title>
+            </Helmet>
             {/* Mobile Menu Icon */}
             <div className="lg:hidden flex justify-between items-center">
                 <Link to={'/'}>

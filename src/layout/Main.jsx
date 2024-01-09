@@ -8,6 +8,7 @@ import FeatureForm from "../components/FeatureForm/FeatureForm";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import Navbar from "../components/NavBar/NavBar";
 import { FaArrowLeft } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 
 const Main = () => {
@@ -20,7 +21,9 @@ const Main = () => {
 
     return (
         <div >
-
+            <Helmet>
+                <title>Home | Feature Flow </title>
+            </Helmet>
             <Navbar></Navbar>
             <div className="rounded  flex flex-col lg:flex-row mx-2 md:mx-14 p-3 bg-white shadow-md -mt-40 md:-mt-16">
 
