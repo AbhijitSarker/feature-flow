@@ -5,6 +5,7 @@ import useApp from "../../../hooks/useApp";
 import LogoTitle from "../../../components/LogoTitle/LogoTitle";
 import useAdmin from "../../../hooks/useAdmin";
 import AdminInfo from "../../../components/AdminInfo/AdminInfo";
+import { ToastContainer, toast } from 'react-toastify';
 
 // Fetch the image hosting token from environment variables
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
@@ -19,11 +20,11 @@ const UserHome = () => {
     const { user } = useAuth();
 
     // State variables to manage form input and visibility
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const [title, setTitle] = useState(data?.appInfo[0].title);
+    const [description, setDescription] = useState(data?.appInfo[0].description);
     const [image, setImage] = useState(null);
     const [formVisible, setFormVisible] = useState(false);
-
+    const [loading, setLoading] = useState(false);
 
     // Function to handle dropping an image into the designated area
     const handleImageDrop = (e) => {
@@ -47,7 +48,7 @@ const UserHome = () => {
     // Function to handle form submission
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
+        setLoading(true)
         const formData = new FormData();
         formData.append('image', image);
 
@@ -62,13 +63,26 @@ const UserHome = () => {
                 const imgResponse = await response.json();
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
-                    console.log(imgURL);
 
                     // Update app data with the uploaded image URL
                     await api.patch('/app/659903d03770ee3a39f7d829', { title: title, description: description, logo: imgURL });
-                    refetch()
+                    refetch();
                     // Handle success after posting to the /app endpoint
-                    console.log('Image hosted and App data submitted successfully.');
+                    setDescription('');
+                    setTitle('');
+                    setImage(null);
+                    toast.success('Successfully updated!', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                    setFormVisible(false);
+                    setLoading(false);
                 } else {
                     console.error('Image hosting failed:', imgResponse.error);
                 }
@@ -77,6 +91,7 @@ const UserHome = () => {
             }
         } catch (error) {
             console.error('Error during form submission:', error);
+            setLoading(false);
         }
     };
 
@@ -103,14 +118,14 @@ const UserHome = () => {
                 {!formVisible ? (
                     <button
                         onClick={toggleFormVisibility}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-blue-500 mb-10 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                         Edit App Info
                     </button>
                 ) : (<>
                     <button
                         onClick={toggleFormVisibility}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-blue-500 mb-10 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                         Hide Form
                     </button>
@@ -163,13 +178,15 @@ const UserHome = () => {
                         </div>
                         <button
                             type="submit"
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-blue-500 mb-10 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
-                            Submit
+                            {loading ? 'Updating' : 'Submit'}
                         </button>
                     </form>
                 </>
                 )}
+                <ToastContainer />
+
             </div>
 
         );
