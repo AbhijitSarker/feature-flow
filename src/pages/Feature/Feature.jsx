@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import useAuth from '../../hooks/useAuth';
 import useComments from '../../hooks/useComments';
 import { FaComment, FaHeart } from 'react-icons/fa6';
+import { FaArrowLeft } from "react-icons/fa";
 import verifyUser from '../../utils/verifyUser';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
@@ -207,7 +208,7 @@ const Feature = () => {
             </Helmet>
             <div className='flex justify-between items-center my-5'>
                 <Link to={'/'}>
-                    <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> Go Back </button>
+                    <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> <FaArrowLeft /> </button>
                 </Link>
                 {
                     currentUserEmail === userEmail ?

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../../utils/handleApi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet-async';
+import { FaArrowLeft } from "react-icons/fa";
 
 const EditFeature = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [loading, setLoading] = useState(false);
     const { id } = useParams(); // Getting the 'id' parameter from the URL
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,8 +25,9 @@ const EditFeature = () => {
             });
     }, [id]);
 
-    const handleUpdateFeature = () => {
-
+    const handleUpdateFeature = (e) => {
+        e.preventDefault();
+        setLoading(true)
         api.patch(`/feature/${id}`, { title, description })
             .then((res) => {
                 toast.success(' Feature Updated Successfully!', {
@@ -36,11 +40,13 @@ const EditFeature = () => {
                     progress: undefined,
                     theme: "dark",
                 });
+                setLoading(false)
             })
             .catch((error) => {
                 console.error('Error updating feature:', error);
+                setLoading(false)
             });
-        navigate(`/feature/${id}`); // Redirect to the feature page after update
+        // navigate(`/feature/${id}`); // Redirect to the feature page after update
 
     };
 
@@ -49,7 +55,10 @@ const EditFeature = () => {
             <Helmet>
                 <title>Edit Feature | Feature Flow </title>
             </Helmet>
-            <h2 className="text-lg font-semibold mb-2">Edit Feature</h2>
+            <Link to={`/feature/${id}`}><button className="block mt-2 mb-4 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"><FaArrowLeft /></button></Link>
+            <div>
+                <h2 className="text-3xl font-semibold mb-2">Edit Feature</h2>
+            </div>
             <form onSubmit={handleUpdateFeature}>
                 <div className="mb-4">
                     <label htmlFor="title" className="block text-gray-700 font-semibold mb-1">Title:</label>
@@ -75,10 +84,10 @@ const EditFeature = () => {
                     type="submit"
                     className="py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"
                 >
-                    Update Feature
+                    {loading ? 'Updating' : 'Update'}     Feature
                 </button>
             </form>
-        </div>
+        </div >
     );
 };
 
