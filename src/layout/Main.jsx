@@ -25,7 +25,7 @@ const Main = () => {
             <Helmet>
                 <title>Home | Feature Flow </title>
             </Helmet>
-            <Navbar></Navbar>
+            {/* <Navbar></Navbar> */}
             <Hero></Hero>
 
 

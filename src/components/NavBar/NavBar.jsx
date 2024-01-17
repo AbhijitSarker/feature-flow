@@ -10,13 +10,13 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
     const { data } = useApp();
     return (
-        <nav className="bg-primary w-full shadow-lg">
-            <div className='flex justify-center  gap-10 py-8 container mx-auto'>
+        <nav className="section-bg w-full shadow-xl border-b border-b-gray-900">
+            <div className='flex justify-between  gap-10 py-3 md:py-5 container mx-auto'>
 
-                {/* <LogoTitle></LogoTitle> */}
-                <div>
-                    <h1 className='text-secondary  text-3xl md:text-4xl font-baskerville font-bold '>{data?.appInfo[0].title}</h1>
-                </div>
+                <LogoTitle></LogoTitle>
+                {/* <div>
+                    <h1 className='text-secondary  text-2xl md:text-4xl font-baskerville font-bold '>{data?.appInfo[0].title}</h1>
+                </div> */}
                 {/*for small device */}
                 <ul className={`absolute z-10 w-full h-screen flex flex-col gap-10 justify-center items-center bg-secondary transform duration-500 ease-in-out ${open ? 'left-0 top-0' : '-top-[2000px]  left-0'} `}>
                     <Link to={'/'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
@@ -26,9 +26,9 @@ const NavBar = () => {
 
 
 
-                <div className='flex text-secondary'>
+                {/* <div className='flex text-secondary'>
                     <img className='w-10 h-10 rounded-md mr-3 ' src={data?.appInfo[0].logo} alt="" />
-                </div>
+                </div> */}
 
                 {/* for medium and large device */}
                 <ul className='md:flex hidden items-center  space-x-5'>
