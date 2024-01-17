@@ -45,7 +45,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="hero-bg text-primary relative  ">
+        <div className="hero-bg min-h-screen text-primary relative  ">
             <Helmet>
                 <title>Sign UP | Feature Flow </title>
             </Helmet>
@@ -54,6 +54,8 @@ const SignUp = () => {
 
                     <div className='md:w-1/2'>
                         <div className=' flex flex-col justify-center h-full  gap-10 md:px-20' >
+                            <SocialLogin></SocialLogin>
+
                             <h1 className='text-5xl text-white'>Lorem ipsum dolor sit amet.</h1>
                             <p className=' text-headingText'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia pariatur illo, nihil voluptas iusto accusantium doloremque. Hic tempore tempora ea ad voluptatibus corrupti rem exercitationem autem aliquid at accusantium ut repellat impedit ullam, qui iure illo vel, placeat obcaecati! Cupiditate.</p>
                         </div>
@@ -62,10 +64,6 @@ const SignUp = () => {
                     <div className="md:w-1/2 flex flex-col justify-center items-center w-full lg:flex-row">
                         <div className="w-full relative max-w-xl lg:mt-0 ">
                             <form onSubmit={handleSubmit(onSubmit)} className="flex text-headingText section-bg my-10 border border-gray-700 flex-col items-start max-w-xl justify-start pt-10 pr-5 pb-10 pl-5 md:px-10  shadow-2xl rounded-xl relative">
-
-                                {/* <div className=' p-5 my-5 text-primary justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200  hover:shadow-2xl ease'><span className='text-sm'>Sign In With</span><FcGoogle /><span className='font-bold  '>OOGLE</span></div> */}
-                                <SocialLogin></SocialLogin>
-                                <div className="h-[1px] w-full bg-gray-500 my-5"></div>
 
                                 <div className="w-full mt-6 relative space-y-10">
 

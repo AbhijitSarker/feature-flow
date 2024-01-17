@@ -40,7 +40,7 @@ const SignIn = () => {
     };
 
     return (
-        <div className="hero-bg text-primary relative">
+        <div className="hero-bg text-primary min-h-screen relative">
             <Helmet>
                 <title>Sign IN | Feature Flow </title>
             </Helmet>
@@ -50,6 +50,7 @@ const SignIn = () => {
                 <div className='p-5 flex flex-col-reverse md:flex-row w-full gap-10 '>
                     <div className='md:w-1/2'>
                         <div className=' flex flex-col justify-center h-full  gap-10 md:px-20' >
+                            <SocialLogin></SocialLogin>
                             <h1 className='text-5xl text-white'>Lorem ipsum dolor sit amet.</h1>
                             <p className=' text-headingText'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia pariatur illo, nihil voluptas iusto accusantium doloremque. Hic tempore tempora ea ad voluptatibus corrupti rem exercitationem autem aliquid at accusantium ut repellat impedit ullam, qui iure illo vel, placeat obcaecati! Cupiditate.</p>
                         </div>
@@ -60,8 +61,7 @@ const SignIn = () => {
 
                             <form onSubmit={handleSubmit(onSubmit)} className="flex border  border-gray-800 my-10 flex-col items-start justify-start pt-10 pr-5 pb-10 pl-5 md:px-10 section-bg shadow-2xl rounded-xl relative">
 
-                                <SocialLogin></SocialLogin>
-                                <div className="h-[1px] w-full bg-gray-500 my-5"></div>
+
 
                                 <div className="w-full mt-6 relative space-y-10">
 
