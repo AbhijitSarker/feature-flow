@@ -5,6 +5,8 @@ import useFeatures from '../../../hooks/useFeatures';
 import api from '../../../utils/handleApi';
 import ProfileCard from '../../../components/ProfileCard/ProfileCard';
 import Hero from '../Hero/Hero';
+import LogoTitle from '../../../components/LogoTitle/LogoTitle';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
     // Fetch features using custom hook
@@ -171,7 +173,11 @@ const Home = () => {
                 />
             </div>
 
-            <div className='container mx-auto px-3 py-20'>
+            <div className='container mx-auto flex flex-col items-center gap-20 px-3 py-20'>
+                <div className=''>
+                    <LogoTitle></LogoTitle>
+                    <p className='text-headingText mt-8'>Empowering Ideas, Engaging Conversations, Evolving Features.</p>
+                </div>
                 {displayFeatures && displayFeatures.length > 0 ? (
                     <div className='grid md:grid-cols-2 gap-20'>
                         {currentItems?.map((feature) => (
@@ -190,6 +196,7 @@ const Home = () => {
             </div>
 
 
+            <ToastContainer />
 
         </div>
 

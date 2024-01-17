@@ -74,7 +74,7 @@ const FeatureCard = ({ feature }) => {
                 setNewComment('');
                 setLoadingComment(false)
                 toast.success('Comment Added!', {
-                    position: "top-center",
+                    position: "bottom-center",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -139,7 +139,7 @@ const FeatureCard = ({ feature }) => {
 
     return (
 
-        <div className="w-full section-bg rounded  hover:shadow-xl hover:shadow-black flex flex-col justify-between overflow-hidden ">
+        <div className="w-full section-bg rounded border border-gray-900 shadow-xl shadow-black flex flex-col justify-between overflow-hidden ">
             <div className="p-8">
                 <Link to={`/feature/${_id}`}><h2 className="text-xl mb-4 text-gray-300 font-semibold hover:underline">{title}</h2></Link>
                 <p className="text-gray-400 text-base">{description}</p>
@@ -174,7 +174,7 @@ const FeatureCard = ({ feature }) => {
                     <div className='flex gap-3 my-2'>
                         {/* like button */}
                         <div className="flex items-center">
-                            <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-200 ${liked ? 'text-secondary' : ''}`}>
+                            <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-secondary' : ''}`}>
                                 <FaHeart />
                                 <p className='ml-2 text-xl'>{liked ? 'Unvote' : loading ? 'Voting' : 'Vote'}</p>
                             </button>
@@ -182,26 +182,47 @@ const FeatureCard = ({ feature }) => {
                         </div>
 
                         {/* comment count */}
-                        <div className="flex items-center text-3xl text-gray-200">
+                        <div className="flex items-center text-3xl text-gray-500">
                             <FaComment></FaComment>
                             <span className="text-gray-200 text-xl ml-2">{comments.length}</span>
                         </div>
                     </div>
 
                     {/* comment input */}
-                    <form className="flex  ">
-                        <input
-                            className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-300 bg-gray-500"
-                            type="text"
-                            required
-                            placeholder="Add a comment..."
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                        />
-                        <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary hover:bg-secondary  text-secondary hover:text-primary transition ease-in-out duration-200 font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
-                    </form>
+                    <div className="flex  items-center max-w-md bg-transparent border border-gray-600 rounded">
+                        <div className="w-full">
+                            <input type="text"
+                                className="w-full px-4 bg-transparent text-white focus:outline-none"
+                                placeholder="Add a comment..."
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className='h-full'>
+                            <button onClick={user ? handleAddComment : verifyUser} type="submit" className="flex items-center h-full gradient-bg justify-center px-2  py-2 text-white rounded-r"
+                            > {loadingComment ? 'adding' : 'Comment'}</button>
+                        </div>
+                    </div>
+
 
                 </div>
+                {/* 
+                <form className="flex  ">
+                    <input
+                        className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-300 bg-gray-500"
+                        type="text"
+                        required
+                        placeholder="Add a comment..."
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                    />
+                    <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary hover:bg-secondary  text-secondary hover:text-primary transition ease-in-out duration-200 font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
+                </form> */}
+
+
+
+
             </div>
         </div>
 

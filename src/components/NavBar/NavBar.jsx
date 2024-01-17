@@ -36,14 +36,14 @@ const NavBar = () => {
                     <Link to={'/dashboard'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
                     <Link to={'/signin'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Login</Link>
                     <Link to={'/request'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Get Started</Link>
-                    <button type="button" class="inline-flex items-center  relative px-2 border rounded-full hover:shadow-lg">
-                        <div class="pl-1">
+                    <button type="button" className="inline-flex items-center  relative px-2 border rounded-full hover:shadow-lg">
+                        <div className="pl-1">
                             <RxAvatar />
 
 
                         </div>
 
-                        <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5 text-3xl my-auto">
+                        <div className="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5 text-3xl my-auto">
 
                             <RxAvatar />
 

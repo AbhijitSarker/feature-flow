@@ -8,8 +8,8 @@ import useComments from '../../hooks/useComments';
 import { FaComment, FaHeart } from 'react-icons/fa6';
 import { FaArrowLeft } from "react-icons/fa";
 import verifyUser from '../../utils/verifyUser';
-import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Feature = () => {
     const { user } = useAuth(); // Using the useAuth hook to get user information
@@ -282,7 +282,9 @@ const Feature = () => {
 
 
                 <Comments featureId={id}></Comments>
+
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
