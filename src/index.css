@@ -12,13 +12,18 @@
 }
 
 .hero-bg{
-     background-image: url('/src/assets/stacked-steps-haikei.png');
+  background-image: url('/src/assets/stacked-steps-haikei.png');
   background-size: cover;
   background-position: center;
 }
 
 .features-bg{
-         background-image: url('/src/assets/blurry-gradient-haikei.png');
+  background-image: url('/src/assets/blurry-gradient-haikei.png');
+  background-size: cover;
+  background-position: center;
+}
+.footer-bg{
+  background-image: url('/src/assets/footer.png');
   background-size: cover;
   background-position: center;
 }

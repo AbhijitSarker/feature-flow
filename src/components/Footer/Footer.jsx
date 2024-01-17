@@ -3,27 +3,27 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaGithub, FaInstagram } from 'react-
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-200 mt-20 py-4 text-center">
+        <footer className="footer-bg md: h-60 border-t border-t-gray-700 mt-20 py-20 text-center text-secondary ">
             <div className="flex justify-center space-x-4">
                 {/* Social Media Links */}
                 <a href="https://www.facebook.com/avzit" target="_blank" rel="noopener noreferrer">
-                    <FaFacebook className="text-primary text-xl hover:text-blue-800" />
+                    <FaFacebook className=" text-3xl hover:text-white" />
                 </a>
                 <a href="https://www.linkedin.com/in/abhijitsarker" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin className="text-primary text-xl hover:text-blue-800" />
+                    <FaLinkedin className=" text-3xl hover:text-white" />
                 </a>
                 <a href="https://twitter.com/Abhijit__Sarker" target="_blank" rel="noopener noreferrer">
-                    <FaTwitter className="text-primary text-xl hover:text-blue-800" />
+                    <FaTwitter className=" text-3xl hover:text-white" />
                 </a>
                 <a href="https://github.com/AbhijitSarker/" target="_blank" rel="noopener noreferrer">
-                    <FaGithub className="text-primary text-xl hover:text-blue-800" />
+                    <FaGithub className=" text-3xl hover:text-white" />
                 </a>
                 <a href="https://www.instagram.com/_avzit_" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram className="text-primary text-xl hover:text-blue-800" />
+                    <FaInstagram className=" text-3xl hover:text-white" />
                 </a>
             </div>
             {/* Credit */}
-            <p className="mt-4 text-gray-600">Developed by Abhijit Sarker</p>
+            <p className="mt-4 ">Developed by Abhijit Sarker</p>
         </footer>
     );
 };
