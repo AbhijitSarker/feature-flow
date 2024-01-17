@@ -34,6 +34,8 @@ const NavBar = () => {
                     <Link to={'/'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
                     <Link to={'/dashboard'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
                     <Link to={'/signin'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Login</Link>
+                    <Link to={'/request'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Get Started</Link>
+
                 </ul>
                 {/* <Link to={'/signup'}><button className='hidden md:flex hover:text-secondary   w-36 h-12 items-center justify-center rounded-lg font-bold text-xl text-white transition ease-in-out duration-200'>Login / Register</button></Link> */}
                 <div className='md:hidden z-20' onClick={() => setOpen(!open)}>

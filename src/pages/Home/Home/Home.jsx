@@ -4,6 +4,7 @@ import FeatureNav from '../../../components/FeatureNav/FeatureNav';
 import useFeatures from '../../../hooks/useFeatures';
 import api from '../../../utils/handleApi';
 import ProfileCard from '../../../components/ProfileCard/ProfileCard';
+import Hero from '../Hero/Hero';
 
 const Home = () => {
     // Fetch features using custom hook

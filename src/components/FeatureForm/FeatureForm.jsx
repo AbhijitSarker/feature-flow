@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../hooks/useAuth';
 import verifyUser from '../../utils/verifyUser';
+import { useNavigate } from 'react-router-dom';
 
 const FeatureForm = () => {
     const [, refetch] = useFeatures(); // Fetch features using a custom hook
@@ -18,8 +19,7 @@ const FeatureForm = () => {
     const userEmail = user?.email;
     const userAvatar = user?.photoURL || 'https://avatar.iran.liara.run/public/46';
 
-
-
+    const navigate = useNavigate();
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,8 +46,10 @@ const FeatureForm = () => {
             });
             // Refetch features and reset form fields
             refetch();
+            navigate(`/`);
             setTitle('');
             setDescription('');
+
         } catch (error) {
             toast.error('Failed to request the feature!');
         } finally {
@@ -56,7 +58,7 @@ const FeatureForm = () => {
     };
 
     return (
-        <div className=' bg-white border shadow-xl    px-5 py-5  flex flex-col'>
+        <div className=' bg-white border shadow-xl  max-w-xl  px-5 py-5  flex flex-col'>
             <div className='text-center text-4xl text-primary font-medium mt-4 mb-8'>
                 <h1>Request A Feature</h1>
             </div>
