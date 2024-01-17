@@ -4,6 +4,7 @@ import { GiCrossedBones } from "react-icons/gi";
 import { Link } from 'react-router-dom';
 import LogoTitle from '../LogoTitle/LogoTitle';
 import useApp from '../../hooks/useApp';
+import { RxAvatar } from "react-icons/rx";
 
 const NavBar = () => {
     const [open, setOpen] = useState(false);
@@ -35,6 +36,20 @@ const NavBar = () => {
                     <Link to={'/dashboard'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
                     <Link to={'/signin'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Login</Link>
                     <Link to={'/request'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Get Started</Link>
+                    <button type="button" class="inline-flex items-center  relative px-2 border rounded-full hover:shadow-lg">
+                        <div class="pl-1">
+                            <RxAvatar />
+
+
+                        </div>
+
+                        <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5 text-3xl my-auto">
+
+                            <RxAvatar />
+
+                        </div>
+                    </button>
+
 
                 </ul>
                 {/* <Link to={'/signup'}><button className='hidden md:flex hover:text-secondary   w-36 h-12 items-center justify-center rounded-lg font-bold text-xl text-white transition ease-in-out duration-200'>Login / Register</button></Link> */}
