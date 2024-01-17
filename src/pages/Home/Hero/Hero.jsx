@@ -6,10 +6,7 @@ import LogoTitle from '../../../components/LogoTitle/LogoTitle';
 const Hero = () => {
     return (
         <div className='hero-bg h-screen'>
-            <div className='sticky top-0 z-10'>
-                <NavBar></NavBar>
-            </div>
-            <div className='container scale-75 translate-x-4  mx-auto flex items-center mt-10 flex-col gap-10 text-white text-center'>
+            <div className='container mx-auto flex items-center flex-col gap-10 text-white text-center'>
                 <div>
                     <LogoTitle></LogoTitle>
                 </div>

@@ -10,6 +10,7 @@ import Navbar from "../components/NavBar/NavBar";
 import { FaArrowLeft } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import Hero from "../pages/Home/Hero/Hero";
+import NavBar from "../components/NavBar/NavBar";
 
 
 const Main = () => {
@@ -25,8 +26,9 @@ const Main = () => {
             <Helmet>
                 <title>Home | Feature Flow </title>
             </Helmet>
-
-            <Hero></Hero>
+            <div className='sticky top-0 z-10'>
+                <NavBar></NavBar>
+            </div>
 
             <Outlet></Outlet>
 

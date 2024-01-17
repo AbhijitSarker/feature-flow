@@ -153,7 +153,9 @@ const Home = () => {
 
     return (
         <div className='features-bg min-h-screen' >
-            <div className='section-bg sticky top-0 border-b border-b-gray-800'>
+            <Hero></Hero>
+            <div className='section-bg sticky top-0 z-50 border-b border-b-gray-800'>
+
                 <FeatureNav
                     handleSearch={handleSearch}
                     handleStatusFilter={handleStatusFilter}
