@@ -9,6 +9,7 @@ import ProfileCard from "../components/ProfileCard/ProfileCard";
 import Navbar from "../components/NavBar/NavBar";
 import { FaArrowLeft } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import Hero from "../pages/Home/Hero/Hero";
 
 
 const Main = () => {
@@ -26,14 +27,16 @@ const Main = () => {
             </Helmet>
             <Navbar></Navbar>
 
+            <Hero></Hero>
 
 
 
 
 
 
-
-
+            <div className="container mx-auto">
+                <Outlet></Outlet>
+            </div>
 
 
 

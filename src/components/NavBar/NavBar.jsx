@@ -9,7 +9,7 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
     const { data } = useApp();
     return (
-        <nav className="bg-gray-900 w-full">
+        <nav className="bg-primary w-full shadow-lg">
             <div className='flex justify-center  gap-10 py-8 container mx-auto'>
 
                 {/* <LogoTitle></LogoTitle> */}
@@ -31,9 +31,9 @@ const NavBar = () => {
 
                 {/* for medium and large device */}
                 <ul className='md:flex hidden items-center  space-x-5'>
-                    <Link to={'/'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
-                    <Link to={'/dashboard'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
-                    <Link to={'/signin'} className='text-lg font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Login</Link>
+                    <Link to={'/'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Home</Link>
+                    <Link to={'/dashboard'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Dashboard</Link>
+                    <Link to={'/signin'} className='text-base font-lg font-sans text-white hover:text-secondary rounded-md px-1'>Login</Link>
                 </ul>
                 {/* <Link to={'/signup'}><button className='hidden md:flex hover:text-secondary   w-36 h-12 items-center justify-center rounded-lg font-bold text-xl text-white transition ease-in-out duration-200'>Login / Register</button></Link> */}
                 <div className='md:hidden z-20' onClick={() => setOpen(!open)}>

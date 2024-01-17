@@ -139,14 +139,14 @@ const FeatureCard = ({ feature }) => {
 
     return (
 
-        <div className="w-full mx-auto border my-10 bg-white rounded-md shadow-md overflow-hidden ">
-            <div className="p-4">
-                <Link to={`/feature/${_id}`}><h2 className="text-xl text-primary font-semibold hover:underline">{title}</h2></Link>
-                <p className="text-gray-600">{description}</p>
+        <div className="w-full bg-[#1F2125] rounded shadow-xl overflow-hidden ">
+            <div className="p-8">
+                <Link to={`/feature/${_id}`}><h2 className="text-xl mb-4 text-white font-semibold hover:underline">{title}</h2></Link>
+                <p className="text-[#CCCCCC] text-base">{description}</p>
             </div>
 
             {/* author info */}
-            <div className="p-4 border-t border-gray-200 flex items-center justify-between">
+            <div className="p-4 border-t border-gray-800 flex items-center justify-between">
                 <div className="flex items-center space-x-4">
                     <div className="flex items-center">
                         <img
@@ -155,7 +155,7 @@ const FeatureCard = ({ feature }) => {
                             className="w-10 h-10 rounded-full mr-2"
                         />
                         <div>
-                            <span className="text-gray-700 font-semibold">{userName}</span>
+                            <span className="text-gray-400 font-semibold">{userName}</span>
                             <span className="text-gray-500 block">{formattedDateTime}</span>
                         </div>
                     </div>
@@ -170,35 +170,35 @@ const FeatureCard = ({ feature }) => {
 
 
             {/* voting and counts */}
-            <div className="md:flex justify-between bg-gray-200 px-4 py-2">
+            <div className="md:flex justify-between bg-[#363636] px-4 py-2">
                 <div className='flex gap-3 my-2'>
                     {/* like button */}
                     <div className="flex items-center">
-                        <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-red-500' : ''}`}>
+                        <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-200 ${liked ? 'text-secondary' : ''}`}>
                             <FaHeart />
                             <p className='ml-2 text-xl'>{liked ? 'Unvote' : loading ? 'Voting' : 'Vote'}</p>
                         </button>
-                        <span className="text-gray-600 ml-2 text-xl">{likesCount}</span>
+                        <span className="text-gray-200 ml-2 text-xl">{likesCount}</span>
                     </div>
 
                     {/* comment count */}
-                    <div className="flex items-center text-3xl text-gray-500">
+                    <div className="flex items-center text-3xl text-gray-200">
                         <FaComment></FaComment>
-                        <span className="text-gray-600 text-xl ml-2">{comments.length}</span>
+                        <span className="text-gray-200 text-xl ml-2">{comments.length}</span>
                     </div>
                 </div>
 
                 {/* comment input */}
                 <form className="flex  ">
                     <input
-                        className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-200 bg-white"
+                        className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-300 bg-gray-500"
                         type="text"
                         required
                         placeholder="Add a comment..."
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
+                    <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary hover:bg-secondary  text-secondary hover:text-primary transition ease-in-out duration-200 font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
                 </form>
 
             </div>

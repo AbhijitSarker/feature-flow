@@ -22,7 +22,7 @@ const FeatureNav = ({ handleSearch, handleStatusFilter, handleSortByDateAsc, han
     };
 
     return (
-        <nav className="border border-gray-500 text-primary bg-gray-200 -z-0 sticky top-5  mt-4 rounded-md">
+        <nav className="border border-gray-500 text-primary bg-gray-200 -z-0 sticky top-5 w-full  mt-4 rounded-md">
             <div className="space-y-2 px-4">
 
                 <div className="relative pt-4 ">
