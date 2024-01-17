@@ -125,7 +125,7 @@ const Home = () => {
     const displayFeatures = searchTerm.trim() ? filteredFeatures : allFeatures;
 
     // Pagination state
-    const itemsPerPage = 5;
+    const itemsPerPage = 6;
     const [currentPage, setCurrentPage] = useState(1);
 
     // Calculate indexes for pagination and display items for the current page
@@ -153,7 +153,7 @@ const Home = () => {
 
     return (
         <div className='features-bg min-h-screen' >
-            <div className='section-bg sticky top-0'>
+            <div className='section-bg sticky top-0 border-b border-b-gray-800'>
                 <FeatureNav
                     handleSearch={handleSearch}
                     handleStatusFilter={handleStatusFilter}
@@ -171,7 +171,7 @@ const Home = () => {
 
             <div className='container mx-auto px-3 py-20'>
                 {displayFeatures && displayFeatures.length > 0 ? (
-                    <div className='grid md:grid-cols-2 gap-16'>
+                    <div className='grid md:grid-cols-2 gap-20'>
                         {currentItems?.map((feature) => (
                             <FeatureCard key={feature._id} feature={feature} />
                         ))}

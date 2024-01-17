@@ -10,7 +10,7 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
     const { data } = useApp();
     return (
-        <nav className="section-bg w-full shadow-xl border-b border-b-gray-900">
+        <nav className="section-bg w-full shadow-xl border-b border-b-gray-800">
             <div className='flex justify-between  gap-10 py-3 md:py-5 container mx-auto'>
 
                 <LogoTitle></LogoTitle>
