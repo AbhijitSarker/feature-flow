@@ -152,44 +152,43 @@ const Home = () => {
 
 
     return (
-        <div>
+        <div className='features-bg min-h-screen' >
+            <div className='section-bg sticky top-0'>
+                <FeatureNav
+                    handleSearch={handleSearch}
+                    handleStatusFilter={handleStatusFilter}
 
-            <div className='flex flex-col justify-between md:flex-row gap-10'>
-                <div className='md:w-1/3'>
+                    handleSortByDateAsc={() => handleSort('createdAt', 'asc')}
+                    handleSortByDateDesc={() => handleSort('createdAt', 'desc')}
+                    handleSortByTitleAsc={() => handleSort('title', 'asc')}
+                    handleSortByTitleDesc={() => handleSort('title', 'desc')}
+                    handleSortByVoteAsc={() => handleSort('likes', 'asc')}
+                    handleSortByVoteDesc={() => handleSort('likes', 'desc')}
+                    handleSortBCommentsAsc={() => handleSort('comments', 'asc')}
+                    handleSortByCommentsDesc={() => handleSort('comments', 'desc')}
+                />
+            </div>
 
-                    <ProfileCard></ProfileCard>
-                    <FeatureNav
-                        handleSearch={handleSearch}
-                        handleStatusFilter={handleStatusFilter}
-
-                        handleSortByDateAsc={() => handleSort('createdAt', 'asc')}
-                        handleSortByDateDesc={() => handleSort('createdAt', 'desc')}
-                        handleSortByTitleAsc={() => handleSort('title', 'asc')}
-                        handleSortByTitleDesc={() => handleSort('title', 'desc')}
-                        handleSortByVoteAsc={() => handleSort('likes', 'asc')}
-                        handleSortByVoteDesc={() => handleSort('likes', 'desc')}
-                        handleSortBCommentsAsc={() => handleSort('comments', 'asc')}
-                        handleSortByCommentsDesc={() => handleSort('comments', 'desc')}
-                    />
-                </div>
-                <div className='md:w-2/3'>
-                    {displayFeatures && displayFeatures.length > 0 ? (
-                        <div className='flex flex-col gap-16'>
-                            {currentItems?.map((feature) => (
-                                <FeatureCard key={feature._id} feature={feature} />
-                            ))}
-                        </div>
-                    ) : (
-                        <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
-                    )}
-                    {/* pagination buttons */}
-                    <div className='   flex justify-center items-center gap-4 mt-4'>
-                        <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={prevPage} disabled={currentPage === 1} >Prev</button>
-                        <span className='text-primary'>Page {currentPage} of {totalPages}</span>
-                        <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={nextPage} disabled={currentPage === totalPages}>Next</button>
+            <div className='container mx-auto px-3 py-20'>
+                {displayFeatures && displayFeatures.length > 0 ? (
+                    <div className='grid md:grid-cols-2 gap-16'>
+                        {currentItems?.map((feature) => (
+                            <FeatureCard key={feature._id} feature={feature} />
+                        ))}
                     </div>
+                ) : (
+                    <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
+                )}
+                {/* pagination buttons */}
+                <div className='   flex justify-center items-center gap-4 mt-4'>
+                    <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={prevPage} disabled={currentPage === 1} >Prev</button>
+                    <span className='text-primary'>Page {currentPage} of {totalPages}</span>
+                    <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={nextPage} disabled={currentPage === totalPages}>Next</button>
                 </div>
             </div>
+
+
+
         </div>
 
     );

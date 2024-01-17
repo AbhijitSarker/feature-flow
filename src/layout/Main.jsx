@@ -25,19 +25,10 @@ const Main = () => {
             <Helmet>
                 <title>Home | Feature Flow </title>
             </Helmet>
-            {/* <Navbar></Navbar> */}
+
             <Hero></Hero>
 
-
-
-
-
-
-            <div className="container mx-auto">
-                <Outlet></Outlet>
-            </div>
-
-
+            <Outlet></Outlet>
 
             <Footer></Footer>
         </div >

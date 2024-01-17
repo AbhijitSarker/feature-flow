@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root{
-    background-color: black;
+    background-color: #080808;
 }
 .dropdown:hover > .dropdown-content {
 	display: block;
@@ -17,6 +17,11 @@
   background-position: center;
 }
 
+.features-bg{
+         background-image: url('/src/assets/blurry-gradient-haikei.png');
+  background-size: cover;
+  background-position: center;
+}
 .gradient-bg{
     background: linear-gradient(90deg, rgba(255, 255, 0, 1) 0%, rgba(255, 255, 0, 1) 0%, rgba(76, 114, 227, 1) 0%, rgba(30, 59, 92, 1) 100%);
 }
