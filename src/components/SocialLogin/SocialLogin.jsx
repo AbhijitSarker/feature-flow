@@ -23,7 +23,7 @@ const SocialLogin = () => {
     };
 
     return (
-        <div onClick={handleGoogleSignIn} className=' p-5 my-5 text-primary justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200  hover:shadow-2xl ease'>
+        <div onClick={handleGoogleSignIn} className=' p-5 my-5 text-white justify-center items-baseline flex text-4xl w-full border border-primary  rounded-lg transition duration-200 cursor-pointer hover:shadow-2xl ease'>
             <span className='text-sm'>Sign In With</span><FcGoogle /><span className='font-bold  '>OOGLE</span>
         </div>
     );
