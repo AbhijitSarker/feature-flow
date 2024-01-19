@@ -105,14 +105,15 @@ const UserHome = () => {
     if (isAdmin === 'admin') {
 
         return (
-            <div className="w-full m-4">
+            <div className="w-full text-headingText m-4">
                 <p className="text-5xl font-bold mb-5"> Dashboard</p>
                 <h3 className="text-lg">Hi, {user?.displayName}, Welcome Back</h3>
-                <p className="text-2xl font-semibold text-primary my-5">Logo and Title</p>
+
+                <p className="text-2xl font-semibold mt-16 mb-5">Logo and Title</p>
                 <LogoTitle></LogoTitle>
 
-                <p className="text-2xl font-semibold text-primary my-5">Description</p>
-                <p className="text-gray-700 mb-10">{data?.appInfo[0].description}</p>
+                <p className="text-2xl font-semibold mt-16 mb-5">Description</p>
+                <p className="text-gray-400 mb-10">{data?.appInfo[0].description}</p>
 
 
                 {!formVisible ? (
@@ -129,9 +130,9 @@ const UserHome = () => {
                     >
                         Hide Form
                     </button>
-                    <form onSubmit={handleFormSubmit}>
+                    <form onSubmit={handleFormSubmit} className="text-headingText">
                         <div className="mb-4">
-                            <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
+                            <label htmlFor="title" className="block  font-bold mb-2">
                                 Title
                             </label>
                             <input
@@ -140,13 +141,13 @@ const UserHome = () => {
                                 name="title"
                                 value={title}
                                 onChange={handleInputChange}
-                                className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                                className="w-full border border-gray-700 rounded-md px-3 py-2 bg-transparent focus:outline-none focus:border-gray-500"
                                 placeholder="Enter title"
                                 required
                             />
                         </div>
-                        <div className="mb-4">
-                            <label htmlFor="description" className="block text-gray-700 font-bold mb-2">
+                        <div className="mb-4 ">
+                            <label htmlFor="description" className="block  font-bold mb-2">
                                 Description
                             </label>
                             <textarea
@@ -154,13 +155,13 @@ const UserHome = () => {
                                 name="description"
                                 value={description}
                                 onChange={handleInputChange}
-                                className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                                className="w-full border border-gray-700 rounded-md px-3 py-2 bg-transparent focus:outline-none focus:border-gray-500"
                                 placeholder="Enter description"
                                 required
                             ></textarea>
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="image" className="block text-gray-700 font-bold mb-2">
+                            <label htmlFor="image" className="block  font-bold mb-2">
                                 Image
                             </label>
                             <div

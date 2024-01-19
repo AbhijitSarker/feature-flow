@@ -39,14 +39,10 @@ const NavBar = () => {
                     <button type="button" className="inline-flex items-center  relative px-2 border rounded-full hover:shadow-lg">
                         <div className="pl-1">
                             <RxAvatar />
-
-
                         </div>
 
                         <div className="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5 text-3xl my-auto">
-
                             <RxAvatar />
-
                         </div>
                     </button>
 

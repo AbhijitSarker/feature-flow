@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const LogoTitle = () => {
     const { data } = useApp();
     return (
-        <Link>
+        <Link to={'/'}>
             <div className='flex text-secondary font-serif'>
                 <img className='w-10 h-10 rounded-md mr-3 ' src={data?.appInfo[0].logo} alt="" />
                 <h1 className=' text-3xl md:text-4xl font-bold'>{data?.appInfo[0].title}</h1>

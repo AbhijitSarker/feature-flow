@@ -25,9 +25,9 @@ const Dashboard = () => {
             </Helmet>
             {/* Mobile Menu Icon */}
             <div className="lg:hidden flex justify-between items-center">
-                <Link to={'/'}>
-                    <LogoTitle></LogoTitle>
-                </Link>
+
+                <LogoTitle></LogoTitle>
+
                 <button
                     onClick={toggleSidebar}
                     className="text-gray-200 p-3 focus:outline-none"
@@ -41,7 +41,7 @@ const Dashboard = () => {
             </div>
 
             {/* Sidebar */}
-            <aside className={`bg-primary text-white w-full lg:w-96 h-screen ${isSidebarOpen ? 'block' : 'hidden'} lg:block lg:min-h-screen p-3 md:p-6`} >
+            <aside className={`bg-[#002233] text-white w-full lg:w-96 h-screen ${isSidebarOpen ? 'block' : 'hidden'} lg:block lg:min-h-screen p-3 md:p-6`} >
                 {/* Sidebar content */}
                 <Link to={'/'}><LogoTitle></LogoTitle></Link>
                 {/* Sidebar links/menu */}
@@ -59,7 +59,7 @@ const Dashboard = () => {
             </aside>
 
             {/* Main content area */}
-            <main className="flex-1 p-6 lg:p-10">
+            <main className="flex-1 p-6 section-bg lg:p-10">
                 {/* Main content */}
                 <Outlet></Outlet>
             </main>
