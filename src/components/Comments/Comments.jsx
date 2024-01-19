@@ -17,7 +17,7 @@ const Comments = ({ featureId }) => {
 
     // Display an error message if there's an issue fetching comments
     if (isError) {
-        return <p>Error fetching comments</p>;
+        return <p className='text-headingText' >Error fetching comments</p>;
     }
 
     return (
@@ -26,7 +26,7 @@ const Comments = ({ featureId }) => {
             {foundComments && foundComments.length > 0 ? (
                 foundComments.map((comment) => <Comment key={comment._id} comment={comment} featureId={featureId}></Comment>)
             ) : (
-                <p>No comments available</p>
+                <p className='text-headingText'>No comments available</p>
             )}
         </div>
     );
