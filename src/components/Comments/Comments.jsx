@@ -22,7 +22,7 @@ const Comments = ({ featureId }) => {
 
     return (
         <div className="w-full my-10">
-            <h2 className="text-lg font-semibold mb-4">Comments</h2>
+            <h2 className="text-lg text-headingText font-semibold mb-4">Comments</h2>
             {foundComments && foundComments.length > 0 ? (
                 foundComments.map((comment) => <Comment key={comment._id} comment={comment} featureId={featureId}></Comment>)
             ) : (

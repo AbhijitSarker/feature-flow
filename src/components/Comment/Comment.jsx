@@ -88,17 +88,17 @@ const Comment = ({ comment, featureId }) => {
                 />
 
                 <div>
-                    <p className="text-sm font-semibold">{comment.name}</p>
+                    <p className="text-sm text-gray-400 font-semibold">{comment.name}</p>
                     <div>
                         {isEditing ? (
                             <input
                                 type="text"
                                 value={updatedComment}
                                 onChange={(e) => setUpdatedComment(e.target.value)}
-                                className="text-gray-600 text-sm border-b border-gray-300 focus:outline-none"
+                                className="text-headingText text-sm border-b border-gray-300 focus:outline-none"
                             />
                         ) : (
-                            <p className="text-gray-600 text-sm">{comment.comment}</p>
+                            <p className="text-gray-500 text-sm">{comment.comment}</p>
                         )}
                     </div>
                 </div>

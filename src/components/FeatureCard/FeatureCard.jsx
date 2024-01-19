@@ -207,21 +207,6 @@ const FeatureCard = ({ feature }) => {
 
 
                 </div>
-                {/* 
-                <form className="flex  ">
-                    <input
-                        className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-300 bg-gray-500"
-                        type="text"
-                        required
-                        placeholder="Add a comment..."
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                    />
-                    <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary hover:bg-secondary  text-secondary hover:text-primary transition ease-in-out duration-200 font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
-                </form> */}
-
-
-
 
             </div>
         </div>

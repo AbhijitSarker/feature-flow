@@ -202,89 +202,91 @@ const Feature = () => {
     }
 
     return (
-        <div>
-            <Helmet>
-                <title> Feature | Feature Flow </title>
-            </Helmet>
-            <div className='flex justify-between items-center my-5'>
-                <Link to={'/'}>
-                    <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> <FaArrowLeft /> </button>
-                </Link>
-                {
-                    currentUserEmail === userEmail ?
-                        <div className='flex items-center gap-5'>
-                            <button
-                                onClick={handleDeleteFeature}
-                                className="block py-2 px-4 bg-red-500 text-white rounded-md focus:outline-none hover:bg-red-600"
-                            >
-                                Delete
-                            </button>
-                            <Link to={`/editfeature/${id}`}><button className=" hover:bg-secondary py-2 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer">
-                                Edit
-                            </button></Link>
-                        </div>
-                        : <></>
-                }
-            </div>
+        <div className='hero-bg min-h-screen py-10' >
 
-            <div className="bg-white p-4 rounded shadow">
-                <div className="flex items-center pt-2 mb-4">
-                    <img
-                        src={userAvatar}
-                        alt="Author"
-                        className="w-10 h-10 rounded-full mr-2"
-                    />
-                    <div>
-                        <span className="text-gray-700 font-semibold">{userName}</span>
-                        <span className="text-gray-500 block">{formattedDateTime}</span>
-                    </div>
+            <div className='container mx-auto section-bg border border-gray-800 '>
+                <Helmet>
+                    <title>Feature | Feature Flow</title>
+                </Helmet>
+                <div className=' py-10 px-4 flex justify-between items-center'>
+                    <Link to={'/'}>
+                        <button className="block mt-2 py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"> <FaArrowLeft /> </button>
+                    </Link>
+                    {
+                        currentUserEmail === userEmail ?
+                            <div className='flex items-center gap-5'>
+                                <button
+                                    onClick={handleDeleteFeature}
+                                    className="block py-2 px-4 bg-red-500 text-white rounded-md focus:outline-none hover:bg-red-600"
+                                >
+                                    Delete
+                                </button>
+                                <Link to={`/editfeature/${id}`}><button className=" hover:bg-secondary py-2 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer">
+                                    Edit
+                                </button></Link>
+                            </div>
+                            : <></>
+                    }
                 </div>
 
-                <h2 className="text-lg text-primary font-semibold mb-2">{title}</h2>
-                <p className="text-gray-600 mb-4">{description}</p>
-
-
-
-                <div className="md:flex justify-between border-t border-b px-4 py-2">
-                    <div className='flex gap-3 my-2'>
-                        {/* like button */}
-                        <div className="flex items-center">
-                            <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-red-500' : ''}`}>
-                                <FaHeart />
-                                <p className='ml-2 text-xl'>{liked ? 'Unvote' : loadingLike ? 'Voting' : 'Vote'}</p>
-                            </button>
-                            <span className="text-gray-600 ml-2 text-xl">{likesCount}</span>
-                        </div>
-
-                        {/* comment count */}
-                        <div className="flex items-center text-3xl text-gray-500">
-                            <FaComment></FaComment>
-                            <span className="text-gray-600 text-xl ml-2">{comments.length}</span>
-                        </div>
-                    </div>
-
-
-
-                    {/* comment input */}
-                    <form className="flex  ">
-                        <input
-                            className="rounded-l-lg w-40 md:w-max p-2 border-t border-b border-l text-primary border-gray-200 bg-white"
-                            type="text"
-                            required
-                            placeholder="Add a comment..."
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
+                <div className=" p-4 rounded shadow">
+                    <div className="flex items-center pt-2 mb-4">
+                        <img
+                            src={userAvatar}
+                            alt="Author"
+                            className="w-10 h-10 rounded-full mr-2"
                         />
-                        <button onClick={user ? handleAddComment : verifyUser} className="px-3 rounded-r-lg bg-primary  text-white font-bold py-1 uppercase ">{loadingComment ? '....' : 'Comment'}</button>
-                    </form>
+                        <div>
+                            <span className="text-gray-400 font-semibold">{userName}</span>
+                            <span className="text-gray-500 block">{formattedDateTime}</span>
+                        </div>
+                    </div>
+
+                    <h2 className="text-xl text-headingText font-semibold mb-2">{title}</h2>
+                    <p className="text-gray-400 mb-4">{description}</p>
+
+                    <div className="md:flex justify-between border-gray-700 border-t border-b px-4 py-2">
+                        <div className='flex gap-3 my-2'>
+                            {/* like button */}
+                            <div className="flex items-center">
+                                <button onClick={user ? handleLike : verifyUser} className={`flex text-3xl items-center text-gray-500 ${liked ? 'text-red-500' : ''}`}>
+                                    <FaHeart />
+                                    <p className='ml-2 text-xl'>{liked ? 'Unvote' : loadingLike ? 'Voting' : 'Vote'}</p>
+                                </button>
+                                <span className="text-gray-600 ml-2 text-xl">{likesCount}</span>
+                            </div>
+
+                            {/* comment count */}
+                            <div className="flex items-center text-3xl text-gray-500">
+                                <FaComment></FaComment>
+                                <span className="text-gray-600 text-xl ml-2">{comments.length}</span>
+                            </div>
+                        </div>
+
+                        {/* comment input */}
+                        <div className="flex  items-center max-w-md bg-transparent border border-gray-600 rounded">
+                            <div className="w-full">
+                                <input type="text"
+                                    className="w-full px-4 bg-transparent text-white focus:outline-none"
+                                    placeholder="Add a comment..."
+                                    value={newComment}
+                                    onChange={(e) => setNewComment(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className='h-full'>
+                                <button onClick={user ? handleAddComment : verifyUser} type="submit" className="flex items-center h-full gradient-bg justify-center px-2  py-2 text-white rounded-r"
+                                > {loadingComment ? 'adding' : 'Comment'}</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <Comments featureId={id}></Comments>
 
                 </div>
-
-
-                <Comments featureId={id}></Comments>
-
+                <ToastContainer></ToastContainer>
             </div>
-            <ToastContainer></ToastContainer>
         </div>
     );
 };
