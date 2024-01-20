@@ -100,52 +100,54 @@ const FeatureTable = ({ filteredFeatures }) => {
     };
     return (
         <div>
-            <table class="min-w-full text-headingText border-collapse block md:table">
-                <thead class="block md:table-header-group">
-                    <tr class="border border-gray-700 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Name</th>
-                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Author </th>
-                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Likes</th>
-                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell"> Comments</th>
-                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Status</th>
-                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Actions</th>
+            <table className="min-w-full text-headingText border-collapse block md:table">
+                <thead className="block md:table-header-group">
+                    <tr className="border border-gray-700 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                        <th className="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Name</th>
+                        <th className="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Author </th>
+                        <th className="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Likes</th>
+                        <th className="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell"> Comments</th>
+                        <th className="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Status</th>
+                        <th className="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Actions</th>
                     </tr>
                 </thead>
 
-                <tbody class="block md:table-row-group">
+                <tbody className="block md:table-row-group">
                     {
                         currentItems?.map(feature => <tr key={feature._id} className="section-bg border border-gray-700 md:border-none block md:table-row">
-                            <td className="p-2 md:border md:border-gray-700 text-left block md:table-cell"> <span class="inline-block w-1/3 md:hidden font-bold">Name</span>  <Link to={`/feature/${feature._id}`}>{feature.title.length > 40 ? `${feature.title.slice(0, 40)}.....` : feature.title}</Link></td>
-                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>{feature.userName}</td>
-                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>{feature.likes.length}</td>
-                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>{feature.comments.length}</td>
-                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{feature.status}</td>
+                            <td className="p-2 md:border md:border-gray-700 text-left block md:table-cell"> <span className="inline-block w-1/3 md:hidden font-bold">Name</span>  <Link to={`/feature/${feature._id}`}>{feature.title.length > 40 ? `${feature.title.slice(0, 40)}.....` : feature.title}</Link></td>
+                            <td className="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Name</span>{feature.userName}</td>
+                            <td className="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">User Name</span>{feature.likes.length}</td>
+                            <td className="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Email Address</span>{feature.comments.length}</td>
+                            <td className="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span className="inline-block w-1/3 md:hidden font-bold">Mobile</span>{feature.status}</td>
 
-                            <td className="p-2 md:border md:border-gray-700 text-left flex  gap-4 ">
-                                {/* <span class="inline-block w-1/3 md:hidden font-bold">Action</span> */}
-                                <div className='flex border bg-transparent rounded-md border-gray-700'>
-                                    <select
-                                        value={selectedStatuses[feature._id] || ''}
-                                        onChange={(e) => handleStatusChange(feature._id, e.target.value)}
-                                        className="block appearance-none bg-transparent px-4 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                    >
-                                        <option value="">Change Status</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="In-Progress">In-Progress</option>
-                                        <option value="Completed">Completed</option>
-                                        {/* Add options for different statuses */}
-                                    </select>
-                                    <button
-                                        onClick={() => changeStatus(feature._id)}
-                                        className=" bg-blue-500 hover:bg-blue-700 text-white p-2 rounded focus:outline-none focus:shadow-outline  focus:shadow-outline"
-                                    >
-                                        <IoCheckmarkDone />
-                                    </button>
+                            <td className="p-2 md:border md:border-gray-700 text-left md:table-cell  ">
+                                {/* <span className="inline-block w-1/3 md:hidden font-bold">Action</span> */}
+                                <div className='flex bg-transparent rounded-md '>
+                                    <div className='flex border border-gray-700 rounded-md'>
+                                        <select
+                                            value={selectedStatuses[feature._id] || ''}
+                                            onChange={(e) => handleStatusChange(feature._id, e.target.value)}
+                                            className=" appearance-none bg-transparent px-4 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option value="">Change Status</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In-Progress">In-Progress</option>
+                                            <option value="Completed">Completed</option>
+                                            {/* Add options for different statuses */}
+                                        </select>
+                                        <button
+                                            onClick={() => changeStatus(feature._id)}
+                                            className=" bg-blue-500 hover:bg-blue-700 text-white p-2 rounded focus:outline-none focus:shadow-outline  focus:shadow-outline"
+                                        >
+                                            <IoCheckmarkDone />
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="button" onClick={() => deleteFeature(feature._id)} className="text-xl h-full bg-red-500 hover:bg-red-700 text-white py-1 ml-5 px-2 rounded focus:outline-none focus:shadow-outline"><FaRegTrashCan /></button>
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <button type="button" onClick={() => deleteFeature(feature._id)} className="text-xl bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><FaRegTrashCan /></button>
-                                </div>
                             </td>
                         </tr>)
                     }

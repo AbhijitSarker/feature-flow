@@ -43,7 +43,7 @@ const Dashboard = () => {
             {/* Sidebar */}
             <aside className={`bg-[#002233] text-white w-full lg:w-96 h-screen ${isSidebarOpen ? 'block' : 'hidden'} lg:block lg:min-h-screen p-3 md:p-6`} >
                 {/* Sidebar content */}
-                <Link to={'/'}><LogoTitle></LogoTitle></Link>
+                <LogoTitle></LogoTitle>
                 {/* Sidebar links/menu */}
                 {
                     isAdmin === 'admin' ?
