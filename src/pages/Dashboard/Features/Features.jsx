@@ -133,7 +133,7 @@ const Features = () => {
                 <Helmet>
                     <title>Manage Features | Feature Flow </title>
                 </Helmet>
-                <h2 className='text-4xl font-semibold text-primary'>Manage Features</h2>
+                <h2 className='text-4xl font-semibold text-headingText'>Manage Features</h2>
                 {/* FeatureNav component to handle search, status filter, and sorting */}
                 <FeatureNav
                     handleSearch={handleSearch}

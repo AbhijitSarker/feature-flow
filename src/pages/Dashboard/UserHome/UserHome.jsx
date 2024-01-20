@@ -105,8 +105,8 @@ const UserHome = () => {
     if (isAdmin === 'admin') {
 
         return (
-            <div className="w-full text-headingText m-4">
-                <p className="text-5xl font-bold mb-5"> Dashboard</p>
+            <div className="w-full text-headingText ">
+                <p className="text-4xl font-bold mb-5"> Dashboard</p>
                 <h3 className="text-lg">Hi, {user?.displayName}, Welcome Back</h3>
 
                 <p className="text-2xl font-semibold mt-16 mb-5">Logo and Title</p>
@@ -187,7 +187,6 @@ const UserHome = () => {
                 </>
                 )}
                 <ToastContainer />
-
             </div>
 
         );

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import Swal from 'sweetalert2'
+import
+Swal from 'sweetalert2'
 import api from '../../utils/handleApi';
 import useFeatures from '../../hooks/useFeatures';
 import { Link } from 'react-router-dom';
+import { IoCheckmarkDone } from "react-icons/io5";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const FeatureTable = ({ filteredFeatures }) => {
     // Pagination state
@@ -96,33 +99,37 @@ const FeatureTable = ({ filteredFeatures }) => {
         }));
     };
     return (
-        <div className="text-primary   bg-gray-200 flex flex-col">
+        <div>
+            <table class="min-w-full text-headingText border-collapse block md:table">
+                <thead class="block md:table-header-group">
+                    <tr class="border border-gray-700 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Name</th>
+                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Author </th>
+                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Likes</th>
+                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell"> Comments</th>
+                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Status</th>
+                        <th class="section-bg p-2 text-white font-bold md:border md:border-gray-700 text-left block md:table-cell">Actions</th>
+                    </tr>
+                </thead>
 
-            <div className="px-3 py-4 flex justify-center">
-                <table className="w-full text-md bg-white shadow-md rounded mb-4">
-                    <tbody>
-                        <tr className="border-b">
-                            <th className="text-left p-3 px-5">Name</th>
-                            <th className="text-left p-3 px-5">Author</th>
-                            <th className="text-left p-3 px-5">Likes </th>
-                            <th className="text-left p-3 px-5"> Comments</th>
-                            <th className="text-left p-3 px-5">Status</th>
-                            <th>Actions</th>
-                        </tr>
-                        {
-                            currentItems?.map(feature => <tr key={feature._id} className="border-b hover:bg-orange-100">
-                                <td className="p-3 px-5 hover:underline">   <Link to={`/feature/${feature._id}`}>{feature.title.length > 40 ? `${feature.title.slice(0, 40)}.....` : feature.title}</Link></td>
-                                <td className="p-3 px-5">{feature.userName}</td>
-                                <td className=" p-3 px-5">{feature.likes.length}</td>
-                                <td className=" p-3 px-5"> {feature.comments.length}</td>
-                                <td className="p-3 px-5"> {feature.status}</td>
-                                <td className="p-3 px-5 flex gap-4 justify-end">
+                <tbody class="block md:table-row-group">
+                    {
+                        currentItems?.map(feature => <tr key={feature._id} className="section-bg border border-gray-700 md:border-none block md:table-row">
+                            <td className="p-2 md:border md:border-gray-700 text-left block md:table-cell"> <span class="inline-block w-1/3 md:hidden font-bold">Name</span>  <Link to={`/feature/${feature._id}`}>{feature.title.length > 40 ? `${feature.title.slice(0, 40)}.....` : feature.title}</Link></td>
+                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>{feature.userName}</td>
+                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>{feature.likes.length}</td>
+                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>{feature.comments.length}</td>
+                            <td class="p-2 md:border md:border-gray-700 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{feature.status}</td>
+
+                            <td className="p-2 md:border md:border-gray-700 text-left flex  gap-4 ">
+                                {/* <span class="inline-block w-1/3 md:hidden font-bold">Action</span> */}
+                                <div className='flex border bg-transparent rounded-md border-gray-700'>
                                     <select
                                         value={selectedStatuses[feature._id] || ''}
                                         onChange={(e) => handleStatusChange(feature._id, e.target.value)}
-                                        className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                        className="block appearance-none bg-transparent px-4 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                     >
-                                        <option value="">Select Status</option>
+                                        <option value="">Change Status</option>
                                         <option value="Pending">Pending</option>
                                         <option value="In-Progress">In-Progress</option>
                                         <option value="Completed">Completed</option>
@@ -130,26 +137,28 @@ const FeatureTable = ({ filteredFeatures }) => {
                                     </select>
                                     <button
                                         onClick={() => changeStatus(feature._id)}
-                                        className="text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline  focus:shadow-outline"
+                                        className=" bg-blue-500 hover:bg-blue-700 text-white p-2 rounded focus:outline-none focus:shadow-outline  focus:shadow-outline"
                                     >
-                                        Change Status
+                                        <IoCheckmarkDone />
                                     </button>
-                                    <button type="button" onClick={() => deleteFeature(feature._id)} className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
-                                </td>
-                            </tr>)
-                        }
+                                </div>
 
+                                <div>
+                                    <button type="button" onClick={() => deleteFeature(feature._id)} className="text-xl bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><FaRegTrashCan /></button>
+                                </div>
+                            </td>
+                        </tr>)
+                    }
+                </tbody>
+            </table>
 
-
-                    </tbody>
-                </table>
-            </div>
-            <div className='   flex justify-center items-center gap-4 my-5'>
+            <div className='flex justify-center items-center gap-4 my-5'>
                 <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={prevPage} disabled={currentPage === 1} >Prev</button>
-                <span className='text-primary'>Page {currentPage} of {totalPages}</span>
+                <span className='text-headingText'>Page {currentPage} of {totalPages}</span>
                 <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={nextPage} disabled={currentPage === totalPages}>Next</button>
             </div>
-        </div>
+
+        </div >
     );
 };
 
