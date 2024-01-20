@@ -1,9 +1,10 @@
 import React from 'react';
-import NavBar from '../../../components/NavBar/NavBar';
 import { Link } from 'react-router-dom';
 import LogoTitle from '../../../components/LogoTitle/LogoTitle';
-
+import useApp from '../../../hooks/useApp';
 const Hero = () => {
+    const { data } = useApp();
+
     return (
         <div className='hero-bg h-screen'>
             <div className='container mx-auto py-20 flex items-center flex-col gap-10 text-white text-center'>
@@ -11,7 +12,7 @@ const Hero = () => {
                     <LogoTitle></LogoTitle>
                 </div>
                 <div>
-                    <h1 className='text-4xl md:text-7xl text-headingText font-semibold font-serif  leading-relaxed   md:w-[700px] lg:w-[900px]'>Empowering Ideas, Engaging Conversations, Evolving Features.  </h1>
+                    <h1 className='text-4xl md:text-7xl text-headingText font-semibold font-serif  leading-relaxed   md:w-[700px] lg:w-[900px]'>{data?.appInfo[0].description} </h1>
                 </div>
 
                 <div>

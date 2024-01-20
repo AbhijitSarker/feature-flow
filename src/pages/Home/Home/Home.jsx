@@ -188,9 +188,9 @@ const Home = () => {
                     <p>{searchTerm.trim() ? 'No features to show ' : 'No features available'}</p>
                 )}
                 {/* pagination buttons */}
-                <div className='   flex justify-center items-center gap-4 mt-4'>
+                <div className='  text-headingText flex justify-center items-center gap-4 mt-4'>
                     <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={prevPage} disabled={currentPage === 1} >Prev</button>
-                    <span className='text-primary'>Page {currentPage} of {totalPages}</span>
+                    <span className=''>Page {currentPage} of {totalPages}</span>
                     <button className='text-sm hover:bg-secondary py-1 px-4 rounded-md hover:text-primary bg-primary text-white transform ease-in-out duration-300 cursor-pointer' onClick={nextPage} disabled={currentPage === totalPages}>Next</button>
                 </div>
             </div>
