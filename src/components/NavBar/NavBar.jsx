@@ -6,7 +6,7 @@ import LogoTitle from '../LogoTitle/LogoTitle';
 import useApp from '../../hooks/useApp';
 import { RxAvatar } from "react-icons/rx";
 import useAuth from '../../hooks/useAuth';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2'
 
 const NavBar = () => {
@@ -85,6 +85,7 @@ const NavBar = () => {
                     }
                 </div>
             </div>
+            <ToastContainer />
 
         </nav>
     );

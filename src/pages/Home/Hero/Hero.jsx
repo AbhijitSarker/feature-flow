@@ -20,8 +20,8 @@ const Hero = () => {
                 </div>
 
                 <div className='space-x-5 my-5'>
-                    <Link><button className='gradient-bg rounded-md py-2 px-8 '>Get Started</button></Link>
-                    <Link><button className='gradient-bg rounded-md py-2 px-8 '>About Us</button></Link>
+                    <Link to={'/request'}><button className='gradient-bg rounded-md py-2 px-8 '>Get Started</button></Link>
+                    <Link to={'/about'}><button className='gradient-bg rounded-md py-2 px-8 '>About Us</button></Link>
                 </div>
 
 
