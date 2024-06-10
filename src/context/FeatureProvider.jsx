@@ -45,6 +45,4 @@ const FeatureProvider = ({ children }) => {
     );
 };
 
-
-
 export { FeatureProvider };
